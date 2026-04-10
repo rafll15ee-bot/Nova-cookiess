@@ -1,36 +1,727 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova Cookies | Professional Agency</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400&family=Great+Vibes&display=swap" rel="stylesheet">
-    <style>
-        :root { --primary: #f8ecee; --rose: #8d5b5e; --white: #ffffff; }
-        body { margin: 0; background-color: var(--primary); background-image: url('18746.jpg'); background-size: cover; background-attachment: fixed; font-family: 'Montserrat', sans-serif; color: var(--rose); }
-        .container { max-width: 800px; margin: 50px auto; background: rgba(255, 255, 255, 0.9); padding: 40px; border-radius: 30px; border: 1px solid var(--rose); text-align: center; position: relative; }
-        .frame { width: 180px; height: 230px; margin: 0 auto 20px; border: 8px solid var(--white); outline: 1px solid var(--rose); overflow: hidden; }
-        .frame img { width: 100%; height: 100%; object-fit: cover; }
-        h1 { font-family: 'Great Vibes', cursive; font-size: 4rem; margin: 0; }
-        .services { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
-        .card { background: var(--white); padding: 20px; border-radius: 10px; border: 1px dashed var(--rose); }
-        .button { display: inline-block; margin-top: 30px; padding: 12px 40px; background: var(--rose); color: var(--white); text-decoration: none; border-radius: 50px; font-weight: bold; }
-        .decor { position: absolute; width: 60px; opacity: 0.6; }
-        .t-l { top: -15px; left: -15px; } .t-r { top: -15px; right: -15px; }
-    </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>La Vie en Rose — Moroccan Boutique</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --rose:#e8b4c0;--blush:#f7e4ec;--petal:#fdf0f6;--mauve:#c47a96;
+  --deep:#6b3a52;--cream:#fdf8f6;--gold:#c9a96e;--goldlt:#f0ddb8;
+  --text:#3a1f2e;--muted:#9b7080;--white:#fff;
+  --sh:0 4px 32px rgba(107,58,82,.11);--sh2:0 16px 48px rgba(107,58,82,.18);
+  --r:20px;--speed:.28s;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;min-height:100vh}
+#bg{position:fixed;inset:0;z-index:0;background-size:cover;background-position:center;transition:opacity .6s}
+#bg::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(253,240,246,.96) 0%,rgba(253,248,246,.90) 100%)}
+.petal-wrap{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.petal{position:absolute;top:-60px;opacity:.55;animation:fall linear infinite}
+@keyframes fall{0%{transform:translateY(0) rotate(0deg);opacity:.55}100%{transform:translateY(110vh) rotate(720deg) translateX(30px);opacity:0}}
+.ribbon{position:relative;z-index:10;background:linear-gradient(90deg,var(--mauve),var(--deep),var(--mauve));color:#fff;text-align:center;padding:.5rem 1rem;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}
+header{position:sticky;top:0;z-index:200;background:rgba(253,240,246,.82);backdrop-filter:blur(22px) saturate(180%);border-bottom:1px solid rgba(196,122,150,.18)}
+.hdr{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px;padding:0 2rem;gap:1rem}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-style:italic;color:var(--deep);text-decoration:none}
+.logo b{color:var(--gold);font-weight:600;font-style:normal}
+nav{display:flex;gap:2rem;align-items:center}
+nav a{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color var(--speed);position:relative;padding-bottom:2px}
+nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--mauve);transition:width var(--speed)}
+nav a:hover::after,nav a.active::after{width:100%}
+nav a:hover,nav a.active{color:var(--deep)}
+.hdr-right{display:flex;gap:.6rem;align-items:center}
+.icon-btn{background:none;border:none;cursor:pointer;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.15rem;color:var(--deep);transition:background var(--speed);position:relative}
+.icon-btn:hover{background:var(--blush)}
+.badge{position:absolute;top:4px;right:4px;background:var(--mauve);color:#fff;font-size:.55rem;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;border:2px solid var(--cream)}
+.admin-btn{background:var(--deep);color:#fff;border:none;padding:.45rem 1.2rem;border-radius:30px;font-size:.73rem;letter-spacing:.1em;cursor:pointer;transition:all var(--speed);font-family:'DM Sans',sans-serif}
+.admin-btn:hover{background:var(--mauve);transform:translateY(-1px)}
+.hero{position:relative;z-index:1;text-align:center;padding:6rem 2rem 3.5rem;overflow:hidden}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(232,180,192,.25);border:1px solid rgba(196,122,150,.3);color:var(--deep);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;padding:.4rem 1.3rem;border-radius:30px;margin-bottom:1.4rem;backdrop-filter:blur(8px)}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:300;line-height:1.1;color:var(--deep);margin-bottom:1.1rem}
+.hero h1 em{font-style:italic;color:var(--mauve);display:block}
+.hero-sub{color:var(--muted);font-size:.88rem;max-width:440px;margin:0 auto 2.5rem;line-height:1.75}
+.hero-cta{display:inline-flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.btn-primary{background:var(--deep);color:#fff;border:none;padding:.75rem 2.2rem;border-radius:40px;font-family:'DM Sans',sans-serif;font-size:.82rem;letter-spacing:.1em;cursor:pointer;transition:all var(--speed);text-transform:uppercase}
+.btn-primary:hover{background:var(--mauve);transform:translateY(-2px);box-shadow:0 8px 24px rgba(107,58,82,.25)}
+.btn-outline{background:none;color:var(--deep);border:1.5px solid var(--mauve);padding:.72rem 2rem;border-radius:40px;font-family:'DM Sans',sans-serif;font-size:.82rem;letter-spacing:.1em;cursor:pointer;transition:all var(--speed);text-transform:uppercase}
+.btn-outline:hover{background:var(--blush)}
+.hero-decor{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(232,180,192,.3) 0%,transparent 70%);pointer-events:none}
+.hero-decor.l{top:-80px;left:-100px}
+.hero-decor.r{bottom:-100px;right:-80px}
+.stats-bar{position:relative;z-index:1;background:rgba(255,255,255,.7);backdrop-filter:blur(16px);border-top:1px solid rgba(196,122,150,.15);border-bottom:1px solid rgba(196,122,150,.15)}
+.stats-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);padding:1.2rem 2rem}
+.stat-item{text-align:center;padding:.5rem}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--deep);display:block;line-height:1}
+.stat-label{font-size:.7rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem}
+.search-zone{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:2rem 2rem 1rem}
+.search-card{background:rgba(255,255,255,.85);backdrop-filter:blur(16px);border-radius:18px;padding:1.3rem 1.6rem;box-shadow:var(--sh);border:1px solid rgba(196,122,150,.12)}
+.search-top{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;flex-wrap:wrap}
+.search-input-wrap{flex:1;min-width:200px;display:flex;align-items:center;gap:.7rem;background:var(--petal);border-radius:12px;padding:.6rem 1rem;border:1px solid rgba(196,122,150,.2)}
+.search-input-wrap input{flex:1;border:none;outline:none;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--text);background:transparent}
+.search-input-wrap input::placeholder{color:var(--muted)}
+.sort-wrap{display:flex;align-items:center;gap:.5rem}
+.sort-label{font-size:.73rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.sort-select{border:1px solid var(--rose);border-radius:25px;padding:.38rem 2rem .38rem .9rem;font-family:'DM Sans',sans-serif;font-size:.77rem;color:var(--deep);background:var(--petal);outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23c47a96'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center}
+.filter-row{display:flex;gap:.45rem;flex-wrap:wrap;align-items:center}
+.cat-chip{border:1.5px solid rgba(196,122,150,.35);border-radius:25px;padding:.32rem 1rem;font-size:.73rem;color:var(--muted);background:none;cursor:pointer;transition:all var(--speed);font-family:'DM Sans',sans-serif;white-space:nowrap}
+.cat-chip:hover{border-color:var(--mauve);color:var(--deep)}
+.cat-chip.active{background:var(--deep);color:#fff;border-color:var(--deep)}
+.price-filter{display:flex;align-items:center;gap:.6rem;margin-left:auto}
+.price-filter label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;white-space:nowrap}
+input[type=range].price-range{-webkit-appearance:none;width:130px;height:4px;border-radius:4px;background:linear-gradient(to right,var(--mauve) 0%,var(--mauve) 50%,var(--blush) 50%,var(--blush) 100%);outline:none;cursor:pointer}
+input[type=range].price-range::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--deep);border:2px solid #fff;box-shadow:0 2px 6px rgba(107,58,82,.3);cursor:pointer}
+.price-val{font-size:.75rem;color:var(--deep);font-weight:500;white-space:nowrap;min-width:70px}
+.main{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:1.5rem 2rem 5rem}
+.grid-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem}
+.grid-title{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:400;color:var(--deep)}
+.grid-meta{font-size:.76rem;color:var(--muted)}
+.view-toggle{display:flex;gap:.3rem}
+.view-btn{background:none;border:1px solid var(--rose);border-radius:8px;width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--muted);transition:all var(--speed)}
+.view-btn.active,.view-btn:hover{background:var(--deep);color:#fff;border-color:var(--deep)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.4rem}
+.grid.list-view{grid-template-columns:1fr}
+.card{background:var(--white);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);transition:transform var(--speed),box-shadow var(--speed);cursor:pointer;position:relative;animation:cardIn .45s ease both}
+@keyframes cardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.card:hover{transform:translateY(-5px);box-shadow:var(--sh2)}
+.card-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--blush)}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.card:hover .card-img img{transform:scale(1.07)}
+.card-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(107,58,82,.18) 0%,transparent 50%);opacity:0;transition:opacity var(--speed)}
+.card:hover .card-img-overlay{opacity:1}
+.card-badge{position:absolute;top:12px;left:12px;font-size:.62rem;letter-spacing:.13em;padding:.28rem .8rem;border-radius:20px;text-transform:uppercase;font-weight:500}
+.badge-new{background:var(--gold);color:#fff}
+.badge-sale{background:var(--deep);color:#fff}
+.card-actions{position:absolute;top:12px;right:12px;display:flex;flex-direction:column;gap:.4rem;transform:translateX(50px);transition:transform var(--speed)}
+.card:hover .card-actions{transform:none}
+.action-btn{background:rgba(255,255,255,.92);border:none;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);box-shadow:0 2px 10px rgba(0,0,0,.1);transition:background var(--speed)}
+.action-btn:hover{background:#fff}
+.quick-strip{position:absolute;bottom:0;left:0;right:0;background:rgba(107,58,82,.88);color:#fff;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:.55rem;transform:translateY(100%);transition:transform var(--speed);backdrop-filter:blur(4px)}
+.card:hover .quick-strip{transform:none}
+.card-body{padding:1.1rem 1.2rem 1.3rem}
+.card-cat{font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--mauve);margin-bottom:.3rem}
+.card-name{font-family:'Cormorant Garamond',serif;font-size:1.08rem;color:var(--deep);margin-bottom:.35rem;line-height:1.3}
+.card-sizes{font-size:.69rem;color:var(--muted);margin-bottom:.5rem}
+.stars-row{display:flex;gap:1px;align-items:center;margin-bottom:.55rem}
+.price-row{display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem}
+.price-now{font-size:1.05rem;font-weight:500;color:var(--deep)}
+.price-was{font-size:.8rem;color:var(--muted);text-decoration:line-through}
+.disc-chip{background:var(--goldlt);color:var(--deep);font-size:.65rem;padding:.12rem .5rem;border-radius:10px;font-weight:600}
+.add-btn{width:100%;background:var(--deep);color:#fff;border:none;padding:.66rem;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:.78rem;letter-spacing:.1em;cursor:pointer;transition:all var(--speed);display:flex;align-items:center;justify-content:center;gap:.5rem}
+.add-btn:hover{background:var(--mauve)}
+.add-btn:active{transform:scale(.97)}
+.grid.list-view .card{display:flex;flex-direction:row;border-radius:16px}
+.grid.list-view .card-img{aspect-ratio:1;width:160px;flex-shrink:0;border-radius:16px 0 0 16px}
+.grid.list-view .card-body{display:flex;flex-direction:column;justify-content:center;flex:1}
+.grid.list-view .quick-strip{display:none}
+.modal-backdrop{display:none;position:fixed;inset:0;z-index:500;background:rgba(58,31,46,.5);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:1rem}
+.modal-backdrop.open{display:flex}
+.modal{background:var(--white);border-radius:26px;max-width:880px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 24px 80px rgba(58,31,46,.3);position:relative;animation:mIn .32s cubic-bezier(.34,1.56,.64,1)}
+@keyframes mIn{from{opacity:0;transform:scale(.93) translateY(20px)}to{opacity:1;transform:none}}
+.modal-close{position:absolute;top:1rem;right:1rem;background:var(--petal);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1rem;color:var(--muted);z-index:10;display:flex;align-items:center;justify-content:center;transition:background var(--speed)}
+.modal-close:hover{background:var(--blush);color:var(--deep)}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr}
+.modal-left{position:relative;aspect-ratio:3/4;background:var(--blush);border-radius:26px 0 0 26px;overflow:hidden}
+.modal-left img{width:100%;height:100%;object-fit:cover}
+.modal-left-badge{position:absolute;top:14px;left:14px}
+.modal-right{padding:2rem 2rem 1.5rem;overflow-y:auto;max-height:92vh;display:flex;flex-direction:column}
+.m-cat{font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;color:var(--mauve);margin-bottom:.5rem}
+.m-name{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--deep);line-height:1.2;margin-bottom:.6rem}
+.m-stars{display:flex;align-items:center;gap:.4rem;margin-bottom:.9rem}
+.m-stars .rc2{font-size:.78rem;color:var(--muted)}
+.m-price{display:flex;align-items:baseline;gap:.7rem;margin-bottom:1.3rem}
+.m-price .now{font-size:1.7rem;font-weight:500;color:var(--deep);font-family:'Cormorant Garamond',serif}
+.m-price .was{font-size:.95rem;color:var(--muted);text-decoration:line-through}
+.m-price .dc{background:var(--goldlt);color:var(--deep);font-size:.72rem;padding:.18rem .6rem;border-radius:12px;font-weight:600}
+.sec-mini{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:.5rem}
+.sizes-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.1rem}
+.sz{border:1.5px solid rgba(196,122,150,.4);border-radius:22px;padding:.3rem .9rem;font-size:.77rem;cursor:pointer;transition:all var(--speed);color:var(--deep);background:none;font-family:'DM Sans',sans-serif}
+.sz:hover{border-color:var(--mauve)}
+.sz.on{background:var(--deep);color:#fff;border-color:var(--deep)}
+.m-desc{font-size:.84rem;color:var(--muted);line-height:1.75;margin-bottom:1.3rem;flex:1}
+.qty-ctrl{display:flex;align-items:center;border:1.5px solid var(--rose);border-radius:25px;overflow:hidden;width:fit-content;margin-bottom:1rem}
+.qty-btn{background:none;border:none;width:36px;height:36px;cursor:pointer;font-size:1.1rem;color:var(--deep);transition:background var(--speed);display:flex;align-items:center;justify-content:center}
+.qty-btn:hover{background:var(--blush)}
+.qty-num{width:36px;text-align:center;font-size:.9rem;font-weight:500;color:var(--deep)}
+.m-add{flex:1;background:var(--deep);color:#fff;border:none;padding:.85rem;border-radius:14px;font-family:'DM Sans',sans-serif;font-size:.83rem;letter-spacing:.1em;cursor:pointer;transition:all var(--speed)}
+.m-add:hover{background:var(--mauve)}
+.m-wish{background:none;border:1.5px solid var(--rose);width:46px;border-radius:14px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background var(--speed)}
+.m-wish:hover{background:var(--blush)}
+.m-row{display:flex;gap:.6rem}
+.rev-section{border-top:1px solid var(--blush);padding-top:1.2rem;margin-top:.5rem}
+.rev-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--deep);margin-bottom:.9rem}
+.rev-item{padding:.75rem 0;border-bottom:1px solid var(--blush)}
+.rev-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem}
+.rev-author{font-size:.8rem;font-weight:500;color:var(--deep)}
+.rev-date{font-size:.7rem;color:var(--muted)}
+.rev-txt{font-size:.8rem;color:var(--muted);line-height:1.65;margin-top:.3rem}
+.rev-form{margin-top:1rem;background:var(--petal);border-radius:14px;padding:1rem}
+.rev-form-title{font-size:.8rem;font-weight:500;color:var(--deep);margin-bottom:.7rem}
+.rf-input{width:100%;border:1px solid rgba(196,122,150,.3);border-radius:10px;padding:.55rem .85rem;font-family:'DM Sans',sans-serif;font-size:.8rem;color:var(--text);background:#fff;outline:none;margin-bottom:.5rem;transition:border-color var(--speed)}
+.rf-input:focus{border-color:var(--mauve)}
+.rf-textarea{width:100%;border:1px solid rgba(196,122,150,.3);border-radius:10px;padding:.6rem .85rem;font-family:'DM Sans',sans-serif;font-size:.8rem;color:var(--text);background:#fff;outline:none;resize:none;height:72px;margin-bottom:.5rem;transition:border-color var(--speed)}
+.rf-textarea:focus{border-color:var(--mauve)}
+.star-pick{display:flex;gap:4px;cursor:pointer;font-size:1.3rem;margin-bottom:.6rem}
+.rf-submit{background:var(--mauve);color:#fff;border:none;padding:.5rem 1.4rem;border-radius:20px;font-size:.76rem;letter-spacing:.08em;cursor:pointer;transition:background var(--speed);font-family:'DM Sans',sans-serif}
+.rf-submit:hover{background:var(--deep)}
+.overlay{display:none;position:fixed;inset:0;z-index:600;background:rgba(58,31,46,.55);backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:1rem}
+.overlay.open{display:flex}
+.panel{background:var(--white);border-radius:26px;width:100%;max-width:680px;max-height:92vh;overflow-y:auto;box-shadow:0 24px 80px rgba(58,31,46,.3);padding:2rem 2rem 2.5rem;animation:mIn .3s ease}
+.panel-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.8rem}
+.panel-hdr h2{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--deep)}
+.panel-close{background:var(--petal);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1rem;color:var(--muted);display:flex;align-items:center;justify-content:center;transition:background var(--speed)}
+.panel-close:hover{background:var(--blush)}
+.tab-bar{display:flex;gap:.4rem;margin-bottom:1.8rem;background:var(--petal);border-radius:14px;padding:.3rem}
+.tab{border:none;border-radius:10px;padding:.45rem 1.1rem;font-size:.76rem;cursor:pointer;background:none;color:var(--muted);transition:all var(--speed);font-family:'DM Sans',sans-serif}
+.tab.on{background:var(--white);color:var(--deep);box-shadow:var(--sh);font-weight:500}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem}
+.frow.full{grid-template-columns:1fr}
+.flabel{display:block;font-size:.72rem;color:var(--muted);letter-spacing:.09em;text-transform:uppercase;margin-bottom:.3rem}
+.finput,.fselect,.ftxt{width:100%;border:1.5px solid rgba(196,122,150,.25);border-radius:11px;padding:.58rem .9rem;font-family:'DM Sans',sans-serif;font-size:.83rem;color:var(--text);background:var(--petal);outline:none;transition:border-color var(--speed)}
+.finput:focus,.fselect:focus,.ftxt:focus{border-color:var(--mauve)}
+.ftxt{resize:none;height:78px}
+.fsave{background:var(--deep);color:#fff;border:none;padding:.7rem 2.2rem;border-radius:25px;font-size:.8rem;letter-spacing:.1em;cursor:pointer;transition:all var(--speed);font-family:'DM Sans',sans-serif}
+.fsave:hover{background:var(--mauve);transform:translateY(-1px)}
+.bg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-top:.6rem}
+.bg-opt{aspect-ratio:16/9;border-radius:10px;cursor:pointer;border:2.5px solid transparent;object-fit:cover;transition:all var(--speed)}
+.bg-opt.on,.bg-opt:hover{border-color:var(--deep)}
+.manage-item{display:flex;align-items:center;gap:.9rem;padding:.8rem 0;border-bottom:1px solid var(--blush)}
+.manage-thumb{width:48px;height:56px;border-radius:9px;object-fit:cover;background:var(--blush);flex-shrink:0}
+.manage-info{flex:1}
+.manage-name{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:var(--deep)}
+.manage-meta{font-size:.72rem;color:var(--muted);margin-top:.1rem}
+.del-btn{background:none;border:1px solid rgba(196,122,150,.4);border-radius:20px;padding:.28rem .8rem;font-size:.72rem;color:var(--muted);cursor:pointer;transition:all var(--speed);font-family:'DM Sans',sans-serif}
+.del-btn:hover{background:#fdeef2;border-color:#e07;color:#c00}
+.cart-drawer{position:fixed;top:0;right:-400px;height:100vh;width:380px;background:var(--white);z-index:400;box-shadow:-6px 0 50px rgba(58,31,46,.18);transition:right .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
+.cart-drawer.open{right:0}
+.cart-hdr{padding:1.5rem 1.5rem 1rem;border-bottom:1px solid var(--blush);display:flex;align-items:center;justify-content:space-between}
+.cart-hdr h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--deep)}
+.cart-body{flex:1;overflow-y:auto;padding:1rem 1.5rem}
+.c-item{display:flex;gap:.9rem;padding:.9rem 0;border-bottom:1px solid var(--blush);align-items:flex-start}
+.c-img{width:62px;height:74px;border-radius:10px;object-fit:cover;background:var(--blush);flex-shrink:0}
+.c-info{flex:1}
+.c-name{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:var(--deep);line-height:1.3}
+.c-size{font-size:.71rem;color:var(--muted);margin:.2rem 0 .4rem}
+.c-qty-row{display:flex;align-items:center;gap:.5rem}
+.c-qty-btn{background:var(--petal);border:none;width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:.85rem;color:var(--deep);display:flex;align-items:center;justify-content:center;transition:background var(--speed)}
+.c-qty-btn:hover{background:var(--blush)}
+.c-qty{font-size:.82rem;font-weight:500;color:var(--deep);min-width:20px;text-align:center}
+.c-price{font-size:.9rem;font-weight:500;color:var(--deep);white-space:nowrap}
+.c-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.9rem;padding:.2rem;transition:color var(--speed)}
+.c-del:hover{color:#c00}
+.cart-foot{padding:1.2rem 1.5rem;border-top:1px solid var(--blush)}
+.cart-summary{margin-bottom:1rem}
+.cart-row{display:flex;justify-content:space-between;font-size:.82rem;color:var(--muted);margin-bottom:.4rem}
+.cart-row.total{font-size:1rem;color:var(--deep);font-weight:500;border-top:1px solid var(--blush);padding-top:.7rem;margin-top:.3rem}
+.checkout-btn{width:100%;background:linear-gradient(135deg,var(--deep),var(--mauve));color:#fff;border:none;padding:.9rem;border-radius:14px;font-family:'DM Sans',sans-serif;font-size:.83rem;letter-spacing:.12em;cursor:pointer;transition:opacity var(--speed);text-transform:uppercase}
+.checkout-btn:hover{opacity:.9}
+.empty-cart{text-align:center;color:var(--muted);font-size:.85rem;padding:3rem 0;line-height:2}
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:linear-gradient(135deg,var(--deep),var(--mauve));color:#fff;padding:.8rem 2rem;border-radius:40px;font-size:.8rem;letter-spacing:.06em;z-index:800;transition:transform .4s cubic-bezier(.34,1.56,.64,1);pointer-events:none;white-space:nowrap;box-shadow:0 8px 24px rgba(107,58,82,.35)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.empty-grid{grid-column:1/-1;text-align:center;padding:4rem;color:var(--muted)}
+.empty-grid p{font-family:'Cormorant Garamond',serif;font-size:1.4rem;margin-bottom:.5rem}
+@media(max-width:820px){
+  .modal-grid{grid-template-columns:1fr}
+  .modal-left{border-radius:26px 26px 0 0;aspect-ratio:4/3}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  nav{display:none}
+  .cart-drawer{width:100%}
+  .grid.list-view .card{flex-direction:column}
+  .grid.list-view .card-img{width:100%;border-radius:var(--r) var(--r) 0 0;aspect-ratio:3/2}
+}
+@media(max-width:520px){
+  .frow{grid-template-columns:1fr}
+  .grid{grid-template-columns:repeat(2,1fr);gap:1rem}
+  .hdr{padding:0 1rem}
+  .search-zone,.main{padding-left:1rem;padding-right:1rem}
+  .bg-grid{grid-template-columns:repeat(2,1fr)}
+  .price-filter{display:none}
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <img src="18181.jpg" class="decor t-l">
-        <img src="18181.jpg" class="decor t-r">
-        <div class="frame"><img src="18771.png"></div>
-        <h1>Nova Cookies</h1>
-        <p>Premium Aesthetic Web Solutions</p>
-        <div class="services">
-            <div class="card"><h3>Web Design</h3><p>Custom Coquette & Victorian styles.</p></div>
-            <div class="card"><h3>Branding</h3><p>Elevating your professional identity.</p></div>
-        </div>
-        <a href="#" class="button">Contact Agency</a>
+<div id="bg"></div>
+<div class="petal-wrap" id="petals"></div>
+
+<div class="ribbon">🌹 Free shipping on orders over 300 MAD &nbsp;·&nbsp; New arrivals every Friday 🌷</div>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="#">La Vie <b>en Rose</b></a>
+    <nav>
+      <a href="#" class="active">Shop</a>
+      <a href="#">Collections</a>
+      <a href="#">Lookbook</a>
+      <a href="#">About</a>
+    </nav>
+    <div class="hdr-right">
+      <button class="admin-btn" onclick="openAdmin()">✦ Admin</button>
+      <button class="icon-btn" onclick="showToast('Wishlist coming soon 🌸')">🤍</button>
+      <button class="icon-btn" onclick="toggleCart()">
+        🛍<span class="badge" id="cartBadge">0</span>
+      </button>
     </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-decor l"></div>
+  <div class="hero-decor r"></div>
+  <div class="hero-eyebrow">🎀 Coquette Collection 2026</div>
+  <h1>Soft, Sweet<br><em>&amp; Utterly Dreamy</em></h1>
+  <p class="hero-sub">Handpicked pieces blending Moroccan elegance with the delicate coquette aesthetic you adore.</p>
+  <div class="hero-cta">
+    <button class="btn-primary" onclick="document.querySelector('.search-zone').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+    <button class="btn-outline">View Lookbook</button>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item"><span class="stat-num">200+</span><div class="stat-label">Unique Pieces</div></div>
+    <div class="stat-item"><span class="stat-num">4.9★</span><div class="stat-label">Avg. Rating</div></div>
+    <div class="stat-item"><span class="stat-num">48h</span><div class="stat-label">Fast Delivery</div></div>
+    <div class="stat-item"><span class="stat-num">100%</span><div class="stat-label">Authentic</div></div>
+  </div>
+</div>
+
+<div class="search-zone">
+  <div class="search-card">
+    <div class="search-top">
+      <div class="search-input-wrap">
+        <span style="color:var(--muted)">🔍</span>
+        <input type="text" id="searchQ" placeholder="Search bows, ribbons, accessories…" oninput="renderProducts()"/>
+      </div>
+      <div class="sort-wrap">
+        <span class="sort-label">Sort</span>
+        <select class="sort-select" id="sortQ" onchange="renderProducts()">
+          <option value="">Featured</option>
+          <option value="asc">Price ↑</option>
+          <option value="desc">Price ↓</option>
+          <option value="rating">Top Rated</option>
+          <option value="sale">On Sale</option>
+          <option value="new">Newest</option>
+        </select>
+      </div>
+      <div class="price-filter">
+        <label>Max price</label>
+        <input type="range" class="price-range" id="priceRange" min="0" max="1000" value="1000" step="50" oninput="updatePriceLabel();renderProducts()"/>
+        <span class="price-val" id="priceLabel">1000 MAD</span>
+      </div>
+    </div>
+    <div class="filter-row">
+      <button class="cat-chip active" onclick="setCat('all',this)">✦ All</button>
+      <button class="cat-chip" onclick="setCat('accessories',this)">🎀 Accessories</button>
+      <button class="cat-chip" onclick="setCat('clothing',this)">👗 Clothing</button>
+      <button class="cat-chip" onclick="setCat('beauty',this)">💄 Beauty</button>
+      <button class="cat-chip" onclick="setCat('home',this)">🕯 Home</button>
+      <button class="cat-chip" onclick="setCat('bags',this)">👜 Bags</button>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="grid-header">
+    <div class="grid-title">Our Collection</div>
+    <div style="display:flex;align-items:center;gap:.8rem">
+      <span class="grid-meta" id="countLabel"></span>
+      <div class="view-toggle">
+        <button class="view-btn active" id="vGrid" onclick="setView('grid')" title="Grid">▦</button>
+        <button class="view-btn" id="vList" onclick="setView('list')" title="List">☰</button>
+      </div>
+    </div>
+  </div>
+  <div class="grid" id="grid"></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modal" onclick="closeModalOut(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-grid">
+      <div class="modal-left">
+        <img id="mImg" src="" alt=""/>
+        <div class="modal-left-badge" id="mBadge"></div>
+      </div>
+      <div class="modal-right">
+        <div class="m-cat" id="mCat"></div>
+        <h2 class="m-name" id="mName"></h2>
+        <div class="m-stars" id="mStars"></div>
+        <div class="m-price" id="mPriceWrap"></div>
+        <div class="sec-mini">Select Size</div>
+        <div class="sizes-row" id="mSizes"></div>
+        <div class="sec-mini">Quantity</div>
+        <div class="qty-ctrl">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <span class="qty-num" id="mQty">1</span>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+        <p class="m-desc" id="mDesc"></p>
+        <div class="m-row" style="margin-bottom:1.2rem">
+          <button class="m-add" onclick="addToCartModal()">Add to Bag 🛍 — <span id="mAddPrice"></span></button>
+          <button class="m-wish" onclick="showToast('Saved to wishlist 🤍')">🤍</button>
+        </div>
+        <div class="rev-section">
+          <div class="rev-title">✨ Reviews</div>
+          <div id="revList"></div>
+          <div class="rev-form">
+            <div class="rev-form-title">Leave a Review</div>
+            <input class="rf-input" id="rName" placeholder="Your name"/>
+            <div class="star-pick" id="starPick">
+              <span onclick="setStar(1)">☆</span><span onclick="setStar(2)">☆</span>
+              <span onclick="setStar(3)">☆</span><span onclick="setStar(4)">☆</span>
+              <span onclick="setStar(5)">☆</span>
+            </div>
+            <textarea class="rf-textarea" id="rText" placeholder="Share your experience…"></textarea>
+            <button class="rf-submit" onclick="postReview()">Post Review 🌸</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div class="overlay" id="adminOverlay" onclick="closeAdminOut(event)">
+  <div class="panel">
+    <div class="panel-hdr">
+      <h2>Admin Dashboard</h2>
+      <button class="panel-close" onclick="closeAdmin()">✕</button>
+    </div>
+    <div class="tab-bar">
+      <button class="tab on" onclick="switchTab('add',this)">➕ Add Product</button>
+      <button class="tab" onclick="switchTab('bg',this)">🖼 Background</button>
+      <button class="tab" onclick="switchTab('manage',this)">📦 Manage</button>
+    </div>
+    <div id="tab-add">
+      <div class="frow">
+        <div><label class="flabel">Product Name</label><input class="finput" id="aName" placeholder="e.g. Rose Bow Clip"/></div>
+        <div><label class="flabel">Category</label>
+          <select class="fselect" id="aCat">
+            <option value="accessories">Accessories</option>
+            <option value="clothing">Clothing</option>
+            <option value="beauty">Beauty</option>
+            <option value="home">Home</option>
+            <option value="bags">Bags</option>
+          </select>
+        </div>
+      </div>
+      <div class="frow">
+        <div><label class="flabel">Price (MAD)</label><input class="finput" id="aPrice" type="number" placeholder="199"/></div>
+        <div><label class="flabel">Discount %</label><input class="finput" id="aDisc" type="number" placeholder="0 (optional)"/></div>
+      </div>
+      <div class="frow">
+        <div><label class="flabel">Sizes (comma separated)</label><input class="finput" id="aSizes" placeholder="XS, S, M, L, XL"/></div>
+        <div><label class="flabel">Badge</label>
+          <select class="fselect" id="aBadge">
+            <option value="">None</option>
+            <option value="new">✦ New</option>
+            <option value="sale">🔥 Sale</option>
+          </select>
+        </div>
+      </div>
+      <div class="frow full"><label class="flabel">Description</label><textarea class="ftxt" id="aDesc" placeholder="Product description…"></textarea></div>
+      <div class="frow full"><label class="flabel">Image URL</label><input class="finput" id="aImg" placeholder="https://…"/></div>
+      <div style="margin-top:1.2rem"><button class="fsave" onclick="addProduct()">✨ Add Product</button></div>
+    </div>
+    <div id="tab-bg" style="display:none">
+      <label class="flabel">Preset Backgrounds</label>
+      <div class="bg-grid" id="bgGrid"></div>
+      <div style="margin-top:1.2rem">
+        <label class="flabel">Custom Image URL</label>
+        <input class="finput" id="customBg" placeholder="https://…" style="margin-bottom:.8rem"/>
+        <button class="fsave" onclick="applyBg(document.getElementById('customBg').value,null)">Apply</button>
+      </div>
+      <div style="margin-top:1.2rem">
+        <label class="flabel">Overlay Opacity</label>
+        <input type="range" style="width:100%;accent-color:var(--mauve);margin-top:.4rem" min="70" max="98" value="93" oninput="updateOverlay(this.value)"/>
+      </div>
+    </div>
+    <div id="tab-manage" style="display:none">
+      <div id="manageList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CART -->
+<div class="cart-drawer" id="cart">
+  <div class="cart-hdr">
+    <h3>My Bag 🛍</h3>
+    <button class="icon-btn" onclick="toggleCart()" style="background:var(--petal)">✕</button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-foot">
+    <div class="cart-summary">
+      <div class="cart-row"><span>Subtotal</span><span id="cartSub">0 MAD</span></div>
+      <div class="cart-row"><span>Shipping</span><span id="cartShip">Free 🎉</span></div>
+      <div class="cart-row total"><span>Total</span><span id="cartTotal">0 MAD</span></div>
+    </div>
+    <button class="checkout-btn">Proceed to Checkout →</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const BGSRC=[
+  'https://images.unsplash.com/photo-1490750967868-88df5691bb30?w=1600&q=80',
+  'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=1600&q=80',
+  'https://images.unsplash.com/photo-1527443060795-0402a18406b2?w=1600&q=80',
+  'https://images.unsplash.com/photo-1508610048659-a06b669e3321?w=1600&q=80',
+  'https://images.unsplash.com/photo-1445205170230-053b83016050?w=1600&q=80',
+  'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1600&q=80',
+];
+
+let products=[
+  {id:1,name:'Pearl Ribbon Headband',cat:'accessories',price:149,discount:0,sizes:['One Size'],badge:'new',desc:'Soft satin headband adorned with delicate pearl accents — the ultimate coquette finishing touch. Handcrafted in Morocco.',img:'https://images.unsplash.com/photo-1631730486784-74757d38e388?w=700&q=80',reviews:[{name:'Yasmine',rating:5,text:'Absolutely gorgeous! Arrived perfectly packaged 🌸',date:'Apr 2026'}],ts:8},
+  {id:2,name:'Rosette Tulle Skirt',cat:'clothing',price:520,discount:15,sizes:['XS','S','M','L'],badge:'sale',desc:'Dreamy multi-layered tulle skirt in the softest blush pink. Perfect for all your coquette moments, Moroccan-made with love.',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80',reviews:[],ts:7},
+  {id:3,name:'Velvet Bow Clip Set',cat:'accessories',price:89,discount:0,sizes:['One Size'],badge:'',desc:'Set of 3 velvet bows in rose, ivory, and mauve. Mix & match for the perfect coquette stack.',img:'https://images.unsplash.com/photo-1540553016722-983e48a2cd10?w=700&q=80',reviews:[{name:'Nadia',rating:4,text:'So pretty and great quality for the price!',date:'Mar 2026'}],ts:6},
+  {id:4,name:'Rose Petal Lip Gloss',cat:'beauty',price:125,discount:10,sizes:['Standard'],badge:'sale',desc:'Hydrating, high-shine gloss with a light rose scent. Sheer pink tint that flatters all skin tones.',img:'https://images.unsplash.com/photo-1596704017234-0c02e5e3aa61?w=700&q=80',reviews:[],ts:5},
+  {id:5,name:'Lace Collar Blouse',cat:'clothing',price:380,discount:0,sizes:['XS','S','M','L','XL'],badge:'new',desc:'Romantic lace collar blouse in crisp white. Designed with Moroccan craftsmanship and coquette charm.',img:'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=700&q=80',reviews:[],ts:4},
+  {id:6,name:'Pressed Flower Candle',cat:'home',price:199,discount:0,sizes:['One Size'],badge:'',desc:'Hand-poured soy candle with dried rose petals. Burns for 40+ hours with a soft floral fragrance.',img:'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=700&q=80',reviews:[{name:'Sara',rating:5,text:'The scent is heavenly! My whole room smells like roses 🌹',date:'Apr 2026'}],ts:3},
+  {id:7,name:'Mini Pearl Handbag',cat:'bags',price:450,discount:20,sizes:['One Size'],badge:'sale',desc:'Tiny structured handbag in ivory with pearl chain strap. The perfect coquette accessory for any occasion.',img:'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=700&q=80',reviews:[],ts:2},
+  {id:8,name:'Floral Satin Scrunchie',cat:'accessories',price:65,discount:0,sizes:['One Size'],badge:'new',desc:'Oversized satin scrunchie in floral print. Gentle on hair, gorgeous everywhere.',img:'https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=700&q=80',reviews:[],ts:1},
+];
+
+let cart=[],activeCat='all',currentId=null,currentQty=1,currentStar=0,viewMode='grid';
+
+window.onload=()=>{applyBg(BGSRC[0],0);spawnPetals();renderBgGrid();renderProducts();renderCart()};
+
+function spawnPetals(){
+  const w=document.getElementById('petals');
+  ['🌸','🌺','🌷','✿','❀'].forEach((_,_2)=>{
+    for(let i=0;i<4;i++){
+      const p=document.createElement('span');
+      p.className='petal';
+      p.textContent=['🌸','🌺','🌷','✿','❀'][Math.floor(Math.random()*5)];
+      p.style.cssText=`left:${Math.random()*100}vw;animation-duration:${8+Math.random()*12}s;animation-delay:${-Math.random()*15}s;font-size:${.5+Math.random()*.6}rem`;
+      w.appendChild(p);
+    }
+  });
+}
+
+function applyBg(url,idx){
+  document.getElementById('bg').style.backgroundImage=`url('${url}')`;
+  document.querySelectorAll('.bg-opt').forEach((o,i)=>o.classList.toggle('on',i===idx));
+}
+function renderBgGrid(){
+  document.getElementById('bgGrid').innerHTML=BGSRC.map((u,i)=>
+    `<img class="bg-opt${i===0?' on':''}" src="${u}" onclick="applyBg('${u}',${i})" loading="lazy"/>`
+  ).join('');
+}
+function updateOverlay(v){document.getElementById('bg').style.setProperty('opacity',v/100)}
+
+const catLabels={accessories:'🎀 Accessories',clothing:'👗 Clothing',beauty:'💄 Beauty',home:'🕯 Home',bags:'👜 Bags'};
+function fp(p){return p.discount>0?Math.round(p.price*(1-p.discount/100)):p.price}
+function avgR(p){return p.reviews.length?p.reviews.reduce((s,r)=>s+r.rating,0)/p.reviews.length:0}
+function starHtml(r,n){
+  const f=Math.round(r);
+  return [1,2,3,4,5].map(i=>`<span style="color:${i<=f?'var(--gold)':'#e0c8d0'};font-size:.85rem">★</span>`).join('')+(n!==undefined?`<span style="font-size:.7rem;color:var(--muted);margin-left:4px">(${n})</span>`:'');
+}
+function setCat(c,el){
+  activeCat=c;
+  document.querySelectorAll('.cat-chip').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  renderProducts();
+}
+function updatePriceLabel(){
+  const v=document.getElementById('priceRange').value;
+  document.getElementById('priceLabel').textContent=v+' MAD';
+  const pct=(v/1000)*100;
+  document.getElementById('priceRange').style.background=`linear-gradient(to right,var(--mauve) 0%,var(--mauve) ${pct}%,var(--blush) ${pct}%,var(--blush) 100%)`;
+}
+function setView(v){
+  viewMode=v;
+  document.getElementById('grid').className='grid'+(v==='list'?' list-view':'');
+  document.getElementById('vGrid').classList.toggle('active',v==='grid');
+  document.getElementById('vList').classList.toggle('active',v==='list');
+}
+function renderProducts(){
+  const q=(document.getElementById('searchQ').value||'').toLowerCase();
+  const sort=document.getElementById('sortQ').value;
+  const maxP=parseInt(document.getElementById('priceRange').value)||9999;
+  let list=[...products];
+  if(activeCat!=='all') list=list.filter(p=>p.cat===activeCat);
+  if(q) list=list.filter(p=>p.name.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q));
+  list=list.filter(p=>fp(p)<=maxP);
+  if(sort==='asc') list.sort((a,b)=>fp(a)-fp(b));
+  else if(sort==='desc') list.sort((a,b)=>fp(b)-fp(a));
+  else if(sort==='rating') list.sort((a,b)=>avgR(b)-avgR(a));
+  else if(sort==='sale') list.sort((a,b)=>b.discount-a.discount);
+  else if(sort==='new') list.sort((a,b)=>b.ts-a.ts);
+  document.getElementById('countLabel').textContent=`${list.length} item${list.length!==1?'s':''}`;
+  const g=document.getElementById('grid');
+  if(!list.length){g.innerHTML=`<div class="empty-grid"><p>No products found 🌸</p><span>Try a different search or category</span></div>`;return}
+  g.innerHTML=list.map((p,idx)=>{
+    const price=fp(p),rat=avgR(p);
+    const badge=p.badge==='new'?'<span class="card-badge badge-new">✦ New</span>':p.badge==='sale'?'<span class="card-badge badge-sale">🔥 Sale</span>':'';
+    return `<div class="card" style="animation-delay:${idx*.06}s" onclick="openModal(${p.id})">
+      <div class="card-img">
+        <img src="${p.img}" alt="${p.name}" loading="lazy"/>
+        <div class="card-img-overlay"></div>
+        ${badge}
+        <div class="card-actions">
+          <button class="action-btn" onclick="event.stopPropagation();showToast('Saved to wishlist 🤍')" title="Wishlist">🤍</button>
+          <button class="action-btn" onclick="event.stopPropagation();quickAdd(${p.id})" title="Quick Add">🛍</button>
+        </div>
+        <div class="quick-strip" onclick="event.stopPropagation();openModal(${p.id})">Quick View</div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">${catLabels[p.cat]||p.cat}</div>
+        <div class="card-name">${p.name}</div>
+        <div class="card-sizes">${p.sizes.join(' · ')}</div>
+        <div class="stars-row">${starHtml(rat,p.reviews.length)}</div>
+        <div class="price-row">
+          <span class="price-now">${price} MAD</span>
+          ${p.discount>0?`<span class="price-was">${p.price} MAD</span><span class="disc-chip">-${p.discount}%</span>`:''}
+        </div>
+        <button class="add-btn" onclick="event.stopPropagation();quickAdd(${p.id})">🛍 Add to Bag</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function openModal(id){
+  const p=products.find(x=>x.id===id);if(!p)return;
+  currentId=id;currentQty=1;currentStar=0;
+  document.getElementById('mImg').src=p.img;
+  document.getElementById('mCat').textContent=catLabels[p.cat]||p.cat;
+  document.getElementById('mName').textContent=p.name;
+  document.getElementById('mDesc').textContent=p.desc;
+  const price=fp(p);
+  document.getElementById('mPriceWrap').innerHTML=`<span class="now">${price} MAD</span>${p.discount>0?`<span class="was">${p.price} MAD</span><span class="dc">-${p.discount}%</span>`:''}`;
+  document.getElementById('mAddPrice').textContent=price+' MAD';
+  const rat=avgR(p);
+  document.getElementById('mStars').innerHTML=starHtml(rat,p.reviews.length)+`<span class="rc2">&nbsp;${rat?rat.toFixed(1)+' / 5':'No ratings yet'}</span>`;
+  document.getElementById('mBadge').innerHTML=p.badge==='new'?'<span class="card-badge badge-new">✦ New</span>':p.badge==='sale'?'<span class="card-badge badge-sale">🔥 Sale</span>':'';
+  document.getElementById('mQty').textContent=1;
+  const sr=p.sizes[0]||'';
+  document.getElementById('mSizes').innerHTML=p.sizes.map(s=>`<button class="sz${s===sr?' on':''}" onclick="selectSz('${s}',this)">${s}</button>`).join('');
+  renderRevs(p);setStar(0);
+  document.getElementById('rName').value='';
+  document.getElementById('rText').value='';
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+function closeModalOut(e){if(e.target.id==='modal')closeModal()}
+function selectSz(s,el){document.querySelectorAll('#mSizes .sz').forEach(b=>b.classList.remove('on'));el.classList.add('on')}
+function changeQty(d){
+  currentQty=Math.max(1,currentQty+d);
+  document.getElementById('mQty').textContent=currentQty;
+  const p=products.find(x=>x.id===currentId);
+  if(p) document.getElementById('mAddPrice').textContent=(fp(p)*currentQty)+' MAD';
+}
+function addToCartModal(){
+  const p=products.find(x=>x.id===currentId);
+  const sz=document.querySelector('#mSizes .sz.on')?.textContent||p.sizes[0];
+  addToCart(p,sz,currentQty);closeModal();
+}
+function quickAdd(id){const p=products.find(x=>x.id===id);if(p)addToCart(p,p.sizes[0],1)}
+
+function renderRevs(p){
+  const el=document.getElementById('revList');
+  if(!p.reviews.length){el.innerHTML='<p style="font-size:.8rem;color:var(--muted);padding:.4rem 0 .8rem">No reviews yet — be the first! 🌸</p>';return}
+  el.innerHTML=p.reviews.map(r=>`<div class="rev-item"><div class="rev-hdr"><span class="rev-author">${r.name}</span><span class="rev-date">${r.date||''}</span></div><div>${starHtml(r.rating)}</div><p class="rev-txt">${r.text}</p></div>`).join('');
+}
+function setStar(n){
+  currentStar=n;
+  document.querySelectorAll('#starPick span').forEach((s,i)=>{s.textContent=i<n?'★':'☆';s.style.color=i<n?'var(--gold)':'#ccc'});
+}
+function postReview(){
+  const name=document.getElementById('rName').value.trim();
+  const text=document.getElementById('rText').value.trim();
+  if(!name||!text||!currentStar){showToast('Please fill all fields & pick a rating 🌸');return}
+  const p=products.find(x=>x.id===currentId);
+  p.reviews.push({name,rating:currentStar,text,date:new Date().toLocaleDateString('en-US',{month:'short',year:'numeric'})});
+  renderRevs(p);
+  const rat=avgR(p);
+  document.getElementById('mStars').innerHTML=starHtml(rat,p.reviews.length)+`<span class="rc2">&nbsp;${rat.toFixed(1)} / 5</span>`;
+  document.getElementById('rName').value='';document.getElementById('rText').value='';setStar(0);
+  renderProducts();showToast('Review posted — thank you! 🌸');
+}
+
+function addToCart(p,size,qty=1){
+  const price=fp(p);
+  const ex=cart.find(c=>c.id===p.id&&c.size===size);
+  if(ex)ex.qty+=qty;else cart.push({id:p.id,name:p.name,price,size,img:p.img,qty});
+  renderCart();showToast(`${p.name} added to bag 🛍`);
+  document.getElementById('cart').classList.add('open');
+}
+function renderCart(){
+  const total=cart.reduce((s,c)=>s+c.price*c.qty,0);
+  const count=cart.reduce((s,c)=>s+c.qty,0);
+  document.getElementById('cartBadge').textContent=count;
+  document.getElementById('cartSub').textContent=total+' MAD';
+  document.getElementById('cartShip').textContent=total>=300?'Free 🎉':'30 MAD';
+  document.getElementById('cartTotal').textContent=(total>=300?total:total+30)+' MAD';
+  const b=document.getElementById('cartBody');
+  if(!cart.length){b.innerHTML='<div class="empty-cart">🌸<br>Your bag is empty<br><small>Start shopping above!</small></div>';return}
+  b.innerHTML=cart.map((c,i)=>`<div class="c-item">
+    <img class="c-img" src="${c.img}" alt="${c.name}"/>
+    <div class="c-info">
+      <div class="c-name">${c.name}</div>
+      <div class="c-size">Size: ${c.size}</div>
+      <div class="c-qty-row">
+        <button class="c-qty-btn" onclick="cQty(${i},-1)">−</button>
+        <span class="c-qty">${c.qty}</span>
+        <button class="c-qty-btn" onclick="cQty(${i},1)">+</button>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.3rem">
+      <span class="c-price">${c.price*c.qty} MAD</span>
+      <button class="c-del" onclick="cRemove(${i})">🗑</button>
+    </div>
+  </div>`).join('');
+}
+function cQty(i,d){cart[i].qty=Math.max(1,cart[i].qty+d);renderCart()}
+function cRemove(i){cart.splice(i,1);renderCart()}
+function toggleCart(){document.getElementById('cart').classList.toggle('open')}
+
+function openAdmin(){document.getElementById('adminOverlay').classList.add('open');renderManage()}
+function closeAdmin(){document.getElementById('adminOverlay').classList.remove('open')}
+function closeAdminOut(e){if(e.target.id==='adminOverlay')closeAdmin()}
+function switchTab(t,el){
+  ['add','bg','manage'].forEach(n=>document.getElementById('tab-'+n).style.display='none');
+  document.getElementById('tab-'+t).style.display='block';
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  if(t==='manage')renderManage();
+}
+function addProduct(){
+  const name=document.getElementById('aName').value.trim();
+  const price=parseInt(document.getElementById('aPrice').value);
+  const disc=parseInt(document.getElementById('aDisc').value)||0;
+  const cat=document.getElementById('aCat').value;
+  const sizes=document.getElementById('aSizes').value.split(',').map(s=>s.trim()).filter(Boolean);
+  const desc=document.getElementById('aDesc').value.trim();
+  const img=document.getElementById('aImg').value.trim();
+  const badge=document.getElementById('aBadge').value;
+  if(!name||!price||!img){showToast('Fill in Name, Price & Image URL');return}
+  const id=products.length?Math.max(...products.map(p=>p.id))+1:1;
+  products.unshift({id,name,cat,price,discount:disc,sizes:sizes.length?sizes:['One Size'],badge,desc,img,reviews:[],ts:Date.now()});
+  renderProducts();renderManage();showToast(`${name} added! 🌸`);
+  ['aName','aPrice','aDisc','aSizes','aDesc','aImg'].forEach(k=>document.getElementById(k).value='');
+}
+function renderManage(){
+  document.getElementById('manageList').innerHTML=products.map(p=>`<div class="manage-item">
+    <img class="manage-thumb" src="${p.img}" alt="${p.name}"/>
+    <div class="manage-info">
+      <div class="manage-name">${p.name}</div>
+      <div class="manage-meta">${fp(p)} MAD · ${p.cat}${p.discount>0?' · -'+p.discount+'%':''}</div>
+    </div>
+    <button class="del-btn" onclick="delProduct(${p.id})">Remove</button>
+  </div>`).join('');
+}
+function delProduct(id){products=products.filter(p=>p.id!==id);renderProducts();renderManage();showToast('Product removed')}
+
+let toastT;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(toastT);
+  toastT=setTimeout(()=>t.classList.remove('show'),2800);
+}
+</script>
 </body>
 </html>
