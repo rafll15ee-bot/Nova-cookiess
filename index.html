@@ -1,115 +1,487 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>La Vie en Rose — Moroccan Boutique</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-<style>
-:root{
-  --rose:#e8b4c0;--blush:#f7e4ec;--petal:#fdf0f6;--mauve:#c47a96;
-  --deep:#6b3a52;--cream:#fdf8f6;--gold:#c9a96e;--goldlt:#f0ddb8;
-  --text:#3a1f2e;--muted:#9b7080;--white:#fff;
-  --sh:0 4px 32px rgba(107,58,82,.11);--sh2:0 16px 48px rgba(107,58,82,.18);
-  --r:20px;--speed:.28s;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;min-height:100vh}
-#bg{position:fixed;inset:0;z-index:0;background-size:cover;background-position:center;transition:opacity .6s}
-#bg::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(253,240,246,.96) 0%,rgba(253,248,246,.90) 100%)}
-.petal-wrap{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.petal{position:absolute;top:-60px;opacity:.55;animation:fall linear infinite}
-@keyframes fall{0%{transform:translateY(0) rotate(0deg);opacity:.55}100%{transform:translateY(110vh) rotate(720deg) translateX(30px);opacity:0}}
-.ribbon{position:relative;z-index:10;background:linear-gradient(90deg,var(--mauve),var(--deep),var(--mauve));color:#fff;text-align:center;padding:.5rem 1rem;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}
-header{position:sticky;top:0;z-index:200;background:rgba(253,240,246,.82);backdrop-filter:blur(22px) saturate(180%);border-bottom:1px solid rgba(196,122,150,.18)}
-.hdr{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px;padding:0 2rem;gap:1rem}
-.logo{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-style:italic;color:var(--deep);text-decoration:none}
-.logo b{color:var(--gold);font-weight:600;font-style:normal}
-nav{display:flex;gap:2rem;align-items:center}
-nav a{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color var(--speed);position:relative;padding-bottom:2px}
-nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--mauve);transition:width var(--speed)}
-nav a:hover::after,nav a.active::after{width:100%}
-nav a:hover,nav a.active{color:var(--deep)}
-.hdr-right{display:flex;gap:.6rem;align-items:center}
-.icon-btn{background:none;border:none;cursor:pointer;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.15rem;color:var(--deep);transition:background var(--speed);position:relative}
-.icon-btn:hover{background:var(--blush)}
-.badge{position:absolute;top:4px;right:4px;background:var(--mauve);color:#fff;font-size:.55rem;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;border:2px solid var(--cream)}
-.admin-btn{background:var(--deep);color:#fff;border:none;padding:.45rem 1.2rem;border-radius:30px;font-size:.73rem;letter-spacing:.1em;cursor:pointer;transition:all var(--speed);font-family:'DM Sans',sans-serif}
-.admin-btn:hover{background:var(--mauve);transform:translateY(-1px)}
-.hero{position:relative;z-index:1;text-align:center;padding:6rem 2rem 3.5rem;overflow:hidden}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(232,180,192,.25);border:1px solid rgba(196,122,150,.3);color:var(--deep);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;padding:.4rem 1.3rem;border-radius:30px;margin-bottom:1.4rem;backdrop-filter:blur(8px)}
-.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:300;line-height:1.1;color:var(--deep);margin-bottom:1.1rem}
-.hero h1 em{font-style:italic;color:var(--mauve);display:block}
-.hero-sub{color:var(--muted);font-size:.88rem;max-width:440px;margin:0 auto 2.5rem;line-height:1.75}
-.hero-cta{display:inline-flex;gap:1rem;flex-wrap:wrap;justify-content:center}
-.btn-primary{background:var(--deep);color:#fff;border:none;padding:.75rem 2.2rem;border-radius:40px;font-family:'DM Sans',sans-serif;font-size:.82rem;letter-spacing:.1em;cursor:pointer;transition:all var(--speed);text-transform:uppercase}
-.btn-primary:hover{background:var(--mauve);transform:translateY(-2px);box-shadow:0 8px 24px rgba(107,58,82,.25)}
-.btn-outline{background:none;color:var(--deep);border:1.5px solid var(--mauve);padding:.72rem 2rem;border-radius:40px;font-family:'DM Sans',sans-serif;font-size:.82rem;letter-spacing:.1em;cursor:pointer;transition:all var(--speed);text-transform:uppercase}
-.btn-outline:hover{background:var(--blush)}
-.hero-decor{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(232,180,192,.3) 0%,transparent 70%);pointer-events:none}
-.hero-decor.l{top:-80px;left:-100px}
-.hero-decor.r{bottom:-100px;right:-80px}
-.stats-bar{position:relative;z-index:1;background:rgba(255,255,255,.7);backdrop-filter:blur(16px);border-top:1px solid rgba(196,122,150,.15);border-bottom:1px solid rgba(196,122,150,.15)}
-.stats-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);padding:1.2rem 2rem}
-.stat-item{text-align:center;padding:.5rem}
-.stat-num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--deep);display:block;line-height:1}
-.stat-label{font-size:.7rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem}
-.search-zone{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:2rem 2rem 1rem}
-.search-card{background:rgba(255,255,255,.85);backdrop-filter:blur(16px);border-radius:18px;padding:1.3rem 1.6rem;box-shadow:var(--sh);border:1px solid rgba(196,122,150,.12)}
-.search-top{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;flex-wrap:wrap}
-.search-input-wrap{flex:1;min-width:200px;display:flex;align-items:center;gap:.7rem;background:var(--petal);border-radius:12px;padding:.6rem 1rem;border:1px solid rgba(196,122,150,.2)}
-.search-input-wrap input{flex:1;border:none;outline:none;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--text);background:transparent}
-.search-input-wrap input::placeholder{color:var(--muted)}
-.sort-wrap{display:flex;align-items:center;gap:.5rem}
-.sort-label{font-size:.73rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
-.sort-select{border:1px solid var(--rose);border-radius:25px;padding:.38rem 2rem .38rem .9rem;font-family:'DM Sans',sans-serif;font-size:.77rem;color:var(--deep);background:var(--petal);outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23c47a96'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center}
-.filter-row{display:flex;gap:.45rem;flex-wrap:wrap;align-items:center}
-.cat-chip{border:1.5px solid rgba(196,122,150,.35);border-radius:25px;padding:.32rem 1rem;font-size:.73rem;color:var(--muted);background:none;cursor:pointer;transition:all var(--speed);font-family:'DM Sans',sans-serif;white-space:nowrap}
-.cat-chip:hover{border-color:var(--mauve);color:var(--deep)}
-.cat-chip.active{background:var(--deep);color:#fff;border-color:var(--deep)}
-.price-filter{display:flex;align-items:center;gap:.6rem;margin-left:auto}
-.price-filter label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;white-space:nowrap}
-input[type=range].price-range{-webkit-appearance:none;width:130px;height:4px;border-radius:4px;background:linear-gradient(to right,var(--mauve) 0%,var(--mauve) 50%,var(--blush) 50%,var(--blush) 100%);outline:none;cursor:pointer}
-input[type=range].price-range::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--deep);border:2px solid #fff;box-shadow:0 2px 6px rgba(107,58,82,.3);cursor:pointer}
-.price-val{font-size:.75rem;color:var(--deep);font-weight:500;white-space:nowrap;min-width:70px}
-.main{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:1.5rem 2rem 5rem}
-.grid-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem}
-.grid-title{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:400;color:var(--deep)}
-.grid-meta{font-size:.76rem;color:var(--muted)}
-.view-toggle{display:flex;gap:.3rem}
-.view-btn{background:none;border:1px solid var(--rose);border-radius:8px;width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--muted);transition:all var(--speed)}
-.view-btn.active,.view-btn:hover{background:var(--deep);color:#fff;border-color:var(--deep)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.4rem}
-.grid.list-view{grid-template-columns:1fr}
-.card{background:var(--white);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);transition:transform var(--speed),box-shadow var(--speed);cursor:pointer;position:relative;animation:cardIn .45s ease both}
-@keyframes cardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-.card:hover{transform:translateY(-5px);box-shadow:var(--sh2)}
-.card-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--blush)}
-.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
-.card:hover .card-img img{transform:scale(1.07)}
-.card-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(107,58,82,.18) 0%,transparent 50%);opacity:0;transition:opacity var(--speed)}
-.card:hover .card-img-overlay{opacity:1}
-.card-badge{position:absolute;top:12px;left:12px;font-size:.62rem;letter-spacing:.13em;padding:.28rem .8rem;border-radius:20px;text-transform:uppercase;font-weight:500}
-.badge-new{background:var(--gold);color:#fff}
-.badge-sale{background:var(--deep);color:#fff}
-.card-actions{position:absolute;top:12px;right:12px;display:flex;flex-direction:column;gap:.4rem;transform:translateX(50px);transition:transform var(--speed)}
-.card:hover .card-actions{transform:none}
-.action-btn{background:rgba(255,255,255,.92);border:none;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);box-shadow:0 2px 10px rgba(0,0,0,.1);transition:background var(--speed)}
-.action-btn:hover{background:#fff}
-.quick-strip{position:absolute;bottom:0;left:0;right:0;background:rgba(107,58,82,.88);color:#fff;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:.55rem;transform:translateY(100%);transition:transform var(--speed);backdrop-filter:blur(4px)}
-.card:hover .quick-strip{transform:none}
-.card-body{padding:1.1rem 1.2rem 1.3rem}
-.card-cat{font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--mauve);margin-bottom:.3rem}
-.card-name{font-family:'Cormorant Garamond',serif;font-size:1.08rem;color:var(--deep);margin-bottom:.35rem;line-height:1.3}
-.card-sizes{font-size:.69rem;color:var(--muted);margin-bottom:.5rem}
-.stars-row{display:flex;gap:1px;align-items:center;margin-bottom:.55rem}
-.price-row{display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem}
-.price-now{font-size:1.05rem;font-weight:500;color:var(--deep)}
-.price-was{font-size:.8rem;color:var(--muted);text-decoration:line-through}
-.disc-chip{background:var(--goldlt);color:var(--deep);font-size:.65rem;padding:.12rem .5rem;border-radius:10px;font-weight:600}
-.add-btn{width:100%;background:var(--deep);color:#fff;border:none;padding:.66rem;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:.78rem;letter-spacing:.1em;cursor:pointer;transition:all var(--speed);display:flex;align-items:center;justify-content:center;gap:.5rem}
-.add-btn:hover{background:var(--mauve)}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Coquette Bazar – متجر كيوت مغربي</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: #ffe4ec;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        /* Coquette style */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #b35f7b;
+            text-shadow: 2px 2px 0 #ffc0d0;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .coquette-desc {
+            color: #a75d7a;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        /* controls row */
+        .controls-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            background: rgba(255,255,240,0.7);
+            padding: 15px 20px;
+            border-radius: 80px;
+            backdrop-filter: blur(4px);
+        }
+
+        .filter-sort {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        select, .admin-btn {
+            background: white;
+            border: 1px solid #f4acb7;
+            padding: 10px 18px;
+            border-radius: 40px;
+            font-weight: bold;
+            color: #a13e5c;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .admin-btn {
+            background: #ffe0e7;
+            border: 1px dashed #c96f8f;
+        }
+
+        .admin-btn:hover {
+            background: #f7cfdb;
+            transform: scale(0.97);
+        }
+
+        /* product grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background: rgba(255, 250, 245, 0.95);
+            border-radius: 40px;
+            padding: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+            border: 1px solid #ffd9e2;
+            backdrop-filter: blur(2px);
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 35px rgba(180, 70, 100, 0.1);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 30px;
+            background: #fce4eb;
+            margin-bottom: 15px;
+            border: 2px solid #ffb7c7;
+        }
+
+        .product-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #9e4e6e;
+        }
+
+        .price-row {
+            display: flex;
+            gap: 12px;
+            align-items: baseline;
+            margin: 10px 0;
+        }
+
+        .price {
+            font-size: 1.7rem;
+            font-weight: bold;
+            color: #b34164;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: gray;
+            font-size: 0.9rem;
+        }
+
+        .discount-badge {
+            background: #ff8aaa;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+        }
+
+        .sizes {
+            display: flex;
+            gap: 8px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .size-badge {
+            background: #ffeef2;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin: 12px 0;
+        }
+
+        .stars {
+            color: gold;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+        }
+
+        .review-count {
+            font-size: 0.7rem;
+            color: gray;
+        }
+
+        .reviews-section {
+            margin-top: 10px;
+            border-top: 1px solid #ffcdd9;
+            padding-top: 10px;
+        }
+
+        .review-item {
+            font-size: 0.75rem;
+            background: #fff5f7;
+            border-radius: 20px;
+            padding: 8px;
+            margin-top: 6px;
+        }
+
+        .add-review {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .add-review input, .add-review select {
+            padding: 4px;
+            font-size: 0.7rem;
+            border-radius: 20px;
+            border: 1px solid #f0b7c4;
+        }
+
+        /* admin panel modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #fff0f3;
+            max-width: 600px;
+            width: 90%;
+            padding: 25px;
+            border-radius: 60px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .admin-form input, .admin-form textarea {
+            width: 100%;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 40px;
+            border: 1px solid #f0a6bc;
+        }
+
+        .product-admin-item {
+            background: #ffeef2;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        button {
+            background: #d47a9b;
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+        .bg-option {
+            display: inline-block;
+            margin: 5px;
+            padding: 6px 12px;
+            background: #fcd5e1;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body id="appBody">
+<div class="container">
+    <div class="header">
+        <h1>🌸 CHOUFHA.CO 🌸</h1>
+        <p class="coquette-dote">✨ coquette moroccan edits ✨</p>
+    </div>
+
+    <div class="controls-row">
+        <div class="filter-sort">
+            <span>🔍 رتبي حسب السعر:</span>
+            <select id="sortSelect">
+                <option value="default">الافتراضي</option>
+                <option value="lowToHigh">من الأرخص للأغلى</option>
+                <option value="highToLow">من الأغلى للأرخص</option>
+            </select>
+        </div>
+        <button id="openAdminBtn" class="admin-btn">👑 لوحة التحكم (تعديل المنتجات والخلفية)</button>
+    </div>
+
+    <div id="productsContainer" class="products-grid"></div>
+</div>
+
+<!-- Modal admin -->
+<div id="adminModal" class="modal">
+    <div class="modal-content">
+        <h2 style="color:#b14367;">✨ تعديل المتجر ✨</h2>
+        <div>
+            <h3>🖼️ تغيير خلفية الموقع</h3>
+            <div id="bgGallery"></div>
+            <div><input type="text" id="customBgUrl" placeholder="أو ضع رابط صورة خلفية" style="width:70%"><button id="applyCustomBg">تطبيق</button></div>
+        </div>
+        <hr>
+        <h3>📦 المنتجات (تعديل، حذف، إضافة)</h3>
+        <div id="adminProductsList"></div>
+        <button id="addNewProductBtn">➕ إضافة منتج جديد</button>
+        <div style="margin-top:20px"><button id="closeAdminBtn">إغلاق لوحة التحكم</button></div>
+    </div>
+</div>
+
+<script>
+    // ---------- البيانات الافتراضية (بالدرهم المغربي) ----------
+    let products = [
+        { id: 1, name: "شنطة فيونكة وردية", price: 120, discount: 10, image: "https://placehold.co/400x400/FFD1DC/white?text=🎀+Bag", sizes: ["S","M"], rating: 4.5, reviews: [{user:"Nour",rating:5,comment:"كيوت مرة!"}] },
+        { id: 2, name: "تيشرت قلوب", price: 89, discount: 0, image: "https://placehold.co/400x400/F9C7D3/white?text=❤️+Top", sizes: ["XS","S","M"], rating: 4, reviews: [] },
+        { id: 3, name: "طقم ربطة شعر", price: 45, discount: 20, image: "https://placehold.co/400x400/F4BAC7/white?text=🎀+Set", sizes: ["One Size"], rating: 5, reviews: [{user:"Imane",rating:5,comment:"حلو بزاف"}] }
+    ];
+
+    let backgroundList = ["linear-gradient(135deg, #ffe4ec, #ffd0dc)", "#fff0f5", "https://www.transparenttextures.com/patterns/cardboard.png"];
+    let currentBg = backgroundList[0];
+
+    // تحميل من localStorage
+    function loadFromStorage() {
+        let savedProducts = localStorage.getItem("coquette_products");
+        if(savedProducts) products = JSON.parse(savedProducts);
+        let savedBg = localStorage.getItem("coquette_bg");
+        if(savedBg) currentBg = savedBg;
+        applyBackground();
+    }
+
+    function saveProducts() {
+        localStorage.setItem("coquette_products", JSON.stringify(products));
+    }
+
+    function saveBg() {
+        localStorage.setItem("coquette_bg", currentBg);
+        applyBackground();
+    }
+
+    function applyBackground() {
+        if(currentBg.startsWith("http") || currentBg.startsWith("linear-gradient") || currentBg.startsWith("#")) {
+            document.body.style.background = currentBg;
+        } else {
+            document.body.style.background = `url(${currentBg}) center/cover fixed`;
+        }
+    }
+
+    // عرض المنتجات مع الفلتر
+    function renderProducts(sortType = "default") {
+        let container = document.getElementById("productsContainer");
+        let productsCopy = [...products];
+        if(sortType === "lowToHigh") productsCopy.sort((a,b) => (a.price - (a.price*a.discount/100)) - (b.price - (b.price*b.discount/100)));
+        if(sortType === "highToLow") productsCopy.sort((a,b) => (b.price - (b.price*b.discount/100)) - (a.price - (a.price*a.discount/100)));
+        
+        container.innerHTML = productsCopy.map(p => {
+            let finalPrice = (p.price - (p.price * p.discount/100)).toFixed(2);
+            let starsFull = "★".repeat(Math.floor(p.rating)) + "☆".repeat(5-Math.floor(p.rating));
+            return `
+            <div class="product-card" data-id="${p.id}">
+                <img class="product-img" src="${p.image}" alt="${p.name}" onerror="this.src='https://placehold.co/400x400/pink/white?text=🌸'">
+                <div class="product-title">${p.name}</div>
+                <div class="price-row">
+                    <span class="price">${finalPrice} DH</span>
+                    ${p.discount>0? `<span class="old-price">${p.price} DH</span><span class="discount-badge">-${p.discount}%</span>` : ''}
+                </div>
+                <div class="sizes">${p.sizes.map(s=>`<span class="size-badge">${s}</span>`).join('')}</div>
+                <div class="rating">
+                    <span class="stars">${starsFull}</span>
+                    <span class="review-count">(${p.reviews.length})</span>
+                </div>
+                <div class="reviews-section">
+                    ${p.reviews.map(r=>`<div class="review-item"><b>${r.user}</b> ${"★".repeat(r.rating)}: ${r.comment}</div>`).join('')}
+                    <div class="add-review">
+                        <input type="text" placeholder="اسمك" id="name_${p.id}" style="width:80px">
+                        <select id="rate_${p.id}"><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select>
+                        <input type="text" placeholder="تعليق" id="comment_${p.id}" style="width:120px">
+                        <button onclick="addReview(${p.id})">➕ أضف</button>
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    window.addReview = function(productId) {
+        let nameInput = document.getElementById(`name_${productId}`);
+        let rateSelect = document.getElementById(`rate_${productId}`);
+        let commentInput = document.getElementById(`comment_${productId}`);
+        let name = nameInput.value.trim() || "عميلة";
+        let rating = parseInt(rateSelect.value);
+        let comment = commentInput.value.trim() || "❤️ رائع";
+        let product = products.find(p=>p.id === productId);
+        if(product) {
+            product.reviews.push({user: name, rating: rating, comment: comment});
+            let totalRating = product.reviews.reduce((sum,r)=>sum+r.rating,0)/product.reviews.length;
+            product.rating = parseFloat(totalRating.toFixed(1));
+            saveProducts();
+            renderProducts(document.getElementById("sortSelect").value);
+        }
+    }
+
+    // عرض لوحة التحكم (تعديل المنتجات + خلفية)
+    function openAdminPanel() {
+        let modal = document.getElementById("adminModal");
+        let adminListDiv = document.getElementById("adminProductsList");
+        adminListDiv.innerHTML = products.map(p => `
+            <div class="product-admin-item">
+                <div><b>${p.name}</b> - ${p.price}DH تخفيض ${p.discount}%<br>
+                <input type="text" id="edit_name_${p.id}" value="${p.name}" placeholder="الاسم">
+                <input type="number" id="edit_price_${p.id}" value="${p.price}" step="1">
+                <input type="number" id="edit_discount_${p.id}" value="${p.discount}" step="1">
+                <input type="text" id="edit_image_${p.id}" value="${p.image}" placeholder="رابط الصورة" style="width:150px">
+                <input type="text" id="edit_sizes_${p.id}" value="${p.sizes.join(',')}" placeholder="مقاسات مفصولة بفاصلة">
+                </div>
+                <div><button onclick="updateProduct(${p.id})">💾 حفظ</button>
+                <button onclick="deleteProduct(${p.id})">🗑️ حذف</button></div>
+            </div>
+        `).join('');
+        
+        // معرض الخلفيات
+        let bgDiv = document.getElementById("bgGallery");
+        bgDiv.innerHTML = backgroundList.map((bg,idx) => `<span class="bg-option" onclick="setBgByIndex(${idx})">خلفية ${idx+1}</span>`).join('');
+        modal.style.display = "flex";
+    }
+
+    window.setBgByIndex = function(idx) {
+        currentBg = backgroundList[idx];
+        saveBg();
+        openAdminPanel(); // refresh admin panel
+    };
+    window.applyCustomBg = function() {
+        let url = document.getElementById("customBgUrl").value;
+        if(url) {
+            currentBg = url;
+            backgroundList.push(url);
+            saveBg();
+            openAdminPanel();
+        }
+    };
+    window.updateProduct = function(id) {
+        let p = products.find(p=>p.id===id);
+        if(p){
+            p.name = document.getElementById(`edit_name_${id}`).value;
+            p.price = parseFloat(document.getElementById(`edit_price_${id}`).value);
+            p.discount = parseFloat(document.getElementById(`edit_discount_${id}`).value);
+            p.image = document.getElementById(`edit_image_${id}`).value;
+            let sizesRaw = document.getElementById(`edit_sizes_${id}`).value;
+            p.sizes = sizesRaw.split(',').map(s=>s.trim());
+            saveProducts();
+            renderProducts(document.getElementById("sortSelect").value);
+            openAdminPanel();
+        }
+    };
+    window.deleteProduct = function(id){
+        products = products.filter(p=>p.id !== id);
+        saveProducts();
+        renderProducts(document.getElementById("sortSelect").value);
+        openAdminPanel();
+    };
+    document.getElementById("addNewProductBtn").onclick = () => {
+        let newId = Date.now();
+        products.push({ id: newId, name: "منتج جديد", price: 50, discount: 0, image: "https://placehold.co/400x400/FFB7C5/white?text=✨", sizes: ["M"], rating: 0, reviews: [] });
+        saveProducts();
+        openAdminPanel();
+        renderProducts(document.getElementById("sortSelect").value);
+    };
+    document.getElementById("applyCustomBg").onclick = () => window.applyCustomBg();
+    document.getElementById("closeAdminBtn").onclick = () => document.getElementById("adminModal").style.display = "none";
+    document.getElementById("openAdminBtn").onclick = openAdminPanel;
+    document.getElementById("sortSelect").addEventListener("change", (e) => renderProducts(e.target.value));
+    
+    // بداية التشغيل
+    loadFromStorage();
+    renderProducts("default");
+    // اغلاق المودال بالضغط خارج المحتوى
+    window.onclick = function(e) {
+        let modal = document.getElementById("adminModal");
+        if(e.target === modal) modal.style.display = "none";
+    };
+</script>
+</body>
+</html>.add-btn:hover{background:var(--mauve)}
 .add-btn:active{transform:scale(.97)}
 .grid.list-view .card{display:flex;flex-direction:row;border-radius:16px}
 .grid.list-view .card-img{aspect-ratio:1;width:160px;flex-shrink:0;border-radius:16px 0 0 16px}
