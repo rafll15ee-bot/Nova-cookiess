@@ -2,322 +2,449 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Coquette Bazar – متجر كيوت مغربي</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Coquette Bazaar – Moroccan Cute Store</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, 'Poppins', sans-serif;
+            font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        }
+
+        /* Coquette Theme Variables */
+        :root {
+            --rose-powder: #ffe4ec;
+            --rose-blush: #f9c7d3;
+            --rose-dusty: #d47a9b;
+            --rose-deep: #b35f7b;
+            --rose-soft: #fff0f5;
+            --gold-glimmer: #f7d794;
+            --shadow-sm: 0 8px 20px rgba(0,0,0,0.05);
+            --shadow-md: 0 12px 30px rgba(180,70,100,0.08);
+            --border-radius-card: 32px;
+            --transition: all 0.25s ease;
         }
 
         body {
-            background: #ffe4ec;
-            transition: all 0.3s ease;
-            padding: 20px;
+            background: var(--rose-powder);
+            transition: var(--transition);
+            min-height: 100vh;
+            padding: 24px 20px;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1440px;
             margin: 0 auto;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            color: #b35f7b;
+        /* Header */
+        .header {
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 40px;
+            position: relative;
         }
 
-        .coquette-desc {
-            text-align: center;
-            color: #a75d7a;
-            margin-bottom: 30px;
+        .header h1 {
+            font-size: 3.2rem;
+            background: linear-gradient(135deg, var(--rose-deep), #8b4b63);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
         }
 
-        .controls-row {
+        .header p {
+            color: var(--rose-dusty);
+            font-style: italic;
+            margin-top: 8px;
+            font-size: 1rem;
+        }
+
+        .ribbon {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--rose-dusty), transparent);
+            margin: 12px auto 0;
+            border-radius: 4px;
+        }
+
+        /* Controls Bar */
+        .controls-bar {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            background: rgba(255, 255, 240, 0.7);
-            padding: 15px 20px;
+            gap: 16px;
+            background: rgba(255, 250, 250, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 12px 24px;
             border-radius: 80px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(255,255,240,0.6);
         }
 
-        select, .admin-btn {
+        .sort-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .sort-group label {
+            font-weight: 500;
+            color: var(--rose-deep);
+        }
+
+        select, .admin-trigger {
             background: white;
-            border: 1px solid #f4acb7;
-            padding: 10px 18px;
-            border-radius: 40px;
-            font-weight: bold;
-            color: #a13e5c;
+            border: 1px solid var(--rose-blush);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            color: var(--rose-deep);
             cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
         }
 
-        .admin-btn {
-            background: #ffe0e7;
-            border: 1px dashed #c96f8f;
+        select:hover, .admin-trigger:hover {
+            background: var(--rose-blush);
+            transform: scale(0.98);
         }
 
+        .admin-trigger {
+            background: linear-gradient(135deg, #fff0f5, #ffe0e7);
+            border: 1px dashed var(--rose-dusty);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Product Grid */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 32px;
         }
 
         .product-card {
-            background: rgba(255, 250, 245, 0.95);
-            border-radius: 40px;
+            background: rgba(255, 252, 245, 0.96);
+            border-radius: var(--border-radius-card);
             padding: 20px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-            border: 1px solid #ffd9e2;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 210, 220, 0.6);
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(2px);
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 40px rgba(120, 50, 70, 0.12);
+            border-color: var(--rose-blush);
         }
 
         .product-img {
             width: 100%;
-            height: 220px;
+            aspect-ratio: 1 / 1;
             object-fit: cover;
-            border-radius: 30px;
+            border-radius: 28px;
             background: #fce4eb;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.02);
         }
 
         .product-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #9e4e6e;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--rose-deep);
+            margin-bottom: 8px;
         }
 
-        .price-row {
+        .price-wrapper {
             display: flex;
-            gap: 12px;
             align-items: baseline;
-            margin: 10px 0;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 12px 0;
         }
 
-        .price {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #b34164;
+        .current-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--rose-dusty);
         }
 
         .old-price {
             text-decoration: line-through;
-            color: gray;
+            color: #b0a0a8;
             font-size: 0.9rem;
         }
 
-        .discount-badge {
+        .discount-tag {
             background: #ff8aaa;
             color: white;
-            padding: 4px 8px;
-            border-radius: 50px;
-            font-size: 0.7rem;
-        }
-
-        .sizes {
-            display: flex;
-            gap: 8px;
-            margin: 10px 0;
-            flex-wrap: wrap;
-        }
-
-        .size-badge {
-            background: #ffeef2;
             padding: 4px 10px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .sizes-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0;
+        }
+
+        .size-chip {
+            background: var(--rose-soft);
+            padding: 5px 12px;
             border-radius: 30px;
             font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--rose-deep);
         }
 
-        .rating {
+        .rating-area {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
             margin: 12px 0;
         }
 
         .stars {
-            color: gold;
+            color: #f5b042;
             font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .review-section {
+            border-top: 1px solid #ffd9e2;
+            margin-top: 12px;
+            padding-top: 12px;
         }
 
         .review-item {
+            background: #fffafc;
+            border-radius: 24px;
+            padding: 8px 12px;
             font-size: 0.75rem;
-            background: #fff5f7;
-            border-radius: 20px;
-            padding: 8px;
-            margin-top: 6px;
+            margin-bottom: 8px;
         }
 
-        .add-review {
+        .review-form {
             display: flex;
-            gap: 6px;
-            margin-top: 8px;
             flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
         }
 
-        .add-review input, .add-review select {
-            padding: 6px;
-            border-radius: 20px;
-            border: 1px solid #f0b7c4;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: #fff0f3;
-            max-width: 600px;
-            width: 90%;
-            padding: 25px;
-            border-radius: 60px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-content input, .modal-content textarea {
-            width: 100%;
-            margin: 8px 0;
-            padding: 10px;
+        .review-form input, .review-form select {
+            padding: 8px 12px;
             border-radius: 40px;
-            border: 1px solid #f0a6bc;
-        }
-
-        .product-admin-item {
-            background: #ffeef2;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 30px;
+            border: 1px solid var(--rose-blush);
+            font-size: 0.75rem;
+            background: white;
         }
 
         button {
-            background: #d47a9b;
-            border: none;
+            background: var(--rose-dusty);
             color: white;
-            padding: 8px 15px;
-            border-radius: 50px;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 40px;
             cursor: pointer;
-            margin: 5px;
+            transition: 0.2s;
+            font-weight: 500;
         }
 
-        .bg-option {
-            display: inline-block;
-            margin: 5px;
-            padding: 6px 12px;
-            background: #fcd5e1;
+        button:hover {
+            background: var(--rose-deep);
+            transform: scale(0.96);
+        }
+
+        /* Admin Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-card {
+            background: white;
+            border-radius: 56px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 28px;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.3);
+        }
+
+        .modal-card h3 {
+            color: var(--rose-deep);
+            margin: 20px 0 10px;
+        }
+
+        .admin-product-row {
+            background: #fff5f7;
+            border-radius: 28px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .admin-product-row input {
+            width: 100%;
+            margin: 6px 0;
+            padding: 10px;
             border-radius: 30px;
+            border: 1px solid #f0a6bc;
+        }
+
+        .bg-preset {
+            display: inline-block;
+            background: #fcd5e1;
+            padding: 8px 16px;
+            border-radius: 40px;
+            margin: 5px;
             cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        hr {
+            margin: 20px 0;
+            border-color: #ffcdd9;
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 16px; }
+            .header h1 { font-size: 2.2rem; }
+            .controls-bar { border-radius: 32px; }
         }
     </style>
 </head>
 <body id="appBody">
 <div class="container">
-    <h1>🌸 CHOUFHA.CO 🌸</h1>
-    <div class="coquette-desc">✨ coquette moroccan edits ✨</div>
+    <div class="header">
+        <h1>🎀 CHOUFHA.CO 🎀</h1>
+        <p>coquette moroccan edits — درهم مغربي</p>
+        <div class="ribbon"></div>
+    </div>
 
-    <div class="controls-row">
-        <select id="sortSelect">
-            <option value="default">الافتراضي</option>
-            <option value="lowToHigh">من الأرخص للأغلى</option>
-            <option value="highToLow">من الأغلى للأرخص</option>
-        </select>
-        <button id="openAdminBtn" class="admin-btn">👑 لوحة التحكم</button>
+    <div class="controls-bar">
+        <div class="sort-group">
+            <label>🔮 رتبي حسب السعر :</label>
+            <select id="sortSelect">
+                <option value="default">✨ الافتراضي</option>
+                <option value="lowToHigh">📈 من الأرخص للأغلى</option>
+                <option value="highToLow">📉 من الأغلى للأرخص</option>
+            </select>
+        </div>
+        <button id="openAdminBtn" class="admin-trigger">👑 لوحة التحكم (تعديل الكل)</button>
     </div>
 
     <div id="productsContainer" class="products-grid"></div>
 </div>
 
+<!-- Admin Panel Modal -->
 <div id="adminModal" class="modal">
-    <div class="modal-content">
-        <h2 style="color:#b14367;">✨ تعديل المتجر ✨</h2>
+    <div class="modal-card">
+        <h2 style="color:#b14367;">🌸 إدارة المتجر 🌸</h2>
         
-        <h3>🖼️ تغيير خلفية الموقع</h3>
+        <h3>🖌️ تغيير خلفية الموقع</h3>
         <div id="bgGallery"></div>
-        <input type="text" id="customBgUrl" placeholder="رابط صورة خلفية">
-        <button id="applyCustomBg">تطبيق الخلفية</button>
+        <input type="text" id="customBgUrl" placeholder="رابط صورة خلفية (jpg/png)" style="width:calc(100% - 110px)">
+        <button id="applyCustomBg">تطبيق</button>
+        
         <hr>
         
-        <h3>📦 المنتجات</h3>
+        <h3>📦 تعديل / حذف / إضافة المنتجات</h3>
         <div id="adminProductsList"></div>
-        <button id="addNewProductBtn">➕ إضافة منتج جديد</button>
-        <button id="closeAdminBtn">إغلاق</button>
+        <button id="addNewProductBtn" style="margin-top: 16px;">➕ أضف منتج جديد</button>
+        <hr>
+        <button id="closeAdminBtn" style="background:#b0a0a8;">إغلاق اللوحة</button>
     </div>
 </div>
 
 <script>
-    // المنتجات الافتراضية
+    // ---------- MOROCCAN COQUETTE STORE ----------
     let products = [
-        { id: 1, name: "شنطة فيونكة وردية", price: 120, discount: 10, image: "https://placehold.co/400x400/FFD1DC/white?text=🎀", sizes: ["S","M"], rating: 4.5, reviews: [{user:"Nour",rating:5,comment:"كيوت مرة!"}] },
-        { id: 2, name: "تيشرت قلوب", price: 89, discount: 0, image: "https://placehold.co/400x400/F9C7D3/white?text=❤️", sizes: ["XS","S","M"], rating: 4, reviews: [] },
-        { id: 3, name: "طقم ربطة شعر", price: 45, discount: 20, image: "https://placehold.co/400x400/F4BAC7/white?text=🎀", sizes: ["One Size"], rating: 5, reviews: [{user:"Imane",rating:5,comment:"حلو بزاف"}] }
+        { id: 1, name: "👜 شنطة فيونكة وردية", price: 120, discount: 10, image: "https://placehold.co/600x600/FFB7C5/white?text=🎀+Bag", sizes: ["S","M"], rating: 4.8, reviews: [{user:"Nour",rating:5,comment:"حلوة بزاف كيوت"}] },
+        { id: 2, name: "👚 تيشرت قلوب", price: 89, discount: 0, image: "https://placehold.co/600x600/FADADD/white?text=❤️+Top", sizes: ["XS","S","M"], rating: 4.2, reviews: [] },
+        { id: 3, name: "🎀 طقم ربطة شعر", price: 45, discount: 20, image: "https://placehold.co/600x600/F9CED8/white?text=🎀+Set", sizes: ["One Size"], rating: 5.0, reviews: [{user:"Imane",rating:5,comment:"ممتاز و كيوت"}] }
     ];
 
-    let backgroundList = ["#ffe4ec", "#ffd0dc", "#fff0f5"];
-    let currentBg = backgroundList[0];
+    let backgrounds = ["linear-gradient(135deg, #ffe4ec, #ffd9e2)", "#fff0f5", "#fce4ec", "https://www.transparenttextures.com/patterns/cartographer.png"];
+    let currentBg = backgrounds[0];
 
-    function loadFromStorage() {
-        let saved = localStorage.getItem("coquette_products");
+    // Load from localStorage
+    function loadData() {
+        let saved = localStorage.getItem("coquette_store");
         if(saved) products = JSON.parse(saved);
         let savedBg = localStorage.getItem("coquette_bg");
         if(savedBg) currentBg = savedBg;
-        applyBackground();
+        applyBg();
     }
 
     function saveProducts() {
-        localStorage.setItem("coquette_products", JSON.stringify(products));
+        localStorage.setItem("coquette_store", JSON.stringify(products));
     }
 
     function saveBg() {
         localStorage.setItem("coquette_bg", currentBg);
-        applyBackground();
+        applyBg();
     }
 
-    function applyBackground() {
+    function applyBg() {
         document.body.style.background = currentBg;
+        document.body.style.backgroundSize = currentBg.includes("http") ? "cover" : "auto";
+        document.body.style.backgroundAttachment = "fixed";
     }
 
+    // Render products with sorting
     function renderProducts(sortType = "default") {
         let container = document.getElementById("productsContainer");
         let copy = [...products];
-        if(sortType === "lowToHigh") copy.sort((a,b) => (a.price - a.price*a.discount/100) - (b.price - b.price*b.discount/100));
-        if(sortType === "highToLow") copy.sort((a,b) => (b.price - b.price*b.discount/100) - (a.price - a.price*a.discount/100));
+        if(sortType === "lowToHigh") copy.sort((a,b) => (a.price*(1-a.discount/100)) - (b.price*(1-b.discount/100)));
+        if(sortType === "highToLow") copy.sort((a,b) => (b.price*(1-b.discount/100)) - (a.price*(1-a.discount/100)));
         
         container.innerHTML = copy.map(p => {
-            let finalPrice = (p.price - (p.price * p.discount/100)).toFixed(2);
-            let stars = "★".repeat(Math.floor(p.rating)) + "☆".repeat(5-Math.floor(p.rating));
+            let final = (p.price * (1 - p.discount/100)).toFixed(2);
+            let starsFull = "★".repeat(Math.floor(p.rating)) + "☆".repeat(5-Math.floor(p.rating));
             return `
-            <div class="product-card">
-                <img class="product-img" src="${p.image}" onerror="this.src='https://placehold.co/400x400/pink/white?text=🌸'">
+            <div class="product-card" data-id="${p.id}">
+                <img class="product-img" src="${p.image}" onerror="this.src='https://placehold.co/600x600/pink?text=🌸'">
                 <div class="product-title">${p.name}</div>
-                <div class="price-row">
-                    <span class="price">${finalPrice} DH</span>
-                    ${p.discount>0 ? `<span class="old-price">${p.price} DH</span><span class="discount-badge">-${p.discount}%</span>` : ''}
+                <div class="price-wrapper">
+                    <span class="current-price">${final} DH</span>
+                    ${p.discount>0 ? `<span class="old-price">${p.price} DH</span><span class="discount-tag">-${p.discount}%</span>` : ''}
                 </div>
-                <div class="sizes">${p.sizes.map(s=>`<span class="size-badge">${s}</span>`).join('')}</div>
-                <div class="rating"><span class="stars">${stars}</span> (${p.reviews.length})</div>
-                <div>
-                    ${p.reviews.map(r=>`<div class="review-item"><b>${r.user}</b> ${"★".repeat(r.rating)}: ${r.comment}</div>`).join('')}
-                    <div class="add-review">
-                        <input type="text" placeholder="اسمك" id="name_${p.id}" style="width:80px">
+                <div class="sizes-container">
+                    ${p.sizes.map(s=>`<span class="size-chip">${s}</span>`).join('')}
+                </div>
+                <div class="rating-area">
+                    <span class="stars">${starsFull}</span>
+                    <span>(${p.reviews.length})</span>
+                </div>
+                <div class="review-section">
+                    ${p.reviews.map(r=>`<div class="review-item"><strong>${r.user}</strong> ${"★".repeat(r.rating)} ${r.comment}</div>`).join('')}
+                    <div class="review-form">
+                        <input type="text" placeholder="اسمك" id="name_${p.id}" style="flex:1">
                         <select id="rate_${p.id}"><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select>
-                        <input type="text" placeholder="تعليق" id="comment_${p.id}" style="width:100px">
-                        <button onclick="addReview(${p.id})">أضف</button>
+                        <input type="text" placeholder="تعليق" id="comment_${p.id}" style="flex:2">
+                        <button onclick="addReview(${p.id})">➕ أضف</button>
                     </div>
                 </div>
             </div>`;
@@ -325,50 +452,52 @@
     }
 
     window.addReview = function(id) {
-        let product = products.find(p=>p.id===id);
-        if(product) {
+        let prod = products.find(p=>p.id===id);
+        if(prod){
             let name = document.getElementById(`name_${id}`).value.trim() || "عميلة";
-            let rating = parseInt(document.getElementById(`rate_${id}`).value);
-            let comment = document.getElementById(`comment_${id}`).value.trim() || "❤️ جميل";
-            product.reviews.push({user: name, rating: rating, comment: comment});
-            let total = product.reviews.reduce((s,r)=>s+r.rating,0)/product.reviews.length;
-            product.rating = parseFloat(total.toFixed(1));
+            let rate = parseInt(document.getElementById(`rate_${id}`).value);
+            let txt = document.getElementById(`comment_${id}`).value.trim() || "❤️ رائع";
+            prod.reviews.push({user: name, rating: rate, comment: txt});
+            let avg = prod.reviews.reduce((s,r)=>s+r.rating,0)/prod.reviews.length;
+            prod.rating = parseFloat(avg.toFixed(1));
             saveProducts();
             renderProducts(document.getElementById("sortSelect").value);
         }
     };
 
+    // Admin Panel Logic
     function openAdmin() {
         let modal = document.getElementById("adminModal");
-        let listDiv = document.getElementById("adminProductsList");
-        listDiv.innerHTML = products.map(p => `
-            <div class="product-admin-item">
-                <b>${p.name}</b><br>
-                <input type="text" id="edit_name_${p.id}" value="${p.name}" placeholder="الاسم">
-                <input type="number" id="edit_price_${p.id}" value="${p.price}">
-                <input type="number" id="edit_discount_${p.id}" value="${p.discount}">
+        let adminList = document.getElementById("adminProductsList");
+        adminList.innerHTML = products.map(p => `
+            <div class="admin-product-row">
+                <strong>${p.name}</strong>
+                <input type="text" id="edit_name_${p.id}" value="${p.name}" placeholder="اسم المنتج">
+                <input type="number" id="edit_price_${p.id}" value="${p.price}" placeholder="السعر">
+                <input type="number" id="edit_discount_${p.id}" value="${p.discount}" placeholder="التخفيض %">
                 <input type="text" id="edit_image_${p.id}" value="${p.image}" placeholder="رابط الصورة">
-                <input type="text" id="edit_sizes_${p.id}" value="${p.sizes.join(',')}" placeholder="مقاسات مفصولة بفاصلة">
-                <button onclick="updateProduct(${p.id})">💾 حفظ</button>
-                <button onclick="deleteProduct(${p.id})">🗑️ حذف</button>
+                <input type="text" id="edit_sizes_${p.id}" value="${p.sizes.join(',')}" placeholder="مقاسات (S,M,L)">
+                <button onclick="updateProduct(${p.id})">💾 حفظ التعديل</button>
+                <button onclick="deleteProduct(${p.id})" style="background:#b35f7b;">🗑️ حذف</button>
             </div>
         `).join('');
-        
-        document.getElementById("bgGallery").innerHTML = backgroundList.map((bg,i)=>`<span class="bg-option" onclick="setBg(${i})">خلفية ${i+1}</span>`).join('');
+
+        let bgDiv = document.getElementById("bgGallery");
+        bgDiv.innerHTML = backgrounds.map((bg, idx) => `<span class="bg-preset" onclick="setBgPreset(${idx})">خلفية ${idx+1}</span>`).join('');
         modal.style.display = "flex";
     }
 
-    window.setBg = function(i) {
-        currentBg = backgroundList[i];
+    window.setBgPreset = function(idx) {
+        currentBg = backgrounds[idx];
         saveBg();
         openAdmin();
     };
 
-    window.applyCustomBg = function() {
+    window.applyCustomBgHandler = function() {
         let url = document.getElementById("customBgUrl").value;
         if(url) {
             currentBg = url;
-            backgroundList.push(url);
+            backgrounds.push(url);
             saveBg();
             openAdmin();
         }
@@ -376,12 +505,13 @@
 
     window.updateProduct = function(id) {
         let p = products.find(p=>p.id===id);
-        if(p) {
+        if(p){
             p.name = document.getElementById(`edit_name_${id}`).value;
             p.price = parseFloat(document.getElementById(`edit_price_${id}`).value);
             p.discount = parseFloat(document.getElementById(`edit_discount_${id}`).value);
             p.image = document.getElementById(`edit_image_${id}`).value;
-            p.sizes = document.getElementById(`edit_sizes_${id}`).value.split(',').map(s=>s.trim());
+            let sizesRaw = document.getElementById(`edit_sizes_${id}`).value;
+            p.sizes = sizesRaw.split(',').map(s=>s.trim());
             saveProducts();
             renderProducts(document.getElementById("sortSelect").value);
             openAdmin();
@@ -389,7 +519,7 @@
     };
 
     window.deleteProduct = function(id) {
-        products = products.filter(p=>p.id!==id);
+        products = products.filter(p=>p.id !== id);
         saveProducts();
         renderProducts(document.getElementById("sortSelect").value);
         openAdmin();
@@ -398,15 +528,16 @@
     document.getElementById("openAdminBtn").onclick = openAdmin;
     document.getElementById("closeAdminBtn").onclick = () => document.getElementById("adminModal").style.display = "none";
     document.getElementById("addNewProductBtn").onclick = () => {
-        products.push({ id: Date.now(), name: "منتج جديد", price: 50, discount: 0, image: "https://placehold.co/400x400/FFB7C5/white?text=✨", sizes: ["M"], rating: 0, reviews: [] });
+        let newId = Date.now();
+        products.push({ id: newId, name: "✨ منتج جديد", price: 60, discount: 0, image: "https://placehold.co/600x600/FFC0D0/white?text=🎀", sizes: ["M"], rating: 0, reviews: [] });
         saveProducts();
         openAdmin();
         renderProducts(document.getElementById("sortSelect").value);
     };
-    document.getElementById("applyCustomBg").onclick = applyCustomBg;
-    document.getElementById("sortSelect").onchange = (e) => renderProducts(e.target.value);
+    document.getElementById("applyCustomBg").onclick = applyCustomBgHandler;
+    document.getElementById("sortSelect").addEventListener("change", (e) => renderProducts(e.target.value));
 
-    loadFromStorage();
+    loadData();
     renderProducts("default");
 
     window.onclick = function(e) {
