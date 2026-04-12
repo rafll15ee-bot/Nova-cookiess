@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Choufha Luxe – The Ultimate Coquette Store</title>
+    <title>Choufha Luxe – Coquette Store</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
@@ -21,252 +20,149 @@
             --deep-pink: #d47a9b;
             --dark-pink: #b84a70;
             --soft-white: #fffafc;
-            --cream: #fff5f7;
-            --gold: #f7d794;
-            --shadow-sm: 0 5px 20px rgba(0,0,0,0.05);
-            --shadow-md: 0 10px 30px rgba(0,0,0,0.08);
-            --shadow-lg: 0 20px 50px rgba(0,0,0,0.12);
-            --transition-fast: 0.2s ease;
-            --transition-normal: 0.3s ease;
-            --transition-slow: 0.5s ease;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
         }
 
         [data-theme="dark"] {
             --primary-pink: #9e4a6b;
-            --secondary-pink: #c96a8d;
             --deep-pink: #a8446a;
             --dark-pink: #e8a3bb;
             --soft-white: #1a1a2e;
-            --cream: #16213e;
-            --shadow-sm: 0 5px 20px rgba(0,0,0,0.2);
-            --shadow-md: 0 10px 30px rgba(0,0,0,0.3);
-            --shadow-lg: 0 20px 50px rgba(0,0,0,0.4);
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             background: radial-gradient(circle at 10% 30%, #ffe9f0, #ffd9e4);
-            transition: var(--transition-normal);
+            transition: var(--transition);
             min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
+            padding: 20px;
+            background-size: cover !important;
+            background-attachment: fixed !important;
         }
 
-        /* Custom Cursor */
-        .custom-cursor {
-            width: 30px;
-            height: 30px;
-            border: 2px solid var(--deep-pink);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
-            transform: translate(-50%, -50%);
-        }
-
-        .custom-cursor::after {
-            content: "🎀";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 12px;
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-
-        .custom-cursor.hover {
-            width: 50px;
-            height: 50px;
-            background: rgba(212, 122, 155, 0.2);
-            border-color: var(--dark-pink);
-        }
-
-        .custom-cursor.hover::after {
-            opacity: 1;
-        }
-
-        /* Floating Particles */
-        .particle {
-            position: fixed;
-            pointer-events: none;
-            z-index: 1;
-            animation: floatParticle linear infinite;
-        }
-
-        @keyframes floatParticle {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
-        }
-
-        /* Main Container */
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 30px 24px;
-            position: relative;
-            z-index: 10;
         }
 
-        /* Header with Glow Effect */
+        /* Header with Logo */
         .header {
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 80px;
         }
 
-        .header h1 {
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid var(--deep-pink);
+        }
+
+        .logo-text h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 5rem;
-            background: linear-gradient(135deg, #c96a8d, #9e4a6b, #e8a3bb, #c96a8d);
-            background-size: 300% 300%;
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: gradientShift 5s ease infinite, fadeInDown 0.8s ease;
-            letter-spacing: -1px;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .header p {
+            font-size: 1.8rem;
             color: var(--dark-pink);
-            background: rgba(255,250,245,0.7);
-            backdrop-filter: blur(15px);
-            display: inline-block;
-            padding: 8px 28px;
-            border-radius: 60px;
-            margin-top: 15px;
-            font-weight: 500;
-            letter-spacing: 1px;
+        }
+
+        .logo-text p {
+            font-size: 0.7rem;
+            color: var(--deep-pink);
         }
 
         /* Navigation */
         .nav-links {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 30px 0;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--dark-pink);
-            font-weight: 600;
-            cursor: pointer;
-            padding: 10px 28px;
+            padding: 8px 20px;
             border-radius: 50px;
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            color: var(--dark-pink);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
             background: rgba(255,255,255,0.6);
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.5s;
-        }
-
-        .nav-links a:hover::before {
-            left: 100%;
         }
 
         .nav-links a:hover {
             background: var(--deep-pink);
             color: white;
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
         }
 
-        /* Glass Bar */
-        .glass-bar {
-            background: rgba(255, 248, 245, 0.75);
-            backdrop-filter: blur(16px);
-            border-radius: 100px;
-            padding: 12px 28px;
+        /* Control Bar */
+        .control-bar {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
             gap: 15px;
-            margin-bottom: 45px;
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(10px);
+            padding: 12px 25px;
+            border-radius: 60px;
+            margin-bottom: 35px;
         }
 
-        .search-group {
+        .search-box {
             display: flex;
             align-items: center;
             gap: 10px;
             background: white;
-            padding: 5px 18px;
-            border-radius: 60px;
+            padding: 8px 18px;
+            border-radius: 50px;
             flex: 1;
             max-width: 300px;
         }
 
-        .search-group input {
+        .search-box input {
             border: none;
-            padding: 10px 0;
             outline: none;
             width: 100%;
-            font-size: 0.9rem;
         }
 
-        .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: white;
-            padding: 5px 18px;
-            border-radius: 60px;
-        }
-
-        select {
-            background: transparent;
+        .filter-sort select {
+            padding: 8px 15px;
+            border-radius: 50px;
             border: none;
-            padding: 8px 0;
+            background: white;
             font-weight: 500;
-            color: var(--dark-pink);
-            outline: none;
-            cursor: pointer;
         }
 
-        .action-buttons {
+        .action-icons {
             display: flex;
             gap: 12px;
-            flex-wrap: wrap;
         }
 
         .icon-btn {
-            padding: 10px 18px;
+            background: white;
+            border: none;
+            padding: 8px 18px;
             border-radius: 50px;
-            font-weight: 600;
+            cursor: pointer;
             display: flex;
             align-items: center;
             gap: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: none;
-            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
         }
 
         .cart-btn {
@@ -275,320 +171,134 @@
             position: relative;
         }
 
-        .cart-count-badge {
-            background: #ff3b6f;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
+        .cart-count {
             position: absolute;
             top: -8px;
             right: -8px;
+            background: #ff3b6f;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .theme-toggle, .admin-btn {
-            background: #f8e1e9;
-            color: var(--dark-pink);
-        }
-
-        /* Products Grid */
+        /* Products Grid - IMPORTANT: 3-4 products per row */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
         }
 
         .product-card {
             background: rgba(255, 252, 250, 0.95);
-            backdrop-filter: blur(4px);
-            border-radius: 48px;
-            padding: 24px;
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            border: 1px solid rgba(255, 215, 225, 0.7);
-            box-shadow: var(--shadow-sm);
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 0.6s ease backwards;
-            transform-style: preserve-3d;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+            border-radius: 35px;
+            padding: 20px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 215, 225, 0.6);
+            box-shadow: var(--shadow);
         }
 
         .product-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary-pink);
-        }
-
-        .product-badge {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: var(--secondary-pink);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            z-index: 5;
-        }
-
-        .product-img-wrapper {
-            position: relative;
-            overflow: hidden;
-            border-radius: 38px;
-            cursor: pointer;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
         .product-img {
             width: 100%;
             aspect-ratio: 1;
             object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .product-img-wrapper:hover .product-img {
-            transform: scale(1.08);
-        }
-
-        .product-img-zoom {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(0,0,0,0.5);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .product-img-wrapper:hover .product-img-zoom {
-            opacity: 1;
+            border-radius: 28px;
         }
 
         .product-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-top: 16px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 12px;
             color: var(--dark-pink);
-            font-family: 'Playfair Display', serif;
         }
 
-        .price-magic {
+        .price-row {
             display: flex;
             align-items: baseline;
-            gap: 12px;
-            margin: 12px 0;
+            gap: 10px;
+            margin: 10px 0;
             flex-wrap: wrap;
         }
 
-        .real-price {
-            font-size: 1.9rem;
-            font-weight: 800;
+        .current-price {
+            font-size: 1.6rem;
+            font-weight: 700;
             color: #c2577e;
         }
 
         .old-price {
             text-decoration: line-through;
-            color: #bda2ab;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            color: gray;
         }
 
-        .discount-chip {
+        .discount-badge {
             background: #ff8fae;
             color: white;
+            padding: 3px 10px;
             border-radius: 30px;
-            padding: 4px 12px;
             font-size: 0.7rem;
-            font-weight: bold;
         }
 
-        .stock-status {
-            font-size: 0.7rem;
-            margin: 8px 0;
-            padding: 4px 10px;
-            border-radius: 20px;
-            display: inline-block;
-        }
-
-        .in-stock {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .low-stock {
-            background: #fff3cd;
-            color: #856404;
-        }
-
-        .sizes-row {
+        .sizes {
             display: flex;
-            gap: 10px;
-            margin: 15px 0;
+            gap: 8px;
+            margin: 12px 0;
             flex-wrap: wrap;
         }
 
-        .size-pill {
+        .size-btn {
             background: #ffecf0;
-            padding: 6px 16px;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .size-pill:hover, .size-pill.selected {
-            background: var(--deep-pink);
-            color: white;
-            transform: scale(0.95);
-        }
-
-        .card-actions {
-            display: flex;
-            gap: 10px;
-            margin: 15px 0;
-        }
-
-        .btn-add-cart {
-            flex: 2;
-            background: var(--deep-pink);
-            border: none;
-            padding: 14px;
-            border-radius: 50px;
-            color: white;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .btn-add-cart:active {
-            transform: scale(0.97);
-        }
-
-        .favorite-btn, .share-btn {
-            background: #f0e4e8;
-            border: none;
-            width: 48px;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 1.2rem;
-        }
-
-        .favorite-btn.active {
-            background: #ff3b6f;
-            color: white;
-        }
-
-        .share-btn:hover {
-            background: var(--whatsapp-green, #25D366);
-            color: white;
-        }
-
-        /* Reviews Section */
-        .reviews-section {
-            margin-top: 15px;
-            border-top: 1px solid #ffcedb;
-            padding-top: 12px;
-        }
-
-        .stars-display {
-            color: #f5b042;
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-        }
-
-        .review-item {
-            background: rgba(255, 240, 245, 0.8);
-            border-radius: 20px;
-            padding: 8px 12px;
-            margin-bottom: 8px;
-            font-size: 0.75rem;
-        }
-
-        .review-form {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .review-form input, .review-form select {
-            padding: 8px 12px;
+            padding: 5px 14px;
             border-radius: 30px;
-            border: 1px solid #f0a6bc;
             font-size: 0.75rem;
-            background: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .size-btn:hover {
+            background: var(--deep-pink);
+            color: white;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background: var(--deep-pink);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: var(--transition);
+        }
+
+        .add-to-cart:active {
+            transform: scale(0.97);
         }
 
         /* Pages */
         .page {
             display: none;
-            background: rgba(255, 252, 250, 0.85);
-            backdrop-filter: blur(8px);
-            border-radius: 48px;
-            padding: 45px;
-            margin: 20px 0;
-            animation: fadeInScale 0.5s ease;
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(5px);
+            border-radius: 40px;
+            padding: 35px;
+            margin-top: 20px;
         }
 
         .page.active-page {
             display: block;
-        }
-
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .page h2 {
-            color: var(--dark-pink);
-            margin-bottom: 25px;
-            font-size: 2.2rem;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .page p {
-            line-height: 1.8;
-            margin-bottom: 15px;
-            color: var(--dark-pink);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 20px;
-            margin-top: 25px;
-        }
-
-        .social-links a {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: var(--deep-pink);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-5px) rotate(5deg);
         }
 
         /* Cart Sidebar */
@@ -596,7 +306,7 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.4);
             backdrop-filter: blur(8px);
             z-index: 1000;
         }
@@ -604,16 +314,16 @@
         .cart-drawer {
             position: fixed;
             top: 0;
-            right: -500px;
+            right: -450px;
             width: 100%;
-            max-width: 480px;
+            max-width: 400px;
             height: 100%;
-            background: var(--soft-white);
+            background: white;
             z-index: 1001;
-            transition: 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            padding: 30px;
+            transition: 0.3s;
+            padding: 25px;
             overflow-y: auto;
-            box-shadow: -10px 0 50px rgba(0,0,0,0.2);
+            box-shadow: -5px 0 30px rgba(0,0,0,0.2);
         }
 
         .cart-drawer.open {
@@ -622,34 +332,22 @@
 
         .cart-item {
             display: flex;
-            gap: 15px;
-            background: var(--cream);
-            border-radius: 28px;
+            gap: 12px;
+            background: #fef0f5;
+            border-radius: 25px;
             padding: 12px;
-            margin: 12px 0;
+            margin: 10px 0;
         }
 
-        .cart-img {
-            width: 70px;
-            height: 70px;
+        .cart-item-img {
+            width: 60px;
+            height: 60px;
             border-radius: 20px;
             object-fit: cover;
         }
 
-        .shipping-calculator {
-            background: var(--cream);
-            border-radius: 30px;
-            padding: 15px;
-            margin: 15px 0;
-        }
-
-        .shipping-calculator input, .shipping-calculator select {
-            margin: 5px 0;
-            padding: 10px;
-        }
-
-        /* Admin Modal */
-        .modal-admin {
+        /* Admin Panel - IMPROVED */
+        .modal {
             display: none;
             position: fixed;
             inset: 0;
@@ -660,482 +358,297 @@
             justify-content: center;
         }
 
-        .modal-card {
+        .modal-content {
             background: white;
-            max-width: 750px;
-            width: 90%;
-            border-radius: 60px;
-            padding: 35px;
+            max-width: 900px;
+            width: 95%;
+            border-radius: 50px;
+            padding: 30px;
             max-height: 85vh;
-            overflow: auto;
+            overflow-y: auto;
         }
 
-        .upload-area {
-            border: 2px dashed #f0a6bc;
+        .admin-section {
+            background: #fff5f8;
             border-radius: 40px;
             padding: 20px;
-            text-align: center;
-            margin: 15px 0;
-            cursor: pointer;
-            transition: 0.2s;
+            margin-bottom: 25px;
         }
 
-        .upload-area:hover {
-            background: #fff0f5;
-            border-color: var(--deep-pink);
-        }
-
-        /* Toast */
-        .toast-notify {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            background: var(--deep-pink);
-            color: white;
-            padding: 14px 28px;
-            border-radius: 60px;
-            box-shadow: var(--shadow-lg);
-            z-index: 3000;
-            animation: slideInRight 0.3s ease;
-            font-weight: 500;
+        .admin-section h3 {
+            color: var(--dark-pink);
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(100px); }
-            to { opacity: 1; transform: translateX(0); }
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
         }
 
-        /* Confetti Canvas */
-        #confetti-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .admin-product-card {
+            background: white;
+            border-radius: 30px;
+            padding: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .admin-product-card input {
             width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 10000;
+            margin: 6px 0;
+            padding: 10px;
+            border-radius: 30px;
+            border: 1px solid #f0a6bc;
         }
 
-        /* Back to Top */
-        .back-to-top {
-            position: fixed;
-            bottom: 100px;
-            left: 25px;
-            width: 50px;
-            height: 50px;
+        .upload-area {
+            border: 2px dashed #f0a6bc;
+            border-radius: 30px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: var(--transition);
+        }
+
+        .upload-area:hover {
+            background: #fff0f5;
+        }
+
+        .btn-save {
             background: var(--deep-pink);
             color: white;
-            border-radius: 50%;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .btn-delete {
+            background: #ff8aaa;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        .logo-preview {
             display: flex;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            z-index: 1000;
-            border: none;
-            box-shadow: var(--shadow-md);
+            gap: 15px;
+            margin: 10px 0;
         }
 
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
+        .logo-preview img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
-        .back-to-top:hover {
-            transform: translateY(-5px);
-        }
-
-        /* WhatsApp Float */
         .whatsapp-float {
             position: fixed;
             bottom: 25px;
             right: 25px;
             background: #25D366;
             color: white;
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.8rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 100;
             border: none;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+            transition: var(--transition);
         }
 
         .whatsapp-float:hover {
             transform: scale(1.1);
-            background: #128C7E;
         }
 
-        /* Welcome Modal */
-        .welcome-modal {
+        .toast {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(15px);
-            z-index: 5000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .welcome-card {
-            background: white;
-            max-width: 550px;
-            width: 90%;
-            border-radius: 60px;
-            padding: 50px 40px;
-            text-align: center;
-            animation: scaleIn 0.5s ease;
-        }
-
-        @keyframes scaleIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .welcome-card h2 {
-            color: var(--dark-pink);
-            margin-bottom: 20px;
-            font-size: 2rem;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .welcome-card button {
+            bottom: 100px;
+            right: 30px;
             background: var(--deep-pink);
             color: white;
-            border: none;
-            padding: 14px 35px;
+            padding: 12px 25px;
             border-radius: 50px;
-            font-size: 1rem;
-            margin-top: 25px;
-            cursor: pointer;
-            transition: 0.2s;
+            z-index: 3000;
+            animation: slideIn 0.3s ease;
         }
 
-        /* Loading Skeleton */
-        .skeleton {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-            border-radius: 20px;
-        }
-
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+        @keyframes slideIn {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
         @media (max-width: 768px) {
-            .container { padding: 20px 16px; }
-            .header h1 { font-size: 2.5rem; }
-            .glass-bar { flex-direction: column; border-radius: 40px; }
-            .search-group { max-width: 100%; }
-            .page { padding: 25px; }
+            .header { flex-direction: column; text-align: center; }
+            .products-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+            .modal-content { padding: 20px; }
         }
     </style>
 </head>
 <body>
 
-<!-- Custom Cursor -->
-<div class="custom-cursor" id="customCursor"></div>
-
-<!-- Confetti Canvas -->
-<canvas id="confetti-canvas"></canvas>
-
-<!-- Main Container -->
 <div class="container">
-    <div class="header">
-        <h1>🎀 CHOUFHA LUXE 🎀</h1>
-        <p>✨ the ultimate coquette destination – Moroccan Dirham ✨</p>
+    <!-- Header with Logo -->
+    <div class="header" id="mainHeader">
+        <div class="logo-area">
+            <img class="logo-img" id="siteLogo" src="https://placehold.co/200x200/FFB7C5/white?text=🎀" alt="Logo">
+            <div class="logo-text">
+                <h1>CHOUFHA LUXE</h1>
+                <p>✨ coquette moroccan edits ✨</p>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a onclick="showPage('shop')"><i class="fas fa-store"></i> Shop</a>
+            <a onclick="showPage('about')"><i class="fas fa-heart"></i> About</a>
+            <a onclick="showPage('contact')"><i class="fas fa-envelope"></i> Contact</a>
+        </div>
     </div>
 
-    <div class="nav-links">
-        <a onclick="showPage('shop')"><i class="fas fa-store"></i> Shop</a>
-        <a onclick="showPage('about')"><i class="fas fa-heart"></i> About Us</a>
-        <a onclick="showPage('contact')"><i class="fas fa-envelope"></i> Contact</a>
-    </div>
-
-    <div class="glass-bar">
-        <div class="search-group">
-            <i class="fas fa-search" style="color: var(--deep-pink);"></i>
+    <!-- Control Bar -->
+    <div class="control-bar">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
             <input type="text" id="searchInput" placeholder="Search products...">
         </div>
-        <div class="filter-group">
-            <label><i class="fas fa-sort-amount-down"></i> Sort:</label>
+        <div class="filter-sort">
             <select id="sortSelect">
                 <option value="default">✨ Default</option>
-                <option value="lowToHigh">📈 Price: Low to High</option>
-                <option value="highToLow">📉 Price: High to Low</option>
-                <option value="rating">⭐ Top Rated</option>
+                <option value="lowToHigh">💰 Price: Low to High</option>
+                <option value="highToLow">💰 Price: High to Low</option>
             </select>
         </div>
-        <div class="action-buttons">
-            <button class="icon-btn theme-toggle" id="themeToggleBtn"><i class="fas fa-moon"></i> Dark</button>
-            <button class="icon-btn cart-btn" id="openCartBtn"><i class="fas fa-shopping-bag"></i> Cart <span id="cartCount" class="cart-count-badge">0</span></button>
-            <button class="icon-btn admin-btn" id="openAdminBtn"><i class="fas fa-crown"></i> Admin</button>
+        <div class="action-icons">
+            <button class="icon-btn" id="themeToggle"><i class="fas fa-moon"></i></button>
+            <button class="icon-btn cart-btn" id="openCartBtn"><i class="fas fa-shopping-bag"></i> Cart <span id="cartCount" class="cart-count">0</span></button>
+            <button class="icon-btn" id="openAdminBtn"><i class="fas fa-crown"></i> Admin</button>
         </div>
     </div>
 
     <!-- Shop Page -->
     <div id="shopPage" class="page active-page">
         <div id="productsGrid" class="products-grid"></div>
-        <div id="loadingSkeleton" style="display: none;">
-            <div class="skeleton" style="height: 400px; border-radius: 48px;"></div>
-            <div class="skeleton" style="height: 400px; border-radius: 48px;"></div>
-            <div class="skeleton" style="height: 400px; border-radius: 48px;"></div>
-        </div>
     </div>
 
     <!-- About Page -->
     <div id="aboutPage" class="page">
         <h2><i class="fas fa-heart"></i> About Choufha Luxe</h2>
-        <p>Welcome to <strong>Choufha Luxe</strong> – your ultimate destination for coquette aesthetic fashion in Morocco. We bring you the cutest, most elegant pieces that blend Moroccan charm with international coquette style.</p>
-        <p>🌸 Every piece is carefully selected to make you feel special, feminine, and confident. From ribbon bags to heart-print tops, we have everything you need to complete your coquette wardrobe.</p>
-        <p>💕 Our mission is to empower women through fashion that celebrates softness, elegance, and individuality.</p>
-        <p>📍 Based in Casablanca, Morocco.<br>✨ Founded with love in 2025.</p>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="#"><i class="fab fa-pinterest"></i></a>
-        </div>
+        <p>Welcome to <strong>Choufha Luxe</strong> – your coquette fashion destination in Morocco. We bring you the cutest, most elegant pieces that blend Moroccan charm with international style.</p>
+        <p>🌸 Every piece is carefully selected to make you feel special, feminine, and confident.</p>
+        <p>📍 Based in Casablanca, Morocco | ✨ Founded with love in 2025</p>
     </div>
 
     <!-- Contact Page -->
     <div id="contactPage" class="page">
         <h2><i class="fas fa-envelope"></i> Contact Us</h2>
-        <p><i class="fab fa-whatsapp" style="color:#25D366;"></i> <strong>WhatsApp:</strong> +212 600 000 000 (Click the green button at the bottom right)</p>
+        <p><i class="fab fa-whatsapp"></i> <strong>WhatsApp:</strong> +212 600 000 000</p>
         <p><i class="fas fa-envelope"></i> <strong>Email:</strong> hello@choufhaluxe.ma</p>
-        <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> 123 Coquette Street, Casablanca, Morocco</p>
-        <p><i class="fas fa-clock"></i> <strong>Business Hours:</strong> Monday - Saturday, 10 AM - 8 PM</p>
+        <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> Casablanca, Morocco</p>
         <p><i class="fab fa-instagram"></i> <strong>Instagram:</strong> @choufha.co</p>
-        <p><i class="fab fa-tiktok"></i> <strong>TikTok:</strong> @choufha_luxe</p>
     </div>
-
-    <div id="visitorCounter" style="text-align: center; margin-top: 40px; font-size: 0.8rem; color: var(--dark-pink); opacity: 0.6;"></div>
 </div>
 
 <!-- WhatsApp Float -->
-<button class="whatsapp-float" id="whatsappFloatBtn"><i class="fab fa-whatsapp"></i></button>
-
-<!-- Back to Top -->
-<button class="back-to-top" id="backToTopBtn"><i class="fas fa-arrow-up"></i></button>
+<button class="whatsapp-float" id="whatsappBtn"><i class="fab fa-whatsapp"></i></button>
 
 <!-- Cart Sidebar -->
 <div class="cart-overlay" id="cartOverlay"></div>
 <div class="cart-drawer" id="cartDrawer">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 25px;">
-        <h2 style="color: var(--dark-pink);"><i class="fas fa-shopping-bag"></i> Your Cart</h2>
-        <button id="closeCartDrawer" style="background: #f0cfda; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;"><i class="fas fa-times"></i></button>
+    <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+        <h2><i class="fas fa-shopping-bag"></i> Your Cart</h2>
+        <button id="closeCartBtn" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">✖</button>
     </div>
     <div id="cartItemsList"></div>
-    <div class="shipping-calculator">
-        <h4><i class="fas fa-truck"></i> Shipping Calculator</h4>
-        <select id="shippingCity">
-            <option value="0">Select City</option>
-            <option value="20">Casablanca - 20 DH</option>
-            <option value="30">Rabat - 30 DH</option>
-            <option value="40">Marrakech - 40 DH</option>
-            <option value="50">Tangier - 50 DH</option>
-            <option value="60">Other Cities - 60 DH</option>
-        </select>
-    </div>
-    <div class="cart-total" id="cartTotalPrice" style="font-size: 1.8rem; font-weight: 800; text-align: center; margin: 20px 0;">0.00 DH</div>
-    <button id="checkoutWhatsappBtn" style="background: #25D366; width: 100%; padding: 16px; border: none; border-radius: 50px; color: white; font-weight: bold; cursor: pointer; font-size: 1rem;"><i class="fab fa-whatsapp"></i> Send Order via WhatsApp</button>
+    <div style="font-size: 1.5rem; font-weight: bold; text-align: center; margin: 20px 0;" id="cartTotal">0.00 DH</div>
+    <button id="checkoutBtn" style="background: #25D366; width: 100%; padding: 14px; border: none; border-radius: 50px; color: white; font-weight: bold; cursor: pointer;"><i class="fab fa-whatsapp"></i> Send Order</button>
 </div>
 
-<!-- Admin Panel -->
-<div id="adminModal" class="modal-admin">
-    <div class="modal-card">
-        <h2 style="color: var(--dark-pink);"><i class="fas fa-crown"></i> Admin Panel</h2>
-        <div style="background: #ffeef4; border-radius: 40px; padding: 20px; margin: 20px 0;">
-            <h3><i class="fas fa-image"></i> Background Image</h3>
-            <div class="upload-area" id="uploadArea">
-                <i class="fas fa-cloud-upload-alt" style="font-size: 2rem;"></i><br>
-                Click to upload an image from your device<br>
-                <small>(Becomes background instantly)</small>
-                <input type="file" id="imageUpload" accept="image/*" style="display:none">
+<!-- Admin Panel - IMPROVED -->
+<div id="adminModal" class="modal">
+    <div class="modal-content">
+        <h2 style="color: var(--dark-pink); margin-bottom: 20px;"><i class="fas fa-crown"></i> Admin Dashboard</h2>
+        
+        <!-- Logo Settings -->
+        <div class="admin-section">
+            <h3><i class="fas fa-image"></i> Logo Settings</h3>
+            <div class="logo-preview">
+                <img id="adminLogoPreview" src="https://placehold.co/200x200/FFB7C5/white?text=🎀">
+                <div class="upload-area" style="flex:1; padding: 10px;" onclick="document.getElementById('logoUpload').click()">
+                    <i class="fas fa-cloud-upload-alt"></i> Change Logo Image
+                </div>
+                <input type="file" id="logoUpload" accept="image/*" style="display:none">
             </div>
-            <div id="currentBgDisplay" style="background: #f0eef2; padding: 10px; border-radius: 30px; margin-top: 10px; font-size: 0.7rem; word-break: break-all;"></div>
         </div>
-        <hr>
-        <h3><i class="fas fa-boxes"></i> Products Management</h3>
-        <div id="adminProductsList"></div>
-        <button id="addProductAdminBtn" style="background: var(--deep-pink); color: white; width: 100%; padding: 14px; margin: 15px 0; border: none; border-radius: 50px; cursor: pointer;"><i class="fas fa-plus"></i> Add New Product</button>
-        <button id="closeAdminBtn" style="background: #b5a0a8; width: 100%; padding: 14px; border: none; border-radius: 50px; cursor: pointer;">Close</button>
+
+        <!-- Background Settings -->
+        <div class="admin-section">
+            <h3><i class="fas fa-palette"></i> Background Settings</h3>
+            <div class="upload-area" onclick="document.getElementById('bgUpload').click()">
+                <i class="fas fa-cloud-upload-alt"></i> Click to upload background image
+            </div>
+            <input type="file" id="bgUpload" accept="image/*" style="display:none">
+            <div id="currentBgDisplay" style="margin-top: 10px; font-size: 0.7rem; color: gray;"></div>
+        </div>
+
+        <!-- Products Management -->
+        <div class="admin-section">
+            <h3><i class="fas fa-boxes"></i> Products Management</h3>
+            <button id="addProductBtn" style="background: var(--deep-pink); color: white; border: none; padding: 10px 20px; border-radius: 50px; margin-bottom: 15px; cursor: pointer;"><i class="fas fa-plus"></i> Add New Product</button>
+            <div id="adminProductsList" class="admin-grid"></div>
+        </div>
+
+        <button id="closeAdminBtn" style="background: #b5a0a8; width: 100%; padding: 12px; border: none; border-radius: 50px; margin-top: 15px; cursor: pointer;">Close Admin Panel</button>
     </div>
 </div>
 
 <script>
-    // ========== CONFETTI SYSTEM ==========
-    const canvas = document.getElementById('confetti-canvas');
-    const ctx = canvas.getContext('2d');
-    let animationId = null;
-    let particles = [];
-
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    function createConfetti() {
-        particles = [];
-        for (let i = 0; i < 150; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height - canvas.height,
-                size: Math.random() * 8 + 4,
-                speedY: Math.random() * 5 + 3,
-                speedX: (Math.random() - 0.5) * 2,
-                color: `hsl(${Math.random() * 60 + 300}, 70%, 60%)`,
-                rotation: Math.random() * 360,
-                rotationSpeed: (Math.random() - 0.5) * 10
-            });
-        }
-        if (animationId) cancelAnimationFrame(animationId);
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            let active = false;
-            for (let p of particles) {
-                p.y += p.speedY;
-                p.x += p.speedX;
-                p.rotation += p.rotationSpeed;
-                if (p.y < canvas.height + 50) active = true;
-                ctx.save();
-                ctx.translate(p.x, p.y);
-                ctx.rotate(p.rotation * Math.PI / 180);
-                ctx.fillStyle = p.color;
-                ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
-                ctx.restore();
-            }
-            if (active) {
-                animationId = requestAnimationFrame(animate);
-            } else {
-                cancelAnimationFrame(animationId);
-                animationId = null;
-            }
-        }
-        animate();
-        setTimeout(() => {
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-                animationId = null;
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-            }
-        }, 3000);
-    }
-
-    // ========== CUSTOM CURSOR ==========
-    const cursor = document.getElementById('customCursor');
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    });
-    document.querySelectorAll('button, a, .size-pill, .product-card').forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-    });
-
-    // ========== FLOATING PARTICLES ==========
-    for (let i = 0; i < 30; i++) {
-        let particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.innerHTML = ['🎀', '🌸', '💕', '✨', '💖', '🎀'][Math.floor(Math.random() * 6)];
-        particle.style.position = 'fixed';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.fontSize = (Math.random() * 20 + 10) + 'px';
-        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
-        particle.style.animationDelay = Math.random() * 20 + 's';
-        particle.style.opacity = Math.random() * 0.3 + 0.1;
-        document.body.appendChild(particle);
-    }
-
-    // ========== DATA ==========
+    // ========== PRODUCTS (6 products) ==========
     let products = [
-        { id: 1, name: "🌸 Silk Ribbon Bag", price: 220, discount: 15, image: "https://placehold.co/600x600/FFB7C5/white?text=🎀", sizes: ["S","M"], stock: 10, rating: 4.8, reviews: [{user:"Sarah",rating:5,comment:"Absolutely gorgeous!"},{user:"Leila",rating:4.5,comment:"So cute!"}] },
-        { id: 2, name: "💖 Heart Print Top", price: 139, discount: 0, image: "https://placehold.co/600x600/F9C7D3/white?text=❤️", sizes: ["XS","S","M","L"], stock: 25, rating: 4.7, reviews: [{user:"Nora",rating:5,comment:"Love it!"}] },
-        { id: 3, name: "🎀 Bow Hair Set", price: 69, discount: 25, image: "https://placehold.co/600x600/F4BAC7/white?text=🎀", sizes: ["One Size"], stock: 3, rating: 5.0, reviews: [{user:"Imane",rating:5,comment:"Perfect!"}] },
+        { id: 1, name: "🌸 Silk Ribbon Bag", price: 220, discount: 15, image: "https://placehold.co/600x600/FFB7C5/white?text=🎀", sizes: ["S","M"], stock: 10, rating: 4.8, reviews: [] },
+        { id: 2, name: "💖 Heart Print Top", price: 139, discount: 0, image: "https://placehold.co/600x600/F9C7D3/white?text=❤️", sizes: ["XS","S","M","L"], stock: 25, rating: 4.7, reviews: [] },
+        { id: 3, name: "🎀 Bow Hair Set", price: 69, discount: 25, image: "https://placehold.co/600x600/F4BAC7/white?text=🎀", sizes: ["One Size"], stock: 3, rating: 5.0, reviews: [] },
         { id: 4, name: "👗 Lace Trim Dress", price: 350, discount: 10, image: "https://placehold.co/600x600/FFD1DC/white?text=👗", sizes: ["S","M","L"], stock: 7, rating: 4.9, reviews: [] },
         { id: 5, name: "🩰 Ballet Flats", price: 189, discount: 0, image: "https://placehold.co/600x600/FADADD/white?text=🩰", sizes: ["36","37","38","39"], stock: 15, rating: 4.6, reviews: [] },
         { id: 6, name: "💎 Pearl Hair Clip", price: 45, discount: 0, image: "https://placehold.co/600x600/F9CED8/white?text=💎", sizes: ["One Size"], stock: 50, rating: 4.8, reviews: [] }
     ];
-    
+
     let cart = [];
-    let favorites = JSON.parse(localStorage.getItem("choufha_favorites") || "[]");
     let currentBg = localStorage.getItem("choufha_bg") || "radial-gradient(circle at 10% 30%, #ffe9f0, #ffd9e4)";
-    let visitorCount = parseInt(localStorage.getItem("visitorCount") || 0) + 1;
-    localStorage.setItem("visitorCount", visitorCount);
-    document.getElementById("visitorCounter").innerHTML = `<i class="fas fa-eye"></i> ${visitorCount} lovely visitors have explored Choufha Luxe`;
+    let logoUrl = localStorage.getItem("choufha_logo") || "https://placehold.co/200x200/FFB7C5/white?text=🎀";
 
-    // Theme
-    let currentTheme = localStorage.getItem("theme") || "light";
-    if(currentTheme === "dark") document.body.setAttribute("data-theme", "dark");
-    document.getElementById("themeToggleBtn").onclick = () => {
-        if(document.body.getAttribute("data-theme") === "dark") {
-            document.body.removeAttribute("data-theme");
-            localStorage.setItem("theme", "light");
-            document.getElementById("themeToggleBtn").innerHTML = '<i class="fas fa-moon"></i> Dark';
+    // Apply saved data
+    function applyBg() {
+        if(currentBg.startsWith("http") || currentBg.startsWith("data:image")) {
+            document.body.style.backgroundImage = `url('${currentBg}')`;
+            document.body.style.backgroundSize = "cover";
         } else {
-            document.body.setAttribute("data-theme", "dark");
-            localStorage.setItem("theme", "dark");
-            document.getElementById("themeToggleBtn").innerHTML = '<i class="fas fa-sun"></i> Light';
+            document.body.style.background = currentBg;
         }
-    };
-
-    // Welcome Modal
-    if(!localStorage.getItem("hasVisited")) {
-        localStorage.setItem("hasVisited", "true");
-        let welcomeDiv = document.createElement("div");
-        welcomeDiv.className = "welcome-modal";
-        welcomeDiv.id = "welcomeModal";
-        welcomeDiv.innerHTML = `
-            <div class="welcome-card">
-                <h2><i class="fas fa-heart"></i> Welcome to Choufha Luxe</h2>
-                <p>✨ Your coquette fashion destination in Morocco ✨</p>
-                <p>We offer cute, aesthetic pieces with love and elegance.</p>
-                <p><i class="fas fa-gift"></i> Free shipping on orders over 300 DH</p>
-                <p><i class="fab fa-whatsapp"></i> Contact us anytime on WhatsApp!</p>
-                <button id="closeWelcomeBtn"><i class="fas fa-shopping-bag"></i> Start Shopping</button>
-            </div>
-        `;
-        document.body.appendChild(welcomeDiv);
-        document.getElementById("closeWelcomeBtn").onclick = () => welcomeDiv.remove();
     }
 
-    function showToast(msg, icon = "🎀") {
-        let toast = document.createElement("div");
-        toast.className = "toast-notify";
-        toast.innerHTML = `<span>${icon}</span> ${msg}`;
-        document.body.appendChild(toast);
-        setTimeout(() => toast.remove(), 3000);
+    function applyLogo() {
+        document.getElementById("siteLogo").src = logoUrl;
+        document.getElementById("adminLogoPreview").src = logoUrl;
     }
 
     function saveAll() {
         localStorage.setItem("choufha_products", JSON.stringify(products));
         localStorage.setItem("choufha_cart", JSON.stringify(cart));
         localStorage.setItem("choufha_bg", currentBg);
-        localStorage.setItem("choufha_favorites", JSON.stringify(favorites));
+        localStorage.setItem("choufha_logo", logoUrl);
     }
 
     function loadAll() {
@@ -1145,118 +658,22 @@
         if(c) cart = JSON.parse(c);
         let bg = localStorage.getItem("choufha_bg");
         if(bg) currentBg = bg;
-        let fav = localStorage.getItem("choufha_favorites");
-        if(fav) favorites = JSON.parse(fav);
+        let logo = localStorage.getItem("choufha_logo");
+        if(logo) logoUrl = logo;
         applyBg();
+        applyLogo();
         updateCartUI();
     }
 
-    function applyBg() {
-        if(currentBg.startsWith("http") || currentBg.startsWith("data:image")) {
-            document.body.style.backgroundImage = `url('${currentBg}')`;
-            document.body.style.backgroundSize = "cover";
-            document.body.style.backgroundPosition = "center";
-            document.body.style.backgroundAttachment = "fixed";
-        } else {
-            document.body.style.background = currentBg;
-        }
+    function showToast(msg) {
+        let toast = document.createElement("div");
+        toast.className = "toast";
+        toast.innerHTML = msg;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
     }
 
-    function setNewBackground(imgData) {
-        currentBg = imgData;
-        applyBg();
-        saveAll();
-        showToast("Background updated beautifully!", "🌸");
-    }
-
-    function uploadImage(file) {
-        if(!file.type.startsWith('image/')) { showToast("Please select an image file", "❌"); return; }
-        let reader = new FileReader();
-        reader.onload = (e) => setNewBackground(e.target.result);
-        reader.readAsDataURL(file);
-    }
-
-    function addReview(productId, userName, rating, comment) {
-        let product = products.find(p => p.id === productId);
-        if(product) {
-            product.reviews.unshift({ user: userName || "Anonymous", rating: parseInt(rating), comment: comment || "❤️ Love it!", date: new Date().toLocaleDateString() });
-            let avg = product.reviews.reduce((s,r)=>s+r.rating,0) / product.reviews.length;
-            product.rating = parseFloat(avg.toFixed(1));
-            saveAll();
-            renderProducts();
-            showToast("Thank you for your review! 💕", "✨");
-        }
-    }
-
-    function addToCart(product, size) {
-        let finalPrice = product.price * (1 - product.discount/100);
-        let existing = cart.find(i => i.id === product.id && i.size === size);
-        if(existing) existing.qty++;
-        else cart.push({ id: product.id, name: product.name, size, finalPrice, qty: 1, img: product.image });
-        saveAll();
-        renderProducts();
-        updateCartUI();
-        showToast(`Added ${product.name} (${size}) to cart! 🎀`, "✨");
-        createConfetti();
-        
-        if(Notification.permission === "granted") {
-            new Notification("Choufha Luxe", { body: `${product.name} added to cart!` });
-        }
-    }
-
-    function toggleFavorite(productId) {
-        let index = favorites.indexOf(productId);
-        if(index === -1) {
-            favorites.push(productId);
-            showToast("Added to favorites! ❤️", "❤️");
-        } else {
-            favorites.splice(index, 1);
-            showToast("Removed from favorites 💔", "💔");
-        }
-        saveAll();
-        renderProducts();
-    }
-
-    function shareProduct(product) {
-        let finalPrice = (product.price * (1 - product.discount/100)).toFixed(2);
-        let msg = `🛍️ Check out ${product.name} for only ${finalPrice} DH at Choufha Luxe! 🎀\n\nYour coquette destination in Morocco!`;
-        window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, "_blank");
-    }
-
-    function updateCartUI() {
-        let count = cart.reduce((s,i)=>s+i.qty,0);
-        document.getElementById("cartCount").innerText = count;
-        let container = document.getElementById("cartItemsList");
-        if(cart.length===0) { 
-            container.innerHTML="<div style='text-align:center; padding:40px;'><i class='fas fa-shopping-bag' style='font-size:3rem; opacity:0.3;'></i><p>Your cart is empty 💔</p></div>"; 
-            document.getElementById("cartTotalPrice").innerHTML = "0.00 DH";
-            return; 
-        }
-        container.innerHTML = cart.map(item => `
-            <div class="cart-item">
-                <img class="cart-img" src="${item.img}" onerror="this.src='https://placehold.co/200x200/pink'">
-                <div style="flex:1">
-                    <b>${item.name}</b><br>
-                    Size: ${item.size}<br>
-                    ${item.finalPrice} DH x ${item.qty}
-                </div>
-                <button onclick="removeCartItem('${item.id}_${item.size}')" style="background:#ffb0c0; border:none; width: 70px; border-radius: 40px; cursor:pointer;"><i class="fas fa-trash"></i></button>
-            </div>
-        `).join('');
-        let subtotal = cart.reduce((s,i)=>s+(i.finalPrice*i.qty),0);
-        let shipping = parseInt(document.getElementById("shippingCity")?.value || 0);
-        let total = subtotal + shipping;
-        document.getElementById("cartTotalPrice").innerHTML = `${total.toFixed(2)} DH <small style="font-size:0.7rem;">(subtotal: ${subtotal.toFixed(2)} + shipping: ${shipping})</small>`;
-    }
-
-    window.removeCartItem = function(key) {
-        cart = cart.filter(i => `${i.id}_${i.size}` !== key);
-        saveAll();
-        renderProducts();
-        updateCartUI();
-        showToast("Item removed from cart", "🗑️");
-    };
-
+    // Render Products (GRID LAYOUT - products side by side)
     function renderProducts() {
         let grid = document.getElementById("productsGrid");
         let searchTerm = document.getElementById("searchInput")?.value.toLowerCase() || "";
@@ -1267,78 +684,107 @@
         
         if(sortType === "lowToHigh") copy.sort((a,b)=> (a.price*(1-a.discount/100)) - (b.price*(1-b.discount/100)));
         if(sortType === "highToLow") copy.sort((a,b)=> (b.price*(1-b.discount/100)) - (a.price*(1-a.discount/100)));
-        if(sortType === "rating") copy.sort((a,b)=> b.rating - a.rating);
         
-        grid.innerHTML = copy.map((p, idx) => {
-            let final = (p.price*(1-p.discount/100)).toFixed(2);
-            let stars = "★".repeat(Math.floor(p.rating)) + "☆".repeat(5-Math.floor(p.rating));
-            let isFav = favorites.includes(p.id);
-            let stockStatus = p.stock > 5 ? '<span class="stock-status in-stock"><i class="fas fa-check-circle"></i> In Stock</span>' : (p.stock > 0 ? '<span class="stock-status low-stock"><i class="fas fa-exclamation-triangle"></i> Low Stock</span>' : '<span class="stock-status" style="background:#f8d7da;color:#721c24;">Out of Stock</span>');
+        grid.innerHTML = copy.map(p => {
+            let finalPrice = (p.price * (1 - p.discount/100)).toFixed(2);
             return `
-            <div class="product-card" style="animation-delay: ${idx * 0.05}s">
-                ${p.discount > 0 ? `<div class="product-badge">-${p.discount}% SALE</div>` : ''}
-                <div class="product-img-wrapper">
-                    <img class="product-img" src="${p.image}" onerror="this.src='https://placehold.co/600x600/pink?text=🌸'">
-                    <div class="product-img-zoom"><i class="fas fa-search-plus"></i> Zoom</div>
-                </div>
+            <div class="product-card">
+                <img class="product-img" src="${p.image}" onerror="this.src='https://placehold.co/600x600/pink?text=🌸'">
                 <div class="product-title">${p.name}</div>
-                ${stockStatus}
-                <div class="price-magic">
-                    <span class="real-price">${final} DH</span>
-                    ${p.discount>0 ? `<span class="old-price">${p.price} DH</span><span class="discount-chip">-${p.discount}%</span>` : ''}
+                <div class="price-row">
+                    <span class="current-price">${finalPrice} DH</span>
+                    ${p.discount > 0 ? `<span class="old-price">${p.price} DH</span><span class="discount-badge">-${p.discount}%</span>` : ''}
                 </div>
-                <div class="sizes-row">
-                    ${p.sizes.map(sz => `<span class="size-pill" data-id="${p.id}" data-size="${sz}">${sz}</span>`).join('')}
+                <div class="sizes">
+                    ${p.sizes.map(s => `<span class="size-btn" data-id="${p.id}" data-size="${s}">${s}</span>`).join('')}
                 </div>
-                <div class="card-actions">
-                    <button class="btn-add-cart" data-product='${JSON.stringify(p)}'><i class="fas fa-shopping-bag"></i> Add to Cart</button>
-                    <button class="favorite-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite(${p.id})"><i class="fas ${isFav ? 'fa-heart' : 'fa-heart'}"></i></button>
-                    <button class="share-btn" onclick="shareProduct(${JSON.stringify(p).replace(/"/g, '&quot;')})"><i class="fas fa-share-alt"></i></button>
-                </div>
-                <div class="reviews-section">
-                    <div class="stars-display">${stars} (${p.reviews.length} reviews)</div>
-                    ${p.reviews.slice(0,2).map(r => `<div class="review-item"><b>${r.user}</b> ${"★".repeat(r.rating)}: ${r.comment}</div>`).join('')}
-                    <div class="review-form">
-                        <input type="text" placeholder="Your name" id="name_${p.id}" style="flex:1">
-                        <select id="rate_${p.id}"><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select>
-                        <input type="text" placeholder="Review" id="comment_${p.id}" style="flex:2">
-                        <button onclick="addReview(${p.id}, document.getElementById('name_${p.id}').value, document.getElementById('rate_${p.id}').value, document.getElementById('comment_${p.id}').value)"><i class="fas fa-paper-plane"></i></button>
-                    </div>
-                </div>
+                <button class="add-to-cart" data-product='${JSON.stringify(p)}'><i class="fas fa-shopping-bag"></i> Add to Cart</button>
             </div>`;
         }).join('');
-        
-        document.querySelectorAll('.size-pill').forEach(el => {
-            el.onclick = () => {
-                let prod = products.find(p => p.id === parseInt(el.dataset.id));
-                if(prod) addToCart(prod, el.dataset.size);
+
+        // Size buttons
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.onclick = (e) => {
+                e.stopPropagation();
+                let pid = parseInt(btn.dataset.id);
+                let size = btn.dataset.size;
+                let product = products.find(p => p.id === pid);
+                if(product) addToCart(product, size);
             };
         });
-        document.querySelectorAll('.btn-add-cart').forEach(btn => {
+
+        // Add to cart buttons
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
             btn.onclick = () => {
-                let prod = JSON.parse(btn.dataset.product);
-                addToCart(prod, prod.sizes[0]);
+                let product = JSON.parse(btn.dataset.product);
+                addToCart(product, product.sizes[0]);
             };
         });
     }
 
+    function addToCart(product, size) {
+        let finalPrice = product.price * (1 - product.discount/100);
+        let existing = cart.find(i => i.id === product.id && i.size === size);
+        if(existing) existing.qty++;
+        else cart.push({ id: product.id, name: product.name, size, finalPrice, qty: 1, img: product.image });
+        saveAll();
+        updateCartUI();
+        showToast(`✨ Added ${product.name} (${size}) to cart!`);
+    }
+
+    function updateCartUI() {
+        let count = cart.reduce((s,i)=>s+i.qty,0);
+        document.getElementById("cartCount").innerText = count;
+        let container = document.getElementById("cartItemsList");
+        if(cart.length === 0) {
+            container.innerHTML = "<div style='text-align:center; padding:30px;'>Cart is empty 💔</div>";
+            document.getElementById("cartTotal").innerHTML = "0.00 DH";
+            return;
+        }
+        container.innerHTML = cart.map(item => `
+            <div class="cart-item">
+                <img class="cart-item-img" src="${item.img}">
+                <div style="flex:1">
+                    <b>${item.name}</b><br>
+                    Size: ${item.size}<br>
+                    ${item.finalPrice} DH x ${item.qty}
+                </div>
+                <button onclick="removeFromCart('${item.id}_${item.size}')" style="background:#ffb0c0; border:none; border-radius:30px; padding:0 15px; cursor:pointer;">Remove</button>
+            </div>
+        `).join('');
+        let total = cart.reduce((s,i)=>s+(i.finalPrice*i.qty),0);
+        document.getElementById("cartTotal").innerHTML = total.toFixed(2) + " DH";
+    }
+
+    window.removeFromCart = function(key) {
+        cart = cart.filter(i => `${i.id}_${i.size}` !== key);
+        saveAll();
+        updateCartUI();
+        showToast("Item removed");
+    };
+
+    // Admin functions
     function openAdmin() {
         let modal = document.getElementById("adminModal");
         let listDiv = document.getElementById("adminProductsList");
+        
         listDiv.innerHTML = products.map(p => `
-            <div class="product-admin-item" style="background:#fff0f5; border-radius:40px; padding:15px; margin:12px 0;">
-                <input id="name_${p.id}" value="${p.name.replace(/"/g, '&quot;')}" placeholder="Name">
+            <div class="admin-product-card">
+                <input id="name_${p.id}" value="${p.name.replace(/"/g, '&quot;')}" placeholder="Product Name">
                 <input id="price_${p.id}" value="${p.price}" type="number" placeholder="Price">
-                <input id="disc_${p.id}" value="${p.discount}" type="number" placeholder="Discount %">
+                <input id="discount_${p.id}" value="${p.discount}" type="number" placeholder="Discount %">
                 <input id="stock_${p.id}" value="${p.stock}" type="number" placeholder="Stock">
-                <div class="upload-area small" style="padding:10px; margin:5px 0; text-align:center; cursor:pointer;" onclick="document.getElementById('productImgUpload_${p.id}').click()"><i class="fas fa-image"></i> Change Image</div>
-                <input type="file" id="productImgUpload_${p.id}" accept="image/*" style="display:none" onchange="uploadProductImage(${p.id}, this)">
-                <input id="sizes_${p.id}" value="${p.sizes.join(',')}" placeholder="Sizes (comma separated)">
-                <button onclick="updateProduct(${p.id})" style="background:var(--deep-pink); color:white; padding:10px 20px; border:none; border-radius:40px; margin:5px;"><i class="fas fa-save"></i> Save</button>
-                <button onclick="deleteProduct(${p.id})" style="background:#ff8aaa; padding:10px 20px; border:none; border-radius:40px;"><i class="fas fa-trash"></i> Delete</button>
+                <input id="sizes_${p.id}" value="${p.sizes.join(',')}" placeholder="Sizes (comma)">
+                <div class="upload-area" style="padding:8px;" onclick="document.getElementById('productImg_${p.id}').click()">📸 Change Image</div>
+                <input type="file" id="productImg_${p.id}" accept="image/*" style="display:none" onchange="uploadProductImage(${p.id}, this)">
+                <div style="margin-top:10px;">
+                    <button class="btn-save" onclick="updateProduct(${p.id})">💾 Save</button>
+                    <button class="btn-delete" onclick="deleteProduct(${p.id})">🗑️ Delete</button>
+                </div>
             </div>
         `).join('');
-        document.getElementById("currentBgDisplay").innerHTML = `<i class="fas fa-image"></i> Current background: ${currentBg.substring(0, 80)}...`;
+        
+        document.getElementById("currentBgDisplay").innerHTML = `Current background: ${currentBg.substring(0, 50)}...`;
         modal.style.display = "flex";
     }
 
@@ -1351,99 +797,93 @@
                 saveAll();
                 renderProducts();
                 openAdmin();
-                showToast("Product image updated!", "📸");
+                showToast("Product image updated!");
             };
             reader.readAsDataURL(input.files[0]);
         }
     };
 
     window.updateProduct = function(id) {
-        let p = products.find(p=>p.id===id);
-        if(p){
+        let p = products.find(p => p.id === id);
+        if(p) {
             p.name = document.getElementById(`name_${id}`).value;
             p.price = parseFloat(document.getElementById(`price_${id}`).value);
-            p.discount = parseFloat(document.getElementById(`disc_${id}`).value);
+            p.discount = parseFloat(document.getElementById(`discount_${id}`).value);
             p.stock = parseInt(document.getElementById(`stock_${id}`).value);
             p.sizes = document.getElementById(`sizes_${id}`).value.split(',').map(s=>s.trim());
             saveAll();
             renderProducts();
             openAdmin();
-            showToast("Product updated!", "✅");
+            showToast("Product updated!");
         }
     };
 
-    window.deleteProduct = function(id){
-        products = products.filter(p=>p.id!==id);
+    window.deleteProduct = function(id) {
+        products = products.filter(p => p.id !== id);
         saveAll();
         renderProducts();
         openAdmin();
-        showToast("Product deleted", "🗑️");
+        showToast("Product deleted");
     };
 
+    // Logo upload
+    document.getElementById("logoUpload").onchange = (e) => {
+        if(e.target.files && e.target.files[0]) {
+            let reader = new FileReader();
+            reader.onload = (ev) => {
+                logoUrl = ev.target.result;
+                applyLogo();
+                saveAll();
+                showToast("Logo updated!");
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    };
+
+    // Background upload
+    document.getElementById("bgUpload").onchange = (e) => {
+        if(e.target.files && e.target.files[0]) {
+            let reader = new FileReader();
+            reader.onload = (ev) => {
+                currentBg = ev.target.result;
+                applyBg();
+                saveAll();
+                showToast("Background updated!");
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    };
+
+    // Event listeners
     document.getElementById("openAdminBtn").onclick = openAdmin;
     document.getElementById("closeAdminBtn").onclick = () => document.getElementById("adminModal").style.display = "none";
-    document.getElementById("addProductAdminBtn").onclick = () => {
-        products.push({ id: Date.now(), name: "New Cute Product", price: 99, discount: 0, image: "https://placehold.co/600x600/FFC0D0/white?text=✨", sizes: ["M"], stock: 10, rating: 0, reviews: [] });
+    document.getElementById("addProductBtn").onclick = () => {
+        products.push({ id: Date.now(), name: "New Product", price: 99, discount: 0, image: "https://placehold.co/600x600/FFC0D0/white?text=✨", sizes: ["M"], stock: 10, rating: 0, reviews: [] });
         saveAll();
         renderProducts();
         openAdmin();
-        showToast("New product added!", "➕");
+        showToast("New product added!");
     };
     document.getElementById("sortSelect").onchange = () => renderProducts();
     document.getElementById("searchInput").oninput = () => renderProducts();
     
-    let uploadArea = document.getElementById("uploadArea");
-    let fileInput = document.getElementById("imageUpload");
-    uploadArea.onclick = () => fileInput.click();
-    fileInput.onchange = (e) => { if(e.target.files[0]) uploadImage(e.target.files[0]); };
-    
-    document.getElementById("openCartBtn").onclick = () => { document.getElementById("cartDrawer").classList.add("open"); document.getElementById("cartOverlay").style.display = "block"; };
-    document.getElementById("closeCartDrawer").onclick = () => { document.getElementById("cartDrawer").classList.remove("open"); document.getElementById("cartOverlay").style.display = "none"; };
-    document.getElementById("cartOverlay").onclick = () => { document.getElementById("cartDrawer").classList.remove("open"); document.getElementById("cartOverlay").style.display = "none"; };
-    document.getElementById("shippingCity")?.addEventListener("change", () => updateCartUI());
-    
-    function getCartMsg() {
-        if(cart.length===0) return "Hello, I would like to place an order";
-        let msg = "🎀 *MY ORDER FROM CHOUFHA LUXE* 🎀%0A%0A";
-        cart.forEach(i=> msg += `• ${i.name} (Size ${i.size}) - ${i.finalPrice} DH x ${i.qty} = ${(i.finalPrice*i.qty).toFixed(2)} DH%0A`);
-        let subtotal = cart.reduce((s,i)=>s+(i.finalPrice*i.qty),0);
-        let shipping = parseInt(document.getElementById("shippingCity")?.value || 0);
-        let total = subtotal + shipping;
-        msg += `%0A📦 *Subtotal:* ${subtotal.toFixed(2)} DH`;
-        msg += `%0A🚚 *Shipping:* ${shipping} DH`;
-        msg += `%0A💰 *Total:* ${total.toFixed(2)} DH`;
-        msg += `%0A%0A📍 Delivery Address: (write your address)`;
-        msg += `%0A📞 Phone Number:`;
-        return msg;
-    }
-    
-    document.getElementById("globalWhatsappBtn")?.remove();
-    document.getElementById("whatsappFloatBtn").onclick = () => window.open(`https://wa.me/212600000000?text=${getCartMsg()}`, "_blank");
-    document.getElementById("checkoutWhatsappBtn").onclick = () => window.open(`https://wa.me/212600000000?text=${getCartMsg()}`, "_blank");
-    
-    // Back to Top
-    window.addEventListener("scroll", () => {
-        let btn = document.getElementById("backToTopBtn");
-        if(window.scrollY > 300) btn.classList.add("visible");
-        else btn.classList.remove("visible");
-    });
-    document.getElementById("backToTopBtn").onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
-    
-    window.showPage = function(page) {
-        document.getElementById("shopPage").classList.remove("active-page");
-        document.getElementById("aboutPage").classList.remove("active-page");
-        document.getElementById("contactPage").classList.remove("active-page");
-        document.getElementById(page + "Page").classList.add("active-page");
-        if(page === "shop") renderProducts();
-        window.scrollTo({ top: 0, behavior: "smooth" });
+    // Cart
+    document.getElementById("openCartBtn").onclick = () => {
+        document.getElementById("cartDrawer").classList.add("open");
+        document.getElementById("cartOverlay").style.display = "block";
+    };
+    document.getElementById("closeCartBtn").onclick = () => {
+        document.getElementById("cartDrawer").classList.remove("open");
+        document.getElementById("cartOverlay").style.display = "none";
+    };
+    document.getElementById("cartOverlay").onclick = () => {
+        document.getElementById("cartDrawer").classList.remove("open");
+        document.getElementById("cartOverlay").style.display = "none";
     };
     
-    if(Notification.permission !== "granted" && Notification.permission !== "denied") {
-        Notification.requestPermission();
-    }
-    
-    loadAll();
-    renderProducts();
-</script>
-</body>
-</html>
+    // WhatsApp message
+    function getCartMessage() {
+        if(cart.length === 0) return "Hello, I want to place an order";
+        let msg = "🎀 My order from Choufha Luxe 🎀%0A%0A";
+        cart.forEach(i => msg += `• ${i.name} (${i.size}) - ${i.finalPrice} DH x ${i.qty} = ${(i.finalPrice*i.qty).toFixed(2)} DH%0A`);
+        let total =
