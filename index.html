@@ -22,7 +22,6 @@
             background-attachment: fixed !important;
         }
 
-        /* Decorative elements */
         body::before {
             content: "🎀";
             font-size: 120px;
@@ -170,7 +169,7 @@
         }
 
         .product-card {
-            background: rgba(255, 252, 250, 0.92);
+            background: rgba(255, 252, 250, 0.88);
             backdrop-filter: blur(4px);
             border-radius: 48px;
             padding: 22px;
@@ -181,7 +180,7 @@
 
         .product-card:hover {
             transform: translateY(-12px);
-            background: white;
+            background: rgba(255, 255, 255, 0.96);
             box-shadow: 0 30px 45px -12px rgba(150, 70, 100, 0.3);
         }
 
@@ -371,6 +370,21 @@
             color: white;
         }
 
+        .upload-area {
+            border: 2px dashed #f0a6bc;
+            border-radius: 40px;
+            padding: 20px;
+            text-align: center;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .upload-area:hover {
+            background: #fff0f5;
+            border-color: #d47a9b;
+        }
+
         .current-bg-box {
             background: #f0eef2;
             padding: 10px;
@@ -381,13 +395,11 @@
             font-family: monospace;
         }
 
-        .success-msg {
-            background: #d4edda;
-            color: #155724;
-            padding: 8px;
-            border-radius: 30px;
-            margin: 5px 0;
-            font-size: 0.8rem;
+        .preview-img {
+            max-width: 100%;
+            max-height: 100px;
+            border-radius: 20px;
+            margin-top: 10px;
         }
 
         @media (max-width: 700px) {
@@ -441,11 +453,14 @@
         
         <div style="background:#ffeef4; border-radius:40px; padding:15px; margin:15px 0;">
             <h3>🎨 خلفية الموقع</h3>
+            
             <div id="bgPresetsGallery"></div>
             
-            <h3 style="margin-top:15px;">🔗 أو رابط مخصص</h3>
-            <input type="text" id="customBgUrl" placeholder="https://example.com/image.jpg" style="width:100%">
-            <button id="applyBgBtn" style="background:#d47a9b; color:white; margin-top:8px; width:100%;">✅ تطبيق وحفظ الخلفية</button>
+            <div class="upload-area" id="uploadArea">
+                📸 اضغط هنا لاختيار صورة من جهازك<br>
+                <small>(ستصبح خلفية الموقع فوراً)</small>
+                <input type="file" id="imageUpload" accept="image/*" style="display:none">
+            </div>
             
             <div id="currentBgDisplay" class="current-bg-box"></div>
         </div>
@@ -486,7 +501,7 @@
             localStorage.setItem("coquette_products", JSON.stringify(products));
             localStorage.setItem("coquette_cart", JSON.stringify(cart));
             localStorage.setItem("coquette_background", currentBg);
-            console.log("✅ تم الحفظ - الخلفية:", currentBg.substring(0, 50));
+            console.log("✅ تم الحفظ");
         } catch(e) { console.error("Save error:", e); }
     }
     
@@ -501,7 +516,6 @@
             let savedBg = localStorage.getItem("coquette_background");
             if(savedBg && savedBg !== "") {
                 currentBg = savedBg;
-                console.log("✅ تم التحميل - الخلفية:", currentBg.substring(0, 50));
             } else {
                 currentBg = PRESET_BGS[0];
             }
@@ -513,7 +527,7 @@
     
     function applyBackgroundToPage() {
         let body = document.body;
-        if(currentBg.startsWith("http")) {
+        if(currentBg.startsWith("http") && !currentBg.includes("gradient")) {
             body.style.backgroundImage = `url('${currentBg}')`;
             body.style.backgroundColor = "#ffe4ec";
             body.style.backgroundSize = "cover";
@@ -525,7 +539,6 @@
             body.style.background = currentBg;
             body.style.backgroundAttachment = "fixed";
         }
-        console.log("🎨 تم تطبيق الخلفية:", currentBg.substring(0, 60));
     }
     
     function setNewBackground(newBg) {
@@ -534,12 +547,33 @@
         applyBackgroundToPage();
         saveAllData();
         
-        // تحديث العرض في لوحة التحكم
         let displayDiv = document.getElementById("currentBgDisplay");
         if(displayDiv) {
-            displayDiv.innerHTML = `✅ الخلفية الحالية:<br>${currentBg.substring(0, 100)}${currentBg.length > 100 ? '...' : ''}`;
+            let shortBg = currentBg.length > 100 ? currentBg.substring(0, 100) + "..." : currentBg;
+            displayDiv.innerHTML = `✅ الخلفية الحالية:<br>${shortBg}`;
         }
         return true;
+    }
+    
+    // رفع الصورة من الجهاز
+    function uploadImageFromDevice(file) {
+        if (!file) return;
+        
+        if (!file.type.startsWith('image/')) {
+            alert("❌ الرجاء اختيار ملف صورة فقط (jpg, png, gif)");
+            return;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imageUrl = e.target.result;
+            setNewBackground(imageUrl);
+            alert("✅ تم تغيير الخلفية بنجاح!");
+        };
+        reader.onerror = function() {
+            alert("❌ حدث خطأ في قراءة الصورة");
+        };
+        reader.readAsDataURL(file);
     }
     
     function updateCartUI() {
@@ -623,17 +657,15 @@
     function openAdmin() {
         let modal = document.getElementById("adminModal");
         
-        // عرض الخلفيات الجاهزة
         let bgGallery = document.getElementById("bgPresetsGallery");
         bgGallery.innerHTML = PRESET_BGS.map((bg, idx) => 
             `<span class="bg-preset" onclick="setPresetBg(${idx})">🎨 خلفية ${idx+1}</span>`
         ).join('');
         
-        // عرض الخلفية الحالية
         let displayDiv = document.getElementById("currentBgDisplay");
-        displayDiv.innerHTML = `📌 الخلفية الحالية:<br>${currentBg.substring(0, 120)}${currentBg.length > 120 ? '...' : ''}`;
+        let shortBg = currentBg.length > 100 ? currentBg.substring(0, 100) + "..." : currentBg;
+        displayDiv.innerHTML = `📌 الخلفية الحالية:<br>${shortBg}`;
         
-        // عرض المنتجات للتعديل
         let listDiv = document.getElementById("adminProductsList");
         listDiv.innerHTML = products.map(p => `
             <div style="background:#fff0f5; border-radius:40px; padding:15px; margin:12px 0">
@@ -652,18 +684,7 @@
     
     window.setPresetBg = function(idx) {
         setNewBackground(PRESET_BGS[idx]);
-        openAdmin(); // تحديث اللوحة
-    };
-    
-    window.applyCustomBg = function() {
-        let url = document.getElementById("customBgUrl").value;
-        if(url && url.trim() !== "") {
-            setNewBackground(url.trim());
-            document.getElementById("customBgUrl").value = "";
-            openAdmin(); // تحديث اللوحة
-        } else {
-            alert("❌ الرجاء إدخال رابط صورة صحيح");
-        }
+        openAdmin();
     };
     
     window.updateProduct = function(id) {
@@ -697,8 +718,18 @@
         renderProducts(document.getElementById("sortSelect").value);
         openAdmin();
     };
-    document.getElementById("applyBgBtn").onclick = applyCustomBg;
     document.getElementById("sortSelect").onchange = (e) => renderProducts(e.target.value);
+    
+    // رفع الصورة
+    let uploadArea = document.getElementById("uploadArea");
+    let fileInput = document.getElementById("imageUpload");
+    
+    uploadArea.onclick = () => fileInput.click();
+    fileInput.onchange = (e) => {
+        if(e.target.files && e.target.files[0]) {
+            uploadImageFromDevice(e.target.files[0]);
+        }
+    };
     
     // Cart controls
     document.getElementById("openCartBtn").onclick = () => { 
