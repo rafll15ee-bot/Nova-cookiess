@@ -388,4 +388,45 @@
     };
     document.getElementById("cartOverlay").onclick = () => {
         document.getElementById("cartSidebar").classList.remove("open");
-        document.getElementById("cartOverlay").style.di
+        document.getElementById("cartOverlay").style.display = "none";
+    };
+    
+    function getCartMsg() {
+        if(cart.length === 0) return "Hello, I want to order";
+        let msg = "My order from Choufha Luxe%0A";
+        cart.forEach(i => msg += `• ${i.name} (${i.size}) - ${i.finalPrice} DH x ${i.qty} = ${(i.finalPrice*i.qty).toFixed(2)} DH%0A`);
+        let total = cart.reduce((s,i)=>s+(i.finalPrice*i.qty),0);
+        msg += `%0ATotal: ${total.toFixed(2)} DH%0AAddress: (write your address)`;
+        return msg;
+    }
+    
+    document.getElementById("whatsappFloat").onclick = () => window.open(`https://wa.me/212600000000?text=${getCartMsg()}`, "_blank");
+    document.getElementById("checkoutBtn").onclick = () => window.open(`https://wa.me/212600000000?text=${getCartMsg()}`, "_blank");
+    
+    // Theme
+    let dark = false;
+    document.getElementById("themeBtn").onclick = () => {
+        if(!dark) {
+            document.body.setAttribute("data-theme", "dark");
+            document.body.style.background = "#1a1a2e";
+            dark = true;
+        } else {
+            document.body.removeAttribute("data-theme");
+            applyBg();
+            dark = false;
+        }
+    };
+    
+    window.showPage = function(page) {
+        document.getElementById("shopPage").classList.remove("active");
+        document.getElementById("aboutPage").classList.remove("active");
+        document.getElementById("contactPage").classList.remove("active");
+        document.getElementById(page + "Page").classList.add("active");
+        if(page === "shop") renderProducts();
+    };
+    
+    loadAll();
+    renderProducts();
+</script>
+</body>
+</html>
