@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Choufha Co. – Coquette Store</title>
+    <title>Choufha Luxe – Coquette Moroccan Store</title>
     <style>
         * {
             margin: 0;
@@ -11,9 +11,25 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-primary: #ffe9f0;
+            --text-primary: #b84a70;
+            --card-bg: rgba(255, 252, 250, 0.92);
+            --shadow: 0 20px 35px -15px rgba(100, 50, 70, 0.2);
+            --transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a2e;
+            --text-primary: #ffb7c5;
+            --card-bg: rgba(30, 30, 50, 0.92);
+            --shadow: 0 20px 35px -15px rgba(0, 0, 0, 0.5);
+        }
+
         body {
             font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
-            transition: background-image 0.3s ease, background-color 0.3s ease;
+            background: var(--bg-primary);
+            transition: var(--transition);
             min-height: 100vh;
             padding: 30px 24px;
             position: relative;
@@ -22,26 +38,18 @@
             background-attachment: fixed !important;
         }
 
+        /* 3D Parallax Effect */
         body::before {
-            content: "🎀";
-            font-size: 120px;
+            content: "";
             position: fixed;
-            bottom: 10px;
-            left: 10px;
-            opacity: 0.1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
             pointer-events: none;
-            z-index: 0;
-        }
-
-        body::after {
-            content: "🌸";
-            font-size: 140px;
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            opacity: 0.08;
-            pointer-events: none;
-            z-index: 0;
+            z-index: 1;
+            transform: translate3d(0,0,0);
         }
 
         .container {
@@ -51,30 +59,35 @@
             z-index: 2;
         }
 
+        /* Header مع تأثير زجاجي */
         .header {
             text-align: center;
             margin-bottom: 40px;
+            position: relative;
         }
 
         .header h1 {
-            font-size: 4rem;
+            font-size: 4.5rem;
             background: linear-gradient(135deg, #c96a8d, #9e4a6b, #e8a3bb);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
             text-shadow: 0 2px 15px rgba(255,200,220,0.6);
+            animation: fadeInDown 0.8s ease;
         }
 
-        .header p {
-            color: #b45f7c;
-            background: rgba(255,250,245,0.6);
-            backdrop-filter: blur(10px);
-            display: inline-block;
-            padding: 5px 20px;
-            border-radius: 60px;
-            margin-top: 10px;
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
+        /* Glass Bar متطور */
         .glass-bar {
             background: rgba(255, 248, 245, 0.75);
             backdrop-filter: blur(16px);
@@ -86,102 +99,173 @@
             align-items: center;
             gap: 15px;
             margin-bottom: 45px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow);
+            animation: fadeInUp 0.8s ease;
         }
 
-        .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: white;
-            padding: 5px 18px;
-            border-radius: 60px;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .filter-group label {
-            font-weight: 600;
-            color: #b2486e;
+        /* Product Card - أنيميشن عند الدخول */
+        .product-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(4px);
+            border-radius: 48px;
+            padding: 22px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 215, 225, 0.7);
+            box-shadow: var(--shadow);
+            animation: fadeInScale 0.5s ease backwards;
+            animation-delay: calc(var(--index) * 0.05s);
         }
 
-        select {
-            background: transparent;
-            border: none;
-            padding: 8px 0;
-            font-weight: 500;
-            color: #a13e5c;
-            outline: none;
-            cursor: pointer;
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
-        .action-buttons {
-            display: flex;
-            gap: 16px;
+        .product-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 30px 45px -12px rgba(150, 70, 100, 0.3);
         }
 
-        .cart-btn, .whatsapp-header, .admin-header-btn {
-            padding: 10px 22px;
-            border-radius: 50px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            transition: 0.2s;
-            border: none;
-            font-size: 0.9rem;
+        /* باقي الأنيميشنات والتحسينات */
+        .btn-add-cart, .cart-btn, .whatsapp-header, .admin-header-btn {
+            transition: all 0.2s ease;
         }
 
-        .cart-btn {
+        .btn-add-cart:active, .cart-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #d47a9b;
+            animation: spin 0.8s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Toast Notification */
+        .toast-notify {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
             background: #d47a9b;
             color: white;
-            position: relative;
+            padding: 12px 24px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 3000;
+            animation: slideInRight 0.3s ease;
+            font-weight: 500;
         }
 
-        .cart-count-badge {
-            background: #ff3b6f;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            position: absolute;
-            top: -8px;
-            right: -8px;
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
-        .whatsapp-header {
+        /* رفع الصورة */
+        .upload-area {
+            border: 2px dashed #f0a6bc;
+            border-radius: 40px;
+            padding: 20px;
+            text-align: center;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .upload-area:hover {
+            background: #fff0f5;
+            border-color: #d47a9b;
+        }
+
+        /* زر الوضع الليلي */
+        .theme-toggle {
+            background: #f8e1e9;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #b34164;
+        }
+
+        /* كود الخصم */
+        .discount-code {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .discount-code input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 30px;
+            border: 1px solid #f0a6bc;
+        }
+
+        /* مشاركة */
+        .share-btn {
             background: #25D366;
             color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.7rem;
         }
 
-        .admin-header-btn {
-            background: #f8e1e9;
-            color: #b34164;
-            border: 1px dashed #d47a9b;
+        /* المفضلة */
+        .favorite-btn {
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ffb0c0;
+            transition: 0.2s;
         }
 
+        .favorite-btn.active {
+            color: #ff3b6f;
+        }
+
+        /* باقي الكلاسات */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 35px;
-        }
-
-        .product-card {
-            background: rgba(255, 252, 250, 0.88);
-            backdrop-filter: blur(4px);
-            border-radius: 48px;
-            padding: 22px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 215, 225, 0.7);
-            box-shadow: 0 20px 35px -15px rgba(100, 50, 70, 0.2);
-        }
-
-        .product-card:hover {
-            transform: translateY(-12px);
-            background: rgba(255, 255, 255, 0.96);
-            box-shadow: 0 30px 45px -12px rgba(150, 70, 100, 0.3);
         }
 
         .product-img {
@@ -189,14 +273,13 @@
             aspect-ratio: 1;
             object-fit: cover;
             border-radius: 38px;
-            background: #fad3df;
         }
 
         .product-title {
             font-size: 1.5rem;
             font-weight: 700;
             margin-top: 12px;
-            color: #a34468;
+            color: var(--text-primary);
         }
 
         .price-magic {
@@ -217,14 +300,6 @@
             color: #bda2ab;
         }
 
-        .discount-chip {
-            background: #ff8fae;
-            color: white;
-            border-radius: 30px;
-            padding: 4px 12px;
-            font-size: 0.7rem;
-        }
-
         .sizes-row {
             display: flex;
             gap: 10px;
@@ -237,7 +312,6 @@
             padding: 6px 16px;
             border-radius: 40px;
             font-size: 0.8rem;
-            font-weight: 500;
             cursor: pointer;
             transition: 0.1s;
         }
@@ -245,19 +319,6 @@
         .size-pill:hover {
             background: #d47a9b;
             color: white;
-        }
-
-        .btn-add-cart {
-            width: 100%;
-            background: #d47a9b;
-            border: none;
-            padding: 14px;
-            border-radius: 50px;
-            color: white;
-            font-weight: bold;
-            font-size: 1rem;
-            margin-top: 12px;
-            cursor: pointer;
         }
 
         .cart-overlay {
@@ -289,37 +350,6 @@
             right: 0;
         }
 
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 2px solid #ffcedb;
-            padding-bottom: 15px;
-        }
-
-        .cart-item {
-            display: flex;
-            gap: 15px;
-            background: #fff3f6;
-            border-radius: 28px;
-            padding: 12px;
-            margin: 12px 0;
-        }
-
-        .cart-img {
-            width: 70px;
-            height: 70px;
-            border-radius: 20px;
-            object-fit: cover;
-        }
-
-        .cart-total {
-            font-size: 1.8rem;
-            font-weight: 800;
-            text-align: center;
-            margin: 20px 0;
-            color: #b84a70;
-        }
-
         .modal-admin {
             display: none;
             position: fixed;
@@ -347,59 +377,10 @@
             padding: 12px;
             border-radius: 50px;
             border: 1px solid #f0a6bc;
-            box-sizing: border-box;
         }
 
         button {
             cursor: pointer;
-        }
-
-        .bg-preset {
-            display: inline-block;
-            background: #fcd5e1;
-            padding: 8px 16px;
-            border-radius: 40px;
-            margin: 5px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: 0.2s;
-        }
-
-        .bg-preset:hover {
-            background: #d47a9b;
-            color: white;
-        }
-
-        .upload-area {
-            border: 2px dashed #f0a6bc;
-            border-radius: 40px;
-            padding: 20px;
-            text-align: center;
-            margin: 15px 0;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .upload-area:hover {
-            background: #fff0f5;
-            border-color: #d47a9b;
-        }
-
-        .current-bg-box {
-            background: #f0eef2;
-            padding: 10px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            word-break: break-all;
-            margin: 10px 0;
-            font-family: monospace;
-        }
-
-        .preview-img {
-            max-width: 100%;
-            max-height: 100px;
-            border-radius: 20px;
-            margin-top: 10px;
         }
 
         @media (max-width: 700px) {
@@ -411,7 +392,7 @@
 <body id="appBody">
 <div class="container">
     <div class="header">
-        <h1>🎀 CHOUFHA.CO 🎀</h1>
+        <h1>🎀 CHOUFHA LUXE 🎀</h1>
         <p>✨ coquette moroccan edits – درهم مغربي ✨</p>
     </div>
 
@@ -425,24 +406,30 @@
             </select>
         </div>
         <div class="action-buttons">
-            <button class="cart-btn" id="openCartBtn">🛍️ السلة <span id="cartCount" class="cart-count-badge">0</span></button>
+            <button class="theme-toggle" id="themeToggleBtn">🌙 وضع ليلي</button>
+            <button class="cart-btn" id="openCartBtn">🛍️ السلة <span id="cartCount" class="cart-count-badge" style="background:#ff3b6f; border-radius:50%; width:24px; height:24px; display:inline-flex; align-items:center; justify-content:center; font-size:0.7rem; position:absolute; top:-8px; right:-8px;">0</span></button>
             <button class="whatsapp-header" id="globalWhatsappBtn">📱 واتساب</button>
             <button class="admin-header-btn" id="openAdminBtn">👑 تعديل</button>
         </div>
     </div>
 
     <div id="productsGrid" class="products-grid"></div>
+    <div class="spinner" id="loadingSpinner"></div>
 </div>
 
-<!-- Cart -->
+<!-- Cart Drawer -->
 <div class="cart-overlay" id="cartOverlay"></div>
 <div class="cart-drawer" id="cartDrawer">
-    <div class="cart-header">
+    <div class="cart-header" style="display:flex; justify-content:space-between;">
         <h2 style="color:#b84a70;">🛍️ سلة التسوق</h2>
         <button id="closeCartDrawer" style="background:#f0cfda; border:none; padding:6px 15px; border-radius:50px;">✖</button>
     </div>
     <div id="cartItemsList"></div>
-    <div class="cart-total" id="cartTotalPrice">0.00 DH</div>
+    <div class="discount-code" style="margin:15px 0;">
+        <input type="text" id="discountCode" placeholder="كود خصم">
+        <button id="applyDiscountBtn" style="background:#d47a9b; color:white;">تطبيق</button>
+    </div>
+    <div class="cart-total" id="cartTotalPrice" style="font-size:1.8rem; font-weight:800; text-align:center; margin:20px 0; color:#b84a70;">0.00 DH</div>
     <button id="checkoutWhatsappBtn" style="background:#25D366; width:100%; padding:14px; border:none; border-radius:50px; color:white; font-weight:bold;">📲 إرسال الطلب</button>
 </div>
 
@@ -453,16 +440,12 @@
         
         <div style="background:#ffeef4; border-radius:40px; padding:15px; margin:15px 0;">
             <h3>🎨 خلفية الموقع</h3>
-            
-            <div id="bgPresetsGallery"></div>
-            
             <div class="upload-area" id="uploadArea">
                 📸 اضغط هنا لاختيار صورة من جهازك<br>
                 <small>(ستصبح خلفية الموقع فوراً)</small>
                 <input type="file" id="imageUpload" accept="image/*" style="display:none">
             </div>
-            
-            <div id="currentBgDisplay" class="current-bg-box"></div>
+            <div id="currentBgDisplay" class="current-bg-box" style="background:#f0eef2; padding:10px; border-radius:30px; margin-top:10px;"></div>
         </div>
         
         <hr>
@@ -475,125 +458,105 @@
 </div>
 
 <script>
-    // ---------- DATA ----------
+    // ---------- PRODUCTS ----------
     let products = [
-        { id: 1, name: "🌸 شنطة فيونكة حرير", price: 220, discount: 15, image: "https://placehold.co/600x600/FFB7C5/white?text=🎀", sizes: ["S","M"], rating: 4.9 },
-        { id: 2, name: "💖 تيشرت قلوب", price: 139, discount: 0, image: "https://placehold.co/600x600/F9C7D3/white?text=❤️", sizes: ["XS","S","M","L"], rating: 4.7 },
-        { id: 3, name: "🎀 طقم ربطة شعر", price: 69, discount: 25, image: "https://placehold.co/600x600/F4BAC7/white?text=🎀", sizes: ["One Size"], rating: 5.0 }
+        { id: 1, name: "🌸 شنطة فيونكة حرير", price: 220, discount: 15, image: "https://placehold.co/600x600/FFB7C5/white?text=🎀", sizes: ["S","M"], rating: 4.9, wishlist: false },
+        { id: 2, name: "💖 تيشرت قلوب", price: 139, discount: 0, image: "https://placehold.co/600x600/F9C7D3/white?text=❤️", sizes: ["XS","S","M","L"], rating: 4.7, wishlist: false },
+        { id: 3, name: "🎀 طقم ربطة شعر", price: 69, discount: 25, image: "https://placehold.co/600x600/F4BAC7/white?text=🎀", sizes: ["One Size"], rating: 5.0, wishlist: false }
     ];
     
     let cart = [];
+    let favorites = [];
+    let discountPercent = 0;
+    let visitorCount = localStorage.getItem("visitorCount") || 0;
+    visitorCount = parseInt(visitorCount) + 1;
+    localStorage.setItem("visitorCount", visitorCount);
+    console.log(`👥 عدد الزوار: ${visitorCount}`);
     
-    // خلفيات جاهزة
-    const PRESET_BGS = [
-        "radial-gradient(circle at 10% 30%, #ffe9f0, #ffd9e4)",
-        "linear-gradient(145deg, #ffe0e9, #ffd0dc)",
-        "#fff0fa",
-        "https://www.transparenttextures.com/patterns/cardboard.png"
-    ];
+    let currentBg = "radial-gradient(circle at 10% 30%, #ffe9f0, #ffd9e4)";
     
-    let currentBg = PRESET_BGS[0];
-
-    // ========== FUNCTIONS ==========
+    // Theme
+    let currentTheme = localStorage.getItem("theme") || "light";
+    if(currentTheme === "dark") document.body.setAttribute("data-theme", "dark");
     
+    // Toast function
+    function showToast(message) {
+        let toast = document.createElement("div");
+        toast.className = "toast-notify";
+        toast.innerText = message;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+    
+    // Save/Load
     function saveAllData() {
-        try {
-            localStorage.setItem("coquette_products", JSON.stringify(products));
-            localStorage.setItem("coquette_cart", JSON.stringify(cart));
-            localStorage.setItem("coquette_background", currentBg);
-            console.log("✅ تم الحفظ");
-        } catch(e) { console.error("Save error:", e); }
+        localStorage.setItem("coquette_products_luxe", JSON.stringify(products));
+        localStorage.setItem("coquette_cart_luxe", JSON.stringify(cart));
+        localStorage.setItem("coquette_background_luxe", currentBg);
+        localStorage.setItem("coquette_favorites", JSON.stringify(favorites));
     }
     
     function loadAllData() {
-        try {
-            let savedProducts = localStorage.getItem("coquette_products");
-            if(savedProducts) products = JSON.parse(savedProducts);
-            
-            let savedCart = localStorage.getItem("coquette_cart");
-            if(savedCart) cart = JSON.parse(savedCart);
-            
-            let savedBg = localStorage.getItem("coquette_background");
-            if(savedBg && savedBg !== "") {
-                currentBg = savedBg;
-            } else {
-                currentBg = PRESET_BGS[0];
-            }
-            
-            applyBackgroundToPage();
-            updateCartUI();
-        } catch(e) { console.error("Load error:", e); }
+        let savedProducts = localStorage.getItem("coquette_products_luxe");
+        if(savedProducts) products = JSON.parse(savedProducts);
+        let savedCart = localStorage.getItem("coquette_cart_luxe");
+        if(savedCart) cart = JSON.parse(savedCart);
+        let savedBg = localStorage.getItem("coquette_background_luxe");
+        if(savedBg) currentBg = savedBg;
+        let savedFav = localStorage.getItem("coquette_favorites");
+        if(savedFav) favorites = JSON.parse(savedFav);
+        applyBackground();
+        updateCartUI();
     }
     
-    function applyBackgroundToPage() {
-        let body = document.body;
-        if(currentBg.startsWith("http") && !currentBg.includes("gradient")) {
-            body.style.backgroundImage = `url('${currentBg}')`;
-            body.style.backgroundColor = "#ffe4ec";
-            body.style.backgroundSize = "cover";
-            body.style.backgroundPosition = "center";
-            body.style.backgroundAttachment = "fixed";
-            body.style.backgroundRepeat = "no-repeat";
+    function applyBackground() {
+        if(currentBg.startsWith("http") || currentBg.startsWith("data:image")) {
+            document.body.style.backgroundImage = `url('${currentBg}')`;
+            document.body.style.backgroundSize = "cover";
+            document.body.style.backgroundPosition = "center";
+            document.body.style.backgroundAttachment = "fixed";
         } else {
-            body.style.backgroundImage = "none";
-            body.style.background = currentBg;
-            body.style.backgroundAttachment = "fixed";
+            document.body.style.background = currentBg;
         }
     }
     
     function setNewBackground(newBg) {
-        if(!newBg || newBg === "") return false;
         currentBg = newBg;
-        applyBackgroundToPage();
+        applyBackground();
         saveAllData();
-        
-        let displayDiv = document.getElementById("currentBgDisplay");
-        if(displayDiv) {
-            let shortBg = currentBg.length > 100 ? currentBg.substring(0, 100) + "..." : currentBg;
-            displayDiv.innerHTML = `✅ الخلفية الحالية:<br>${shortBg}`;
-        }
-        return true;
+        showToast("✅ تم تغيير الخلفية بنجاح!");
     }
     
-    // رفع الصورة من الجهاز
-    function uploadImageFromDevice(file) {
-        if (!file) return;
-        
-        if (!file.type.startsWith('image/')) {
-            alert("❌ الرجاء اختيار ملف صورة فقط (jpg, png, gif)");
+    function uploadImage(file) {
+        if(!file.type.startsWith('image/')) {
+            showToast("❌ الرجاء اختيار صورة");
             return;
         }
-        
         const reader = new FileReader();
-        reader.onload = function(e) {
-            const imageUrl = e.target.result;
-            setNewBackground(imageUrl);
-            alert("✅ تم تغيير الخلفية بنجاح!");
-        };
-        reader.onerror = function() {
-            alert("❌ حدث خطأ في قراءة الصورة");
-        };
+        reader.onload = (e) => setNewBackground(e.target.result);
         reader.readAsDataURL(file);
     }
     
+    // Cart functions
     function updateCartUI() {
         let count = cart.reduce((s,i)=>s+i.qty,0);
         document.getElementById("cartCount").innerText = count;
         let container = document.getElementById("cartItemsList");
-        if(cart.length===0) { 
-            container.innerHTML="<p style='text-align:center'>السلة فارغة 💔</p>"; 
-            document.getElementById("cartTotalPrice").innerText="0.00 DH"; 
-            return; 
+        if(cart.length===0) {
+            container.innerHTML = "<p style='text-align:center'>السلة فارغة 💔</p>";
+            document.getElementById("cartTotalPrice").innerText = "0.00 DH";
+            return;
         }
         container.innerHTML = cart.map(item => `
-            <div class="cart-item">
-                <img class="cart-img" src="${item.img}" onerror="this.src='https://placehold.co/200x200/pink'">
+            <div style="display:flex; gap:15px; background:#fff3f6; border-radius:28px; padding:12px; margin:12px 0;">
+                <img src="${item.img}" style="width:70px; height:70px; border-radius:20px; object-fit:cover;">
                 <div style="flex:1"><b>${item.name}</b><br>مقاس: ${item.size}<br>${item.finalPrice} DH x ${item.qty}</div>
                 <button onclick="removeCartItem('${item.id}_${item.size}')" style="background:#ffb0c0; border:none; padding:0 16px; border-radius:40px;">حذف</button>
             </div>
         `).join('');
         let total = cart.reduce((s,i)=>s+(i.finalPrice*i.qty),0);
-        document.getElementById("cartTotalPrice").innerText = total.toFixed(2) + " DH";
+        let finalTotal = total * (1 - discountPercent/100);
+        document.getElementById("cartTotalPrice").innerHTML = `${finalTotal.toFixed(2)} DH ${discountPercent>0 ? `<small style="font-size:0.8rem;">(خصم ${discountPercent}%)</small>` : ''}`;
     }
     
     window.removeCartItem = function(key) {
@@ -601,6 +564,7 @@
         saveAllData();
         renderProducts(document.getElementById("sortSelect").value);
         updateCartUI();
+        showToast("🗑️ تم حذف المنتج من السلة");
     };
     
     function addToCart(product, size) {
@@ -611,29 +575,78 @@
         saveAllData();
         renderProducts(document.getElementById("sortSelect").value);
         updateCartUI();
-        alert(`✨ تمت الإضافة: ${product.name} - مقاس ${size}`);
+        showToast(`✨ تمت الإضافة: ${product.name} - مقاس ${size}`);
+        
+        // Desktop notification
+        if(Notification.permission === "granted") {
+            new Notification("Choufha Luxe", { body: `تم إضافة ${product.name} إلى السلة` });
+        }
     }
     
+    // Wishlist
+    function toggleFavorite(productId) {
+        let index = favorites.indexOf(productId);
+        if(index === -1) {
+            favorites.push(productId);
+            showToast("❤️ أضيف إلى المفضلة");
+        } else {
+            favorites.splice(index, 1);
+            showToast("💔 أزيل من المفضلة");
+        }
+        saveAllData();
+        renderProducts(document.getElementById("sortSelect").value);
+    }
+    
+    // Share product
+    function shareProduct(product) {
+        let msg = `🛍️ شوفوا هذا المنتج الرائع: ${product.name} بسعر ${(product.price*(1-product.discount/100)).toFixed(2)} DH 🎀`;
+        window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, "_blank");
+    }
+    
+    // Apply discount
+    document.getElementById("applyDiscountBtn")?.addEventListener("click", () => {
+        let code = document.getElementById("discountCode").value;
+        if(code === "COQUETTE10") {
+            discountPercent = 10;
+            showToast("🎉 تم تطبيق خصم 10%!");
+        } else if(code === "WELCOME20") {
+            discountPercent = 20;
+            showToast("🎉 تم تطبيق خصم 20%!");
+        } else {
+            discountPercent = 0;
+            showToast("❌ كود خصم غير صالح");
+        }
+        updateCartUI();
+    });
+    
+    // Render products
     function renderProducts(sortType="default") {
         let grid = document.getElementById("productsGrid");
         let copy = [...products];
         if(sortType==="lowToHigh") copy.sort((a,b)=> (a.price*(1-a.discount/100)) - (b.price*(1-b.discount/100)));
         if(sortType==="highToLow") copy.sort((a,b)=> (b.price*(1-b.discount/100)) - (a.price*(1-a.discount/100)));
         
-        grid.innerHTML = copy.map(p => {
+        grid.innerHTML = copy.map((p, idx) => {
             let final = (p.price*(1-p.discount/100)).toFixed(2);
+            let isFav = favorites.includes(p.id);
             return `
-            <div class="product-card">
+            <div class="product-card" style="animation-delay: ${idx * 0.05}s; --index: ${idx}">
                 <img class="product-img" src="${p.image}" onerror="this.src='https://placehold.co/600x600/pink?text=🌸'">
-                <div class="product-title">${p.name}</div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div class="product-title">${p.name}</div>
+                    <button class="favorite-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite(${p.id})">${isFav ? '❤️' : '🤍'}</button>
+                </div>
                 <div class="price-magic">
                     <span class="real-price">${final} DH</span>
-                    ${p.discount>0 ? `<span class="old-price">${p.price} DH</span><span class="discount-chip">-${p.discount}%</span>` : ''}
+                    ${p.discount>0 ? `<span class="old-price">${p.price} DH</span><span class="discount-chip" style="background:#ff8fae; border-radius:30px; padding:4px 12px;">-${p.discount}%</span>` : ''}
                 </div>
                 <div class="sizes-row">
                     ${p.sizes.map(sz => `<span class="size-pill" data-id="${p.id}" data-size="${sz}">${sz}</span>`).join('')}
                 </div>
-                <button class="btn-add-cart" data-product='${JSON.stringify(p)}'>➕ أضف للسلة</button>
+                <div style="display:flex; gap:10px; margin-top:12px;">
+                    <button class="btn-add-cart" data-product='${JSON.stringify(p)}' style="flex:1;">➕ أضف للسلة</button>
+                    <button class="share-btn" onclick="shareProduct(${JSON.stringify(p).replace(/"/g, '&quot;')})">📤 مشاركة</button>
+                </div>
             </div>`;
         }).join('');
         
@@ -654,18 +667,9 @@
         });
     }
     
+    // Admin panel
     function openAdmin() {
         let modal = document.getElementById("adminModal");
-        
-        let bgGallery = document.getElementById("bgPresetsGallery");
-        bgGallery.innerHTML = PRESET_BGS.map((bg, idx) => 
-            `<span class="bg-preset" onclick="setPresetBg(${idx})">🎨 خلفية ${idx+1}</span>`
-        ).join('');
-        
-        let displayDiv = document.getElementById("currentBgDisplay");
-        let shortBg = currentBg.length > 100 ? currentBg.substring(0, 100) + "..." : currentBg;
-        displayDiv.innerHTML = `📌 الخلفية الحالية:<br>${shortBg}`;
-        
         let listDiv = document.getElementById("adminProductsList");
         listDiv.innerHTML = products.map(p => `
             <div style="background:#fff0f5; border-radius:40px; padding:15px; margin:12px 0">
@@ -673,19 +677,16 @@
                 <input id="price_${p.id}" value="${p.price}" type="number" placeholder="السعر">
                 <input id="disc_${p.id}" value="${p.discount}" type="number" placeholder="التخفيض %">
                 <input id="img_${p.id}" value="${p.image}" placeholder="رابط الصورة">
-                <input id="sizes_${p.id}" value="${p.sizes.join(',')}" placeholder="المقاسات (مفصولة بفاصلة)">
+                <input id="sizes_${p.id}" value="${p.sizes.join(',')}" placeholder="المقاسات">
                 <button onclick="updateProduct(${p.id})" style="background:#d47a9b; color:white;">💾 حفظ</button>
                 <button onclick="deleteProduct(${p.id})" style="background:#ff8aaa;">🗑️ حذف</button>
             </div>
         `).join('');
         
+        let displayDiv = document.getElementById("currentBgDisplay");
+        displayDiv.innerHTML = `📌 الخلفية الحالية: ${currentBg.substring(0, 80)}...`;
         modal.style.display = "flex";
     }
-    
-    window.setPresetBg = function(idx) {
-        setNewBackground(PRESET_BGS[idx]);
-        openAdmin();
-    };
     
     window.updateProduct = function(id) {
         let p = products.find(p=>p.id===id);
@@ -694,11 +695,11 @@
             p.price = parseFloat(document.getElementById(`price_${id}`).value);
             p.discount = parseFloat(document.getElementById(`disc_${id}`).value);
             p.image = document.getElementById(`img_${id}`).value;
-            let sizesRaw = document.getElementById(`sizes_${id}`).value;
-            p.sizes = sizesRaw.split(',').map(s=>s.trim());
+            p.sizes = document.getElementById(`sizes_${id}`).value.split(',').map(s=>s.trim());
             saveAllData();
             renderProducts(document.getElementById("sortSelect").value);
             openAdmin();
+            showToast("✅ تم تحديث المنتج");
         }
     };
     
@@ -707,59 +708,78 @@
         saveAllData();
         renderProducts(document.getElementById("sortSelect").value);
         openAdmin();
+        showToast("🗑️ تم حذف المنتج");
     };
     
-    // ========== EVENT LISTENERS ==========
+    // Theme toggle
+    document.getElementById("themeToggleBtn")?.addEventListener("click", () => {
+        if(document.body.getAttribute("data-theme") === "dark") {
+            document.body.removeAttribute("data-theme");
+            localStorage.setItem("theme", "light");
+            document.getElementById("themeToggleBtn").innerHTML = "🌙 وضع ليلي";
+        } else {
+            document.body.setAttribute("data-theme", "dark");
+            localStorage.setItem("theme", "dark");
+            document.getElementById("themeToggleBtn").innerHTML = "☀️ وضع نهاري";
+        }
+    });
+    
+    // Request notification permission
+    if(Notification.permission !== "granted" && Notification.permission !== "denied") {
+        Notification.requestPermission();
+    }
+    
+    // Event listeners
     document.getElementById("openAdminBtn").onclick = openAdmin;
     document.getElementById("closeAdminBtn").onclick = () => document.getElementById("adminModal").style.display = "none";
     document.getElementById("addProductAdminBtn").onclick = () => {
-        products.push({ id: Date.now(), name: "منتج كيوت جديد", price: 99, discount: 0, image: "https://placehold.co/600x600/FFC0D0/white?text=✨", sizes: ["M"], rating: 0 });
+        products.push({ id: Date.now(), name: "منتج كيوت جديد", price: 99, discount: 0, image: "https://placehold.co/600x600/FFC0D0/white?text=✨", sizes: ["M"], rating: 0, wishlist: false });
         saveAllData();
         renderProducts(document.getElementById("sortSelect").value);
         openAdmin();
+        showToast("➕ تم إضافة منتج جديد");
     };
     document.getElementById("sortSelect").onchange = (e) => renderProducts(e.target.value);
     
-    // رفع الصورة
+    // Upload image
     let uploadArea = document.getElementById("uploadArea");
     let fileInput = document.getElementById("imageUpload");
-    
     uploadArea.onclick = () => fileInput.click();
     fileInput.onchange = (e) => {
-        if(e.target.files && e.target.files[0]) {
-            uploadImageFromDevice(e.target.files[0]);
-        }
+        if(e.target.files && e.target.files[0]) uploadImage(e.target.files[0]);
     };
     
     // Cart controls
-    document.getElementById("openCartBtn").onclick = () => { 
-        document.getElementById("cartDrawer").classList.add("open"); 
-        document.getElementById("cartOverlay").style.display = "block"; 
+    document.getElementById("openCartBtn").onclick = () => {
+        document.getElementById("cartDrawer").classList.add("open");
+        document.getElementById("cartOverlay").style.display = "block";
     };
-    document.getElementById("closeCartDrawer").onclick = () => { 
-        document.getElementById("cartDrawer").classList.remove("open"); 
-        document.getElementById("cartOverlay").style.display = "none"; 
+    document.getElementById("closeCartDrawer").onclick = () => {
+        document.getElementById("cartDrawer").classList.remove("open");
+        document.getElementById("cartOverlay").style.display = "none";
     };
-    document.getElementById("cartOverlay").onclick = () => { 
-        document.getElementById("cartDrawer").classList.remove("open"); 
-        document.getElementById("cartOverlay").style.display = "none"; 
+    document.getElementById("cartOverlay").onclick = () => {
+        document.getElementById("cartDrawer").classList.remove("open");
+        document.getElementById("cartOverlay").style.display = "none";
     };
     
     function getCartWhatsMsg() {
         if(cart.length===0) return "مرحباً أريد طلب منتجات كيوت";
-        let msg = "🎀 طلبي الجديد من شوفها 🎀%0A";
+        let msg = "🎀 طلبي الجديد من شوفها لوكس 🎀%0A";
         cart.forEach(i=> { msg += `• ${i.name} (مقاس ${i.size}) - ${i.finalPrice} DH x ${i.qty} = ${(i.finalPrice*i.qty).toFixed(2)} DH%0A`; });
         let total = cart.reduce((s,i)=>s+(i.finalPrice*i.qty),0);
-        msg += `%0A💰 المجموع: ${total.toFixed(2)} DH%0A📍 العنوان: (اكتب عنوانك)`;
+        let finalTotal = total * (1 - discountPercent/100);
+        msg += `%0A💰 المجموع: ${finalTotal.toFixed(2)} DH%0A📍 العنوان: (اكتب عنوانك)`;
         return msg;
     }
     
     document.getElementById("globalWhatsappBtn").onclick = () => window.open(`https://wa.me/212600000000?text=${getCartWhatsMsg()}`, "_blank");
     document.getElementById("checkoutWhatsappBtn").onclick = () => window.open(`https://wa.me/212600000000?text=${getCartWhatsMsg()}`, "_blank");
     
-    // ========== INIT ==========
+    // Initialize
     loadAllData();
     renderProducts("default");
+    showToast(`👋 أهلاً بك! عدد زوار المتجر: ${visitorCount}`);
 </script>
 </body>
 </html>
