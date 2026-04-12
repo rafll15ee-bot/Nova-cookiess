@@ -729,4 +729,601 @@
     <div id="aboutPage" class="page">
         <h2><i class="fas fa-heart"></i> About Choufha Luxe</h2>
         <p>Welcome to <strong>Choufha Luxe</strong> – your premier destination for coquette aesthetic fashion in Morocco. We bring you the most exquisite, carefully curated pieces that blend Moroccan charm with international coquette elegance.</p>
-        <p style="marg
+        <p style="margin-top: 15px;">🌸 Every piece in our collection is thoughtfully selected to make you feel special, feminine, and confident. From silk ribbon bags to heart-print tops, we have everything you need to complete your coquette wardrobe.</p>
+        <p style="margin-top: 15px;">💕 Our mission is to empower women through fashion that celebrates softness, elegance, and individuality. We believe that every woman deserves to feel beautiful and confident in her own skin.</p>
+        <p style="margin-top: 15px;">📍 Based in Casablanca, Morocco<br>✨ Founded with love in 2025<br>🌍 Shipping worldwide</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contactPage" class="page">
+        <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+        <p><i class="fab fa-whatsapp" style="color:#25D366; font-size:1.2rem;"></i> <strong>WhatsApp:</strong> +212 600 000 000 (Click the green button at the bottom right)</p>
+        <p style="margin-top: 10px;"><i class="fas fa-envelope"></i> <strong>Email:</strong> hello@choufhaluxe.ma</p>
+        <p style="margin-top: 10px;"><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> 123 Coquette Street, Casablanca, Morocco</p>
+        <p style="margin-top: 10px;"><i class="fas fa-clock"></i> <strong>Business Hours:</strong> Monday - Saturday, 10 AM - 8 PM</p>
+        <p style="margin-top: 10px;"><i class="fab fa-instagram"></i> <strong>Instagram:</strong> @choufha.co</p>
+        <p><i class="fab fa-tiktok"></i> <strong>TikTok:</strong> @choufha_luxe</p>
+    </div>
+
+    <!-- Returns Page -->
+    <div id="returnsPage" class="page">
+        <h2><i class="fas fa-undo-alt"></i> Return Policy</h2>
+        <p><strong>30-Day Return Policy</strong></p>
+        <p>We want you to love your purchase! If you're not completely satisfied, you can return any item within 30 days of delivery.</p>
+        <p style="margin-top: 15px;"><strong>Conditions:</strong></p>
+        <ul style="margin-left: 20px; margin-top: 10px;">
+            <li>Items must be unworn and unwashed</li>
+            <li>Original tags must still be attached</li>
+            <li>Items must be in original packaging</li>
+            <li>Customer covers return shipping</li>
+        </ul>
+        <p style="margin-top: 15px;">Contact us via WhatsApp or email to initiate a return.</p>
+    </div>
+</div>
+
+<!-- WhatsApp Float -->
+<button class="whatsapp-float" id="whatsappFloat"><i class="fab fa-whatsapp"></i></button>
+
+<!-- Cart Sidebar -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+    <div style="display: flex; justify-content: space-between; margin-bottom: 25px;">
+        <h2 style="color: var(--dark);"><i class="fas fa-shopping-bag"></i> Your Cart</h2>
+        <button id="closeCart" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">✖</button>
+    </div>
+    <div id="cartItems"></div>
+    <div id="cartTotal" style="font-size: 1.8rem; font-weight: 800; text-align: center; margin: 20px 0;"></div>
+    
+    <!-- Shipping Calculator -->
+    <div style="background: #fff5f8; border-radius: 30px; padding: 15px; margin: 15px 0;">
+        <h4><i class="fas fa-truck"></i> Shipping to</h4>
+        <select id="shippingCity" style="width: 100%; margin-top: 8px;">
+            <option value="0">Select City</option>
+            <option value="20">Casablanca - 20 DH</option>
+            <option value="30">Rabat - 30 DH</option>
+            <option value="40">Marrakech - 40 DH</option>
+            <option value="50">Tangier - 50 DH</option>
+            <option value="60">Fes - 60 DH</option>
+            <option value="70">Other Cities - 70 DH</option>
+        </select>
+    </div>
+
+    <!-- Discount Code -->
+    <div style="display: flex; gap: 10px; margin: 15px 0;">
+        <input type="text" id="discountCode" placeholder="Discount code" style="flex:1; padding: 12px; border-radius: 50px; border: 1px solid #f0a6bc;">
+        <button id="applyDiscount" style="background: var(--deep); color: white; border: none; padding: 0 20px; border-radius: 50px; cursor: pointer;">Apply</button>
+    </div>
+
+    <button id="checkoutBtn" style="background: #25D366; width: 100%; padding: 16px; border: none; border-radius: 50px; color: white; font-weight: bold; font-size: 1rem; cursor: pointer; margin-top: 10px;"><i class="fab fa-whatsapp"></i> Send Order via WhatsApp</button>
+</div>
+
+<!-- Admin Modal -->
+<div id="adminModal" class="modal">
+    <div class="modal-content">
+        <h2 style="color: var(--dark); margin-bottom: 20px;"><i class="fas fa-crown"></i> Admin Dashboard</h2>
+        
+        <!-- Stats -->
+        <div class="admin-section">
+            <h3><i class="fas fa-chart-line"></i> Store Statistics</h3>
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-number" id="statProducts">0</div><div>Products</div></div>
+                <div class="stat-card"><div class="stat-number" id="statVisitors">0</div><div>Visitors</div></div>
+                <div class="stat-card"><div class="stat-number" id="statReviews">0</div><div>Reviews</div></div>
+            </div>
+        </div>
+
+        <!-- Logo & Background -->
+        <div class="admin-section">
+            <h3><i class="fas fa-image"></i> Branding</h3>
+            <div class="upload-area" id="uploadLogoArea"><i class="fas fa-cloud-upload-alt"></i> Change Logo</div>
+            <input type="file" id="logoInput" accept="image/*" style="display:none">
+            <div class="upload-area" id="uploadBgArea" style="margin-top:10px;"><i class="fas fa-cloud-upload-alt"></i> Change Background</div>
+            <input type="file" id="bgInput" accept="image/*" style="display:none">
+            <div id="bgStatus" style="margin-top: 8px; font-size: 0.7rem; color: gray;"></div>
+        </div>
+
+        <!-- Products -->
+        <div class="admin-section">
+            <h3><i class="fas fa-boxes"></i> Products</h3>
+            <button id="addProductBtn" style="background: var(--deep); color: white; border: none; padding: 12px 25px; border-radius: 50px; margin-bottom: 20px; cursor: pointer;"><i class="fas fa-plus"></i> Add New Product</button>
+            <div id="adminProducts" class="admin-grid"></div>
+        </div>
+
+        <button id="closeAdmin" style="background: #b5a0a8; width: 100%; padding: 14px; border: none; border-radius: 50px; cursor: pointer;">Close Admin Panel</button>
+    </div>
+</div>
+
+<script>
+    // ========== PRODUCTS DATABASE ==========
+    let products = [
+        { 
+            id: 1, 
+            name: "🌸 Silk Ribbon Bag", 
+            price: 220, 
+            discount: 15, 
+            description: "Elegant silk bag with a beautiful ribbon detail. Perfect for your coquette aesthetic. Handcrafted with love and attention to detail. The soft pink color complements any outfit.",
+            image: "https://placehold.co/600x600/FFB7C5/white?text=🎀",
+            images: ["https://placehold.co/600x600/FFB7C5/white?text=🎀", "https://placehold.co/600x600/FFD1DC/white?text=🎀"],
+            sizes: ["S","M"], 
+            rating: 4.8,
+            reviews: [
+                { user: "Sarah", rating: 5, comment: "Absolutely gorgeous! The quality is amazing.", date: "2024-03-15" },
+                { user: "Leila", rating: 4.5, comment: "So cute and fits perfectly!", date: "2024-03-10" }
+            ]
+        },
+        { 
+            id: 2, 
+            name: "💖 Heart Print Top", 
+            price: 139, 
+            discount: 0, 
+            description: "Cute heart-printed top made from soft cotton. Perfect for daily wear. Available in multiple sizes. Breathable fabric perfect for all seasons.",
+            image: "https://placehold.co/600x600/F9C7D3/white?text=❤️",
+            images: ["https://placehold.co/600x600/F9C7D3/white?text=❤️", "https://placehold.co/600x600/FADADD/white?text=❤️"],
+            sizes: ["XS","S","M","L"], 
+            rating: 4.7,
+            reviews: [
+                { user: "Nora", rating: 5, comment: "Love it! Very comfortable.", date: "2024-03-12" }
+            ]
+        },
+        { 
+            id: 3, 
+            name: "🎀 Bow Hair Set", 
+            price: 69, 
+            discount: 25, 
+            description: "Set of 3 beautiful bow hair clips. Perfect for adding a cute touch to any hairstyle. Made with high-quality materials that won't damage your hair.",
+            image: "https://placehold.co/600x600/F4BAC7/white?text=🎀",
+            images: ["https://placehold.co/600x600/F4BAC7/white?text=🎀", "https://placehold.co/600x600/FFC0D0/white?text=🎀"],
+            sizes: ["One Size"], 
+            rating: 5.0,
+            reviews: [
+                { user: "Imane", rating: 5, comment: "Perfect! Exactly as pictured.", date: "2024-03-08" },
+                { user: "Fatima", rating: 5, comment: "Very high quality!", date: "2024-03-05" }
+            ]
+        },
+        { 
+            id: 4, 
+            name: "👗 Lace Trim Dress", 
+            price: 350, 
+            discount: 10, 
+            description: "Beautiful lace-trimmed dress perfect for special occasions. Elegant and feminine design. The delicate lace adds a touch of romance to your look.",
+            image: "https://placehold.co/600x600/FFD1DC/white?text=👗",
+            images: ["https://placehold.co/600x600/FFD1DC/white?text=👗", "https://placehold.co/600x600/FFE0E9/white?text=👗"],
+            sizes: ["S","M","L"], 
+            rating: 4.9,
+            reviews: [
+                { user: "Sofia", rating: 5, comment: "Stunning dress! Received many compliments.", date: "2024-03-01" }
+            ]
+        },
+        { 
+            id: 5, 
+            name: "🩰 Ballet Flats", 
+            price: 189, 
+            discount: 0, 
+            description: "Comfortable ballet flats with a cute bow detail. Perfect for everyday wear. Soft sole and premium materials for all-day comfort.",
+            image: "https://placehold.co/600x600/FADADD/white?text=🩰",
+            images: ["https://placehold.co/600x600/FADADD/white?text=🩰", "https://placehold.co/600x600/F9C7D3/white?text=🩰"],
+            sizes: ["36","37","38","39"], 
+            rating: 4.6,
+            reviews: []
+        },
+        { 
+            id: 6, 
+            name: "💎 Pearl Hair Clip", 
+            price: 45, 
+            discount: 0, 
+            description: "Beautiful pearl hair clip. Adds a touch of elegance to any hairstyle. Each pearl is carefully placed for a luxurious look.",
+            image: "https://placehold.co/600x600/F9CED8/white?text=💎",
+            images: ["https://placehold.co/600x600/F9CED8/white?text=💎", "https://placehold.co/600x600/FFD1DC/white?text=💎"],
+            sizes: ["One Size"], 
+            rating: 4.8,
+            reviews: []
+        }
+    ];
+
+    let cart = [];
+    let discountPercent = 0;
+    let shipping = 0;
+    let logoUrl = localStorage.getItem("logo") || "https://placehold.co/200x200/FFB7C5/white?text=🎀";
+    let bgUrl = localStorage.getItem("bg") || "radial-gradient(circle at 10% 30%, #ffe9f0, #ffd9e4)";
+    let visitorCount = parseInt(localStorage.getItem("visitors") || 0) + 1;
+    localStorage.setItem("visitors", visitorCount);
+
+    // Apply functions
+    function applyBg() {
+        if(bgUrl.startsWith("http") || bgUrl.startsWith("data:image")) {
+            document.body.style.backgroundImage = `url('${bgUrl}')`;
+            document.body.style.backgroundSize = "cover";
+        } else {
+            document.body.style.background = bgUrl;
+        }
+    }
+
+    function applyLogo() {
+        document.getElementById("siteLogo").src = logoUrl;
+    }
+
+    function saveAll() {
+        localStorage.setItem("products", JSON.stringify(products));
+        localStorage.setItem("cart", JSON.stringify(cart));
+        localStorage.setItem("logo", logoUrl);
+        localStorage.setItem("bg", bgUrl);
+    }
+
+    function loadAll() {
+        let p = localStorage.getItem("products");
+        if(p) products = JSON.parse(p);
+        let c = localStorage.getItem("cart");
+        if(c) cart = JSON.parse(c);
+        let l = localStorage.getItem("logo");
+        if(l) logoUrl = l;
+        let b = localStorage.getItem("bg");
+        if(b) bgUrl = b;
+        applyBg();
+        applyLogo();
+        updateCart();
+    }
+
+    function showToast(msg) {
+        let t = document.createElement("div");
+        t.className = "toast";
+        t.innerHTML = msg;
+        document.body.appendChild(t);
+        setTimeout(() => t.remove(), 3000);
+    }
+
+    // Add review
+    function addReview(productId, userName, rating, comment) {
+        let product = products.find(p => p.id === productId);
+        if(product && comment && comment.trim()) {
+            product.reviews.unshift({
+                user: userName || "Anonymous",
+                rating: parseInt(rating),
+                comment: comment,
+                date: new Date().toLocaleDateString()
+            });
+            let total = product.reviews.reduce((s, r) => s + r.rating, 0);
+            product.rating = parseFloat((total / product.reviews.length).toFixed(1));
+            saveAll();
+            renderProducts();
+            showToast("✨ Thank you for your review! ✨");
+        } else {
+            showToast("Please write a comment");
+        }
+    }
+
+    // Render products
+    function renderProducts() {
+        let grid = document.getElementById("productsGrid");
+        let search = document.getElementById("searchInput").value.toLowerCase();
+        let sort = document.getElementById("sortSelect").value;
+        
+        let filtered = products.filter(p => p.name.toLowerCase().includes(search) || p.description.toLowerCase().includes(search));
+        let copy = [...filtered];
+        
+        if(sort === "lowToHigh") copy.sort((a,b)=> (a.price*(1-a.discount/100)) - (b.price*(1-b.discount/100)));
+        if(sort === "highToLow") copy.sort((a,b)=> (b.price*(1-b.discount/100)) - (a.price*(1-a.discount/100)));
+        if(sort === "rating") copy.sort((a,b)=> b.rating - a.rating);
+        
+        grid.innerHTML = copy.map(p => {
+            let final = (p.price * (1 - p.discount/100)).toFixed(2);
+            let stars = "★".repeat(Math.floor(p.rating)) + "☆".repeat(5-Math.floor(p.rating));
+            return `
+            <div class="product-card" style="position:relative;">
+                ${p.discount > 0 ? `<div class="product-badge">-${p.discount}% OFF</div>` : ''}
+                <img class="product-img" src="${p.image}" onerror="this.src='https://placehold.co/600x600/pink'">
+                <div class="product-title">${p.name}</div>
+                <div class="product-desc">${p.description.substring(0, 100)}${p.description.length > 100 ? '...' : ''}</div>
+                <div class="price-row">
+                    <span class="current-price">${final} DH</span>
+                    ${p.discount > 0 ? `<span class="old-price">${p.price} DH</span><span class="discount-tag">-${p.discount}%</span>` : ''}
+                </div>
+                <div class="sizes">
+                    ${p.sizes.map(s => `<span class="size" data-id="${p.id}" data-size="${s}">${s}</span>`).join('')}
+                </div>
+                <button class="add-to-cart" data-product='${JSON.stringify(p)}'><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+                
+                <div class="reviews">
+                    <div class="stars">${stars} (${p.reviews.length} reviews)</div>
+                    ${p.reviews.slice(0, 2).map(r => `
+                        <div class="review">
+                            <b>${r.user}</b> ${"★".repeat(r.rating)} <span style="color:#999;">${r.date}</span><br>
+                            "${r.comment}"
+                        </div>
+                    `).join('')}
+                    <div class="review-form">
+                        <input type="text" placeholder="Name" id="name_${p.id}" style="flex:1">
+                        <select id="rate_${p.id}">
+                            <option>5</option><option>4</option><option>3</option><option>2</option><option>1</option>
+                        </select>
+                        <input type="text" placeholder="Write review..." id="comment_${p.id}" style="flex:2">
+                        <button onclick="addReview(${p.id}, document.getElementById('name_${p.id}').value, document.getElementById('rate_${p.id}').value, document.getElementById('comment_${p.id}').value)"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+
+        document.querySelectorAll('.size').forEach(el => {
+            el.onclick = (e) => {
+                e.stopPropagation();
+                let pid = parseInt(el.dataset.id);
+                let size = el.dataset.size;
+                let prod = products.find(p => p.id === pid);
+                if(prod) addToCart(prod, size);
+            };
+        });
+
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.onclick = () => {
+                let prod = JSON.parse(btn.dataset.product);
+                addToCart(prod, prod.sizes[0]);
+            };
+        });
+    }
+
+    function addToCart(product, size) {
+        let final = product.price * (1 - product.discount/100);
+        let exist = cart.find(i => i.id === product.id && i.size === size);
+        if(exist) exist.qty++;
+        else cart.push({ id: product.id, name: product.name, size, finalPrice: final, qty: 1, img: product.image });
+        saveAll();
+        updateCart();
+        showToast(`✨ Added ${product.name} (${size}) to cart! ✨`);
+        
+        if(Notification.permission === "granted") {
+            new Notification("Choufha Luxe", { body: `${product.name} added to cart!` });
+        }
+    }
+
+    function updateCart() {
+        let count = cart.reduce((s,i)=>s+i.qty,0);
+        document.getElementById("cartCount").innerText = count;
+        let container = document.getElementById("cartItems");
+        if(cart.length === 0) {
+            container.innerHTML = "<div style='text-align:center; padding:30px;'>Your cart is empty 💔</div>";
+            document.getElementById("cartTotal").innerHTML = "0.00 DH";
+            return;
+        }
+        container.innerHTML = cart.map(item => `
+            <div class="cart-item">
+                <img class="cart-img" src="${item.img}">
+                <div style="flex:1">
+                    <b>${item.name}</b><br>
+                    Size: ${item.size}<br>
+                    ${item.finalPrice.toFixed(2)} DH x ${item.qty}
+                </div>
+                <button onclick="removeItem('${item.id}_${item.size}')" style="background:#ffb0c0; border:none; border-radius:30px; padding:0 15px; cursor:pointer;">Remove</button>
+            </div>
+        `).join('');
+        let subtotal = cart.reduce((s,i)=>s+(i.finalPrice*i.qty),0);
+        let total = subtotal * (1 - discountPercent/100) + shipping;
+        document.getElementById("cartTotal").innerHTML = `${total.toFixed(2)} DH <small style="font-size:0.7rem;">(subtotal: ${subtotal.toFixed(2)})</small>`;
+    }
+
+    window.removeItem = function(key) {
+        cart = cart.filter(i => `${i.id}_${i.size}` !== key);
+        saveAll();
+        updateCart();
+        showToast("Item removed");
+    };
+
+    // Admin functions
+    function openAdmin() {
+        let modal = document.getElementById("adminModal");
+        let container = document.getElementById("adminProducts");
+        
+        document.getElementById("statProducts").innerText = products.length;
+        document.getElementById("statVisitors").innerText = visitorCount;
+        document.getElementById("statReviews").innerText = products.reduce((s,p)=>s+p.reviews.length,0);
+        
+        container.innerHTML = products.map(p => `
+            <div class="admin-product">
+                <input id="name_${p.id}" value="${p.name.replace(/"/g, '&quot;')}" placeholder="Product Name">
+                <textarea id="desc_${p.id}" rows="2" placeholder="Description">${p.description}</textarea>
+                <input id="price_${p.id}" value="${p.price}" type="number" placeholder="Price">
+                <input id="discount_${p.id}" value="${p.discount}" type="number" placeholder="Discount %">
+                <input id="sizes_${p.id}" value="${p.sizes.join(',')}" placeholder="Sizes (comma)">
+                <div class="upload-area" onclick="document.getElementById('productImg_${p.id}').click()">📸 Change Image</div>
+                <input type="file" id="productImg_${p.id}" accept="image/*" style="display:none" onchange="uploadProductImage(${p.id}, this)">
+                <button class="btn-save" onclick="updateProduct(${p.id})">💾 Save</button>
+                <button class="btn-delete" onclick="deleteProduct(${p.id})">🗑️ Delete</button>
+            </div>
+        `).join('');
+        
+        document.getElementById("bgStatus").innerHTML = `Current: ${bgUrl.substring(0, 60)}...`;
+        modal.style.display = "flex";
+    }
+
+    window.uploadProductImage = function(id, input) {
+        if(input.files && input.files[0]) {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                let p = products.find(p => p.id === id);
+                if(p) p.image = e.target.result;
+                saveAll();
+                renderProducts();
+                openAdmin();
+                showToast("Image updated!");
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
+
+    window.updateProduct = function(id) {
+        let p = products.find(p => p.id === id);
+        if(p) {
+            p.name = document.getElementById(`name_${id}`).value;
+            p.description = document.getElementById(`desc_${id}`).value;
+            p.price = parseFloat(document.getElementById(`price_${id}`).value);
+            p.discount = parseFloat(document.getElementById(`discount_${id}`).value);
+            p.sizes = document.getElementById(`sizes_${id}`).value.split(',').map(s=>s.trim());
+            saveAll();
+            renderProducts();
+            openAdmin();
+            showToast("Product updated!");
+        }
+    };
+
+    window.deleteProduct = function(id) {
+        products = products.filter(p => p.id !== id);
+        saveAll();
+        renderProducts();
+        openAdmin();
+        showToast("Product deleted");
+    };
+
+    // Logo upload
+    document.getElementById("uploadLogoArea").onclick = () => document.getElementById("logoInput").click();
+    document.getElementById("logoInput").onchange = (e) => {
+        if(e.target.files[0]) {
+            let reader = new FileReader();
+            reader.onload = (ev) => {
+                logoUrl = ev.target.result;
+                applyLogo();
+                saveAll();
+                showToast("Logo updated!");
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    };
+
+    // Background upload
+    document.getElementById("uploadBgArea").onclick = () => document.getElementById("bgInput").click();
+    document.getElementById("bgInput").onchange = (e) => {
+        if(e.target.files[0]) {
+            let reader = new FileReader();
+            reader.onload = (ev) => {
+                bgUrl = ev.target.result;
+                applyBg();
+                saveAll();
+                showToast("Background updated!");
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    };
+
+    // Event listeners
+    document.getElementById("adminBtn").onclick = openAdmin;
+    document.getElementById("closeAdmin").onclick = () => document.getElementById("adminModal").style.display = "none";
+    document.getElementById("addProductBtn").onclick = () => {
+        products.push({ 
+            id: Date.now(), 
+            name: "New Product", 
+            price: 99, 
+            discount: 0, 
+            description: "Write a beautiful description for this product.",
+            image: "https://placehold.co/600x600/FFC0D0/white?text=✨",
+            images: ["https://placehold.co/600x600/FFC0D0/white?text=✨"],
+            sizes: ["M"], 
+            rating: 0,
+            reviews: []
+        });
+        saveAll();
+        renderProducts();
+        openAdmin();
+        showToast("New product added!");
+    };
+    document.getElementById("sortSelect").onchange = () => renderProducts();
+    document.getElementById("searchInput").oninput = () => renderProducts();
+    
+    // Cart
+    document.getElementById("cartBtn").onclick = () => {
+        document.getElementById("cartDrawer").classList.add("open");
+        document.getElementById("cartOverlay").style.display = "block";
+    };
+    document.getElementById("closeCart").onclick = () => {
+        document.getElementById("cartDrawer").classList.remove("open");
+        document.getElementById("cartOverlay").style.display = "none";
+    };
+    document.getElementById("cartOverlay").onclick = () => {
+        document.getElementById("cartDrawer").classList.remove("open");
+        document.getElementById("cartOverlay").style.display = "none";
+    };
+    
+    // Shipping & Discount
+    document.getElementById("shippingCity").onchange = (e) => {
+        shipping = parseInt(e.target.value);
+        updateCart();
+    };
+    document.getElementById("applyDiscount").onclick = () => {
+        let code = document.getElementById("discountCode").value;
+        if(code === "WELCOME10") {
+            discountPercent = 10;
+            showToast("🎉 10% discount applied!");
+        } else if(code === "CHOUFHA20") {
+            discountPercent = 20;
+            showToast("🎉 20% discount applied!");
+        } else {
+            discountPercent = 0;
+            showToast("Invalid discount code");
+        }
+        updateCart();
+    };
+    
+    // WhatsApp
+    function getCartMsg() {
+        if(cart.length === 0) return "Hello, I want to place an order";
+        let msg = "🎀 *MY ORDER FROM CHOUFHA LUXE* 🎀%0A%0A";
+        cart.forEach(i => msg += `• ${i.name} (${i.size}) - ${i.finalPrice.toFixed(2)} DH x ${i.qty} = ${(i.finalPrice*i.qty).toFixed(2)} DH%0A`);
+        let subtotal = cart.reduce((s,i)=>s+(i.finalPrice*i.qty),0);
+        let total = subtotal * (1 - discountPercent/100) + shipping;
+        msg += `%0A📦 Subtotal: ${subtotal.toFixed(2)} DH`;
+        if(discountPercent > 0) msg += `%0A🎟️ Discount: ${discountPercent}%`;
+        msg += `%0A🚚 Shipping: ${shipping} DH`;
+        msg += `%0A💰 *Total: ${total.toFixed(2)} DH*`;
+        msg += `%0A%0A📍 Address: (write your address)%0A📞 Phone:`;
+        return msg;
+    }
+    
+    document.getElementById("whatsappFloat").onclick = () => window.open(`https://wa.me/212600000000?text=${getCartMsg()}`, "_blank");
+    document.getElementById("checkoutBtn").onclick = () => window.open(`https://wa.me/212600000000?text=${getCartMsg()}`, "_blank");
+    
+    // Theme
+    let dark = false;
+    document.getElementById("themeToggle").onclick = () => {
+        if(!dark) {
+            document.body.setAttribute("data-theme", "dark");
+            document.body.style.background = "#1a1a2e";
+            dark = true;
+            document.getElementById("themeToggle").innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            document.body.removeAttribute("data-theme");
+            applyBg();
+            dark = false;
+            document.getElementById("themeToggle").innerHTML = '<i class="fas fa-moon"></i>';
+        }
+    };
+    
+    // Custom cursor
+    document.addEventListener("mousemove", (e) => {
+        document.getElementById("cursor").style.left = e.clientX + "px";
+        document.getElementById("cursor").style.top = e.clientY + "px";
+    });
+    
+    document.querySelectorAll("button, a, .size, .product-card").forEach(el => {
+        el.addEventListener("mouseenter", () => document.getElementById("cursor").style.width = "45px");
+        el.addEventListener("mouseleave", () => document.getElementById("cursor").style.width = "30px");
+    });
+    
+    window.showPage = function(page) {
+        document.getElementById("shopPage").classList.remove("active");
+        document.getElementById("aboutPage").classList.remove("active");
+        document.getElementById("contactPage").classList.remove("active");
+        document.getElementById("returnsPage").classList.remove("active");
+        document.getElementById(page + "Page").classList.add("active");
+        if(page === "shop") renderProducts();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+    
+    if(Notification.permission === "default") Notification.requestPermission();
+    
+    loadAll();
+    renderProducts();
+</script>
+</body>
+</html>
