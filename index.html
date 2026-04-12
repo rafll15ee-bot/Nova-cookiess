@@ -12,15 +12,14 @@
         }
 
         body {
-            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
             background: radial-gradient(circle at 10% 30%, #ffe9f0, #ffd9e4);
-            transition: all 0.4s ease;
+            transition: background 0.3s ease;
             min-height: 100vh;
             padding: 30px 24px;
             position: relative;
         }
 
-        /* Decorative floating elements */
         body::before {
             content: "🎀";
             font-size: 120px;
@@ -29,7 +28,6 @@
             left: 10px;
             opacity: 0.1;
             pointer-events: none;
-            rotate: -15deg;
             z-index: 0;
         }
 
@@ -41,7 +39,6 @@
             right: 20px;
             opacity: 0.08;
             pointer-events: none;
-            rotate: 10deg;
             z-index: 0;
         }
 
@@ -52,11 +49,9 @@
             z-index: 2;
         }
 
-        /* Header Glam */
         .header {
             text-align: center;
             margin-bottom: 40px;
-            position: relative;
         }
 
         .header h1 {
@@ -66,12 +61,10 @@
             -webkit-background-clip: text;
             color: transparent;
             text-shadow: 0 2px 15px rgba(255,200,220,0.6);
-            letter-spacing: -0.5px;
         }
 
         .header p {
             color: #b45f7c;
-            font-size: 1.1rem;
             background: rgba(255,250,245,0.6);
             backdrop-filter: blur(10px);
             display: inline-block;
@@ -80,13 +73,6 @@
             margin-top: 10px;
         }
 
-        .glow-text {
-            font-size: 0.9rem;
-            margin-top: 8px;
-            color: #cf7c9b;
-        }
-
-        /* Control Bar - Premium */
         .glass-bar {
             background: rgba(255, 248, 245, 0.75);
             backdrop-filter: blur(16px);
@@ -98,7 +84,7 @@
             align-items: center;
             gap: 15px;
             margin-bottom: 45px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05), 0 0 0 1px rgba(255,255,240,0.8);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
 
         .filter-group {
@@ -108,7 +94,6 @@
             background: white;
             padding: 5px 18px;
             border-radius: 60px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
         }
 
         .filter-group label {
@@ -147,7 +132,6 @@
         .cart-btn {
             background: #d47a9b;
             color: white;
-            box-shadow: 0 6px 14px rgba(180,70,100,0.3);
             position: relative;
         }
 
@@ -168,7 +152,6 @@
         .whatsapp-header {
             background: #25D366;
             color: white;
-            box-shadow: 0 4px 12px rgba(37,211,102,0.3);
         }
 
         .admin-header-btn {
@@ -177,7 +160,6 @@
             border: 1px dashed #d47a9b;
         }
 
-        /* Product Grid - Magical */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -189,7 +171,7 @@
             backdrop-filter: blur(4px);
             border-radius: 48px;
             padding: 22px;
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transition: all 0.3s ease;
             border: 1px solid rgba(255, 215, 225, 0.7);
             box-shadow: 0 20px 35px -15px rgba(100, 50, 70, 0.2);
         }
@@ -198,7 +180,6 @@
             transform: translateY(-12px);
             background: white;
             box-shadow: 0 30px 45px -12px rgba(150, 70, 100, 0.3);
-            border-color: #ffc0d0;
         }
 
         .product-img {
@@ -207,11 +188,6 @@
             object-fit: cover;
             border-radius: 38px;
             background: #fad3df;
-            transition: 0.3s;
-        }
-
-        .product-card:hover .product-img {
-            transform: scale(0.98);
         }
 
         .product-title {
@@ -267,7 +243,6 @@
         .size-pill:hover {
             background: #d47a9b;
             color: white;
-            transform: scale(0.96);
         }
 
         .btn-add-cart {
@@ -281,10 +256,8 @@
             font-size: 1rem;
             margin-top: 12px;
             cursor: pointer;
-            transition: 0.2s;
         }
 
-        /* Cart Sidebar */
         .cart-overlay {
             display: none;
             position: fixed;
@@ -293,6 +266,7 @@
             backdrop-filter: blur(10px);
             z-index: 1000;
         }
+
         .cart-drawer {
             position: fixed;
             top: 0;
@@ -308,15 +282,18 @@
             box-shadow: -10px 0 40px rgba(0,0,0,0.2);
             border-radius: 40px 0 0 40px;
         }
+
         .cart-drawer.open {
             right: 0;
         }
+
         .cart-header {
             display: flex;
             justify-content: space-between;
             border-bottom: 2px solid #ffcedb;
             padding-bottom: 15px;
         }
+
         .cart-item {
             display: flex;
             gap: 15px;
@@ -325,12 +302,14 @@
             padding: 12px;
             margin: 12px 0;
         }
+
         .cart-img {
             width: 70px;
             height: 70px;
             border-radius: 20px;
             object-fit: cover;
         }
+
         .cart-total {
             font-size: 1.8rem;
             font-weight: 800;
@@ -338,7 +317,7 @@
             margin: 20px 0;
             color: #b84a70;
         }
-        /* Admin Modal */
+
         .modal-admin {
             display: none;
             position: fixed;
@@ -349,6 +328,7 @@
             align-items: center;
             justify-content: center;
         }
+
         .modal-card {
             background: white;
             max-width: 700px;
@@ -358,16 +338,44 @@
             max-height: 85vh;
             overflow: auto;
         }
-        input {
+
+        input, textarea {
             width: 100%;
             margin: 8px 0;
             padding: 12px;
             border-radius: 50px;
             border: 1px solid #f0a6bc;
         }
+
         button {
             cursor: pointer;
         }
+
+        .bg-preset {
+            display: inline-block;
+            background: #fcd5e1;
+            padding: 8px 16px;
+            border-radius: 40px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: 0.2s;
+        }
+
+        .bg-preset:hover {
+            background: #d47a9b;
+            color: white;
+        }
+
+        .current-bg-url {
+            background: #e8f0fe;
+            padding: 8px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            word-break: break-all;
+            margin-top: 8px;
+        }
+
         @media (max-width: 700px) {
             body { padding: 16px; }
             .header h1 { font-size: 2.5rem; }
@@ -379,7 +387,7 @@
     <div class="header">
         <h1>🎀 CHOUFHA.CO 🎀</h1>
         <p>✨ coquette moroccan edits – درهم مغربي ✨</p>
-        <div class="glow-text">🌸 حيث الأناقة المغربية تلتقي بالكيووت</div>
+        <div class="glow-text" style="font-size:0.8rem; margin-top:5px;">🌸 حيث الأناقة المغربية تلتقي بالكيووت</div>
     </div>
 
     <div class="glass-bar">
@@ -416,34 +424,54 @@
 <!-- Admin Panel -->
 <div id="adminModal" class="modal-admin">
     <div class="modal-card">
-        <h2>🌸 تحكم كامل بالمتجر 🌸</h2>
-        <h3>🎨 تغيير خلفية الموقع</h3>
-        <input type="text" id="customBgUrl" placeholder="رابط صورة خلفية">
-        <button id="applyBgBtn">تطبيق الخلفية</button>
+        <h2 style="color:#b84a70;">🌸 تحكم كامل بالمتجر 🌸</h2>
+        
+        <h3>🎨 خلفيات جاهزة (اضغط تختار)</h3>
+        <div id="bgPresetsGallery"></div>
+        
+        <h3>🖼️ أو حط رابط خلفيتك الخاصة</h3>
+        <input type="text" id="customBgUrl" placeholder="مثال: https://example.com/image.jpg" style="width:100%">
+        <button id="applyBgBtn" style="background:#d47a9b; color:white; margin-top:5px;">✅ تطبيق وحفظ الخلفية</button>
+        
+        <div id="currentBgDisplay" class="current-bg-url"></div>
+        
         <hr>
         <h3>📦 تعديل/إضافة المنتجات</h3>
         <div id="adminProductsList"></div>
-        <button id="addProductAdminBtn">➕ إضافة منتج جديد</button>
-        <button id="closeAdminBtn" style="background:#b5a0a8; margin-top:15px;">إغلاق</button>
+        <button id="addProductAdminBtn" style="background:#d47a9b; color:white;">➕ إضافة منتج جديد</button>
+        <br><br>
+        <button id="closeAdminBtn" style="background:#b5a0a8;">إغلاق</button>
     </div>
 </div>
 
 <script>
-    // ---------- COQUETTE STORE PREMIUM ----------
+    // ---------- COQUETTE STORE PREMIUM FIXED ----------
     let products = [
         { id: 1, name: "🌸 شنطة فيونكة حرير", price: 220, discount: 15, image: "https://placehold.co/600x600/FFB7C5/white?text=🎀+Bag", sizes: ["S","M"], rating: 4.9 },
         { id: 2, name: "💖 تيشرت قلوب لامعة", price: 139, discount: 0, image: "https://placehold.co/600x600/F9C7D3/white?text=❤️+Top", sizes: ["XS","S","M","L"], rating: 4.7 },
         { id: 3, name: "🎀 طقم ربطة شعر لولي", price: 69, discount: 25, image: "https://placehold.co/600x600/F4BAC7/white?text=🎀+Set", sizes: ["One Size"], rating: 5.0 }
     ];
+    
     let cart = [];
-    let currentBg = "radial-gradient(circle at 10% 30%, #ffe9f0, #ffd9e4)";
-    let bgList = [currentBg, "#fff0fa", "linear-gradient(145deg, #ffe0e9, #ffd0dc)"];
+    
+    // خلفيات افتراضية
+    let backgroundsList = [
+        "radial-gradient(circle at 10% 30%, #ffe9f0, #ffd9e4)",
+        "linear-gradient(145deg, #ffe0e9, #ffd0dc)",
+        "#fff0fa",
+        "https://www.transparenttextures.com/patterns/cardboard.png",
+        "https://www.transparenttextures.com/patterns/paper-fibers.png"
+    ];
+    
+    let currentBg = backgroundsList[0];
 
+    // حفظ وتحميل البيانات
     function saveAll() {
         localStorage.setItem("coquette_products_mor", JSON.stringify(products));
         localStorage.setItem("coquette_cart_mor", JSON.stringify(cart));
         localStorage.setItem("coquette_bg_mor", currentBg);
-        applyBg();
+        localStorage.setItem("coquette_bg_list_mor", JSON.stringify(backgroundsList));
+        applyBackground();
         updateCartUI();
     }
 
@@ -453,20 +481,38 @@
         let c = localStorage.getItem("coquette_cart_mor");
         if(c) cart = JSON.parse(c);
         let bg = localStorage.getItem("coquette_bg_mor");
-        if(bg) { currentBg = bg; applyBg(); }
+        let bgList = localStorage.getItem("coquette_bg_list_mor");
+        if(bg) currentBg = bg;
+        if(bgList) backgroundsList = JSON.parse(bgList);
+        applyBackground();
         updateCartUI();
     }
 
-    function applyBg() {
-        document.body.style.background = currentBg;
+    function applyBackground() {
+        if(currentBg.startsWith("http") || currentBg.startsWith("linear") || currentBg.startsWith("radial") || currentBg.startsWith("#")) {
+            document.body.style.background = currentBg;
+        } else {
+            document.body.style.background = `url('${currentBg}') center/cover fixed`;
+        }
         document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundAttachment = "fixed";
+        
+        // تحديث العرض في لوحة التحكم
+        let displayDiv = document.getElementById("currentBgDisplay");
+        if(displayDiv) {
+            displayDiv.innerHTML = `📌 الخلفية الحالية: ${currentBg.substring(0, 80)}${currentBg.length > 80 ? '...' : ''}`;
+        }
     }
 
     function updateCartUI() {
         let count = cart.reduce((s,i)=>s+i.qty,0);
         document.getElementById("cartCount").innerText = count;
         let container = document.getElementById("cartItemsList");
-        if(cart.length===0) { container.innerHTML="<p style='text-align:center'>سلة فارغة 💔</p>"; document.getElementById("cartTotalPrice").innerText="0.00 DH"; return; }
+        if(cart.length===0) { 
+            container.innerHTML="<p style='text-align:center'>سلة فارغة 💔</p>"; 
+            document.getElementById("cartTotalPrice").innerText="0.00 DH"; 
+            return; 
+        }
         container.innerHTML = cart.map(item => `
             <div class="cart-item">
                 <img class="cart-img" src="${item.img}" onerror="this.src='https://placehold.co/200x200/pink'">
@@ -515,7 +561,7 @@
                 <button class="btn-add-cart" data-product='${JSON.stringify(p)}'>➕ أضف للسلة</button>
             </div>`;
         }).join('');
-        // attach size events
+        
         document.querySelectorAll('.size-pill').forEach(el => {
             el.onclick = (e) => {
                 let pid = parseInt(el.dataset.id);
@@ -524,6 +570,7 @@
                 if(prod) addToCart(prod, sz);
             };
         });
+        
         document.querySelectorAll('.btn-add-cart').forEach(btn => {
             btn.onclick = () => {
                 let prodData = JSON.parse(btn.dataset.product);
@@ -538,13 +585,54 @@
         let listDiv = document.getElementById("adminProductsList");
         listDiv.innerHTML = products.map(p => `
             <div style="background:#fff0f5; border-radius:40px; padding:15px; margin:12px 0">
-                <input id="name_${p.id}" value="${p.name}"><input id="price_${p.id}" value="${p.price}"><input id="disc_${p.id}" value="${p.discount}">
-                <input id="img_${p.id}" value="${p.image}"><input id="sizes_${p.id}" value="${p.sizes.join(',')}">
-                <button onclick="updateProduct(${p.id})">💾 حفظ</button>
-                <button onclick="deleteProduct(${p.id})">🗑️ حذف</button>
+                <input id="name_${p.id}" value="${p.name}" placeholder="اسم المنتج">
+                <input id="price_${p.id}" value="${p.price}" placeholder="السعر" type="number">
+                <input id="disc_${p.id}" value="${p.discount}" placeholder="التخفيض %" type="number">
+                <input id="img_${p.id}" value="${p.image}" placeholder="رابط الصورة">
+                <input id="sizes_${p.id}" value="${p.sizes.join(',')}" placeholder="المقاسات (مفصولة بفاصلة)">
+                <button onclick="updateProduct(${p.id})" style="background:#d47a9b; color:white;">💾 حفظ</button>
+                <button onclick="deleteProduct(${p.id})" style="background:#ff8aaa;">🗑️ حذف</button>
             </div>
         `).join('');
+        
+        // عرض الخلفيات الجاهزة
+        let bgGallery = document.getElementById("bgPresetsGallery");
+        bgGallery.innerHTML = backgroundsList.map((bg, idx) => 
+            `<span class="bg-preset" onclick="setBackground('${bg.replace(/'/g, "\\'")}')">🎨 خلفية ${idx+1}</span>`
+        ).join('');
+        
+        // عرض الخلفية الحالية
+        let displayDiv = document.getElementById("currentBgDisplay");
+        if(displayDiv) {
+            displayDiv.innerHTML = `📌 الخلفية الحالية: ${currentBg.substring(0, 80)}${currentBg.length > 80 ? '...' : ''}`;
+        }
+        
         modal.style.display = "flex";
+    }
+
+    window.setBackground = function(bgValue) {
+        currentBg = bgValue;
+        saveAll();
+        applyBackground();
+        openAdmin(); // تحديث اللوحة
+    }
+
+    window.applyCustomBackground = function() {
+        let url = document.getElementById("customBgUrl").value;
+        if(url && url.trim() !== "") {
+            currentBg = url.trim();
+            // إضافة الخلفية الجديدة للقائمة
+            if(!backgroundsList.includes(currentBg)) {
+                backgroundsList.push(currentBg);
+            }
+            saveAll();
+            applyBackground();
+            openAdmin(); // تحديث اللوحة
+            document.getElementById("customBgUrl").value = ""; // تنظيف الحقل
+            alert("✅ تم تطبيق وحفظ الخلفية الجديدة!");
+        } else {
+            alert("❌ الرجاء إدخال رابط صورة صحيح");
+        }
     }
 
     window.updateProduct = function(id) {
@@ -560,39 +648,49 @@
             openAdmin();
         }
     };
+    
     window.deleteProduct = function(id){
         products = products.filter(p=>p.id!==id);
         saveAll();
         renderProducts(document.getElementById("sortSelect").value);
         openAdmin();
     };
+    
     document.getElementById("addProductAdminBtn").onclick = () => {
         products.push({ id: Date.now(), name: "منتج كيوت جديد", price: 99, discount: 0, image: "https://placehold.co/600x600/FFC0D0/white?text=✨", sizes: ["M"], rating: 0 });
         saveAll();
         renderProducts(document.getElementById("sortSelect").value);
         openAdmin();
     };
-    document.getElementById("applyBgBtn").onclick = () => {
-        let url = document.getElementById("customBgUrl").value;
-        if(url) { currentBg = url; saveAll(); openAdmin(); }
-    };
+    
+    document.getElementById("applyBgBtn").onclick = applyCustomBackground;
     document.getElementById("closeAdminBtn").onclick = () => document.getElementById("adminModal").style.display = "none";
     document.getElementById("openAdminBtn").onclick = openAdmin;
     document.getElementById("sortSelect").onchange = (e) => renderProducts(e.target.value);
     
     // Cart controls
-    document.getElementById("openCartBtn").onclick = () => { document.getElementById("cartDrawer").classList.add("open"); document.getElementById("cartOverlay").style.display = "block"; };
-    document.getElementById("closeCartDrawer").onclick = () => { document.getElementById("cartDrawer").classList.remove("open"); document.getElementById("cartOverlay").style.display = "none"; };
-    document.getElementById("cartOverlay").onclick = () => { document.getElementById("cartDrawer").classList.remove("open"); document.getElementById("cartOverlay").style.display = "none"; };
+    document.getElementById("openCartBtn").onclick = () => { 
+        document.getElementById("cartDrawer").classList.add("open"); 
+        document.getElementById("cartOverlay").style.display = "block"; 
+    };
+    document.getElementById("closeCartDrawer").onclick = () => { 
+        document.getElementById("cartDrawer").classList.remove("open"); 
+        document.getElementById("cartOverlay").style.display = "none"; 
+    };
+    document.getElementById("cartOverlay").onclick = () => { 
+        document.getElementById("cartDrawer").classList.remove("open"); 
+        document.getElementById("cartOverlay").style.display = "none"; 
+    };
     
     function getCartWhatsMsg() {
         if(cart.length===0) return "مرحباً أريد طلب منتجات كيوت";
         let msg = "🎀 طلبي الجديد من شوفها 🎀%0A";
         cart.forEach(i=> { msg += `• ${i.name} (مقاس ${i.size}) - ${i.finalPrice} DH x ${i.qty} = ${(i.finalPrice*i.qty).toFixed(2)} DH%0A`; });
         let total = cart.reduce((s,i)=>s+(i.finalPrice*i.qty),0);
-        msg += `%0A💰 المجموع: ${total.toFixed(2)} DH%0A📍 العنوان: (اكتب عنوانك)`;
+        msg += `%0A💰 المجموع: ${total.toFixed(2)} DH%0A📍 العنوان: (اكتب عنوانك)%0A📞 رقم الجوال:`;
         return msg;
     }
+    
     document.getElementById("globalWhatsappBtn").onclick = () => window.open(`https://wa.me/212600000000?text=${getCartWhatsMsg()}`, "_blank");
     document.getElementById("checkoutWhatsappBtn").onclick = () => window.open(`https://wa.me/212600000000?text=${getCartWhatsMsg()}`, "_blank");
     
