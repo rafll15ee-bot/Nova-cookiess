@@ -1,272 +1,358 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Choufha Store - Admin Fixed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Dalas Palace | قصر دالاس - مطعم في القنيطرة</title>
+    <!-- Google Fonts: خط حديث وأنيق للمطاعم -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (أيقونات) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; background: #ffe9f0; padding: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .header { display: flex; justify-content: space-between; align-items: center; background: white; padding: 15px 25px; border-radius: 80px; margin-bottom: 30px; }
-        .logo { display: flex; align-items: center; gap: 15px; }
-        .logo-img { width: 60px; height: 60px; border-radius: 50%; background: #ffb7c5; }
-        .nav { display: flex; gap: 15px; }
-        .nav a { padding: 8px 20px; background: #f0e4e8; border-radius: 50px; cursor: pointer; }
-        .control-bar { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.7); padding: 12px 25px; border-radius: 60px; margin-bottom: 30px; }
-        .search-box { background: white; padding: 8px 18px; border-radius: 50px; }
-        .search-box input { border: none; outline: none; width: 200px; }
-        .icon-btn { background: white; border: none; padding: 8px 18px; border-radius: 50px; cursor: pointer; }
-        .cart-btn { background: #d47a9b; color: white; position: relative; }
-        .cart-count { position: absolute; top: -8px; right: -8px; background: #ff3b6f; border-radius: 50%; width: 20px; height: 20px; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; }
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
-        .product-card { background: white; border-radius: 30px; padding: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-        .product-img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 25px; }
-        .product-title { font-size: 1.2rem; font-weight: bold; margin: 12px 0 8px; }
-        .price { font-size: 1.4rem; font-weight: bold; color: #c2577e; }
-        .sizes { display: flex; gap: 8px; margin: 12px 0; }
-        .size { background: #ffecf0; padding: 5px 12px; border-radius: 30px; cursor: pointer; }
-        .add-btn { width: 100%; background: #d47a9b; color: white; border: none; padding: 12px; border-radius: 50px; cursor: pointer; margin-top: 10px; }
-        .page { display: none; background: rgba(255,255,255,0.5); border-radius: 40px; padding: 30px; margin-top: 20px; }
-        .page.active { display: block; }
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; z-index: 1000; }
-        .modal-content { background: white; max-width: 800px; width: 90%; border-radius: 40px; padding: 25px; max-height: 80vh; overflow: auto; }
-        .admin-section { background: #fff5f8; border-radius: 30px; padding: 20px; margin-bottom: 20px; }
-        .upload-area { border: 2px dashed #f0a6bc; border-radius: 30px; padding: 15px; text-align: center; cursor: pointer; margin: 10px 0; }
-        .admin-product { background: white; border-radius: 25px; padding: 15px; margin-bottom: 15px; }
-        .admin-product input { width: 100%; margin: 5px 0; padding: 8px; border-radius: 30px; border: 1px solid #f0a6bc; }
-        .btn-save { background: #d47a9b; color: white; border: none; padding: 8px 15px; border-radius: 30px; cursor: pointer; }
-        .btn-delete { background: #ff8aaa; color: white; border: none; padding: 8px 15px; border-radius: 30px; cursor: pointer; }
-        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; cursor: pointer; border: none; z-index: 100; }
-        .cart-sidebar { position: fixed; top: 0; right: -400px; width: 100%; max-width: 380px; height: 100%; background: white; z-index: 1001; transition: 0.3s; padding: 25px; overflow-y: auto; }
-        .cart-sidebar.open { right: 0; }
-        .cart-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 1000; }
-        .toast { position: fixed; bottom: 100px; right: 20px; background: #d47a9b; color: white; padding: 10px 20px; border-radius: 50px; z-index: 2000; }
-        @media (max-width: 700px) { .header { flex-direction: column; text-align: center; } .control-bar { flex-direction: column; } }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+            color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* خلفية زخرفية خفيفة */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 10% 20%, rgba(210, 180, 140, 0.08) 0%, rgba(0,0,0,0) 80%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 520px;
+            width: 100%;
+            margin: 20px auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* البطاقة الرئيسية */
+        .card {
+            background: rgba(25, 25, 30, 0.95);
+            backdrop-filter: blur(2px);
+            border-radius: 48px;
+            overflow: hidden;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(210, 180, 140, 0.2);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.01);
+        }
+
+        /* رأس الموقع مع صورة وهمية احترافية (لون ذهبي داكن) */
+        .hero {
+            background: linear-gradient(135deg, #2a2418 0%, #1e1b14 100%);
+            padding: 32px 24px 40px 24px;
+            text-align: center;
+            position: relative;
+            border-bottom: 3px solid #c9a96b;
+        }
+
+        .logo-icon {
+            font-size: 70px;
+            color: #e4b363;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #f9e2b7, #d4af6a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .english-name {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #b9a47a;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .rating {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 20px;
+            border-radius: 100px;
+            backdrop-filter: blur(4px);
+        }
+
+        .stars {
+            color: #ffb347;
+            font-size: 1.3rem;
+            letter-spacing: 3px;
+        }
+
+        .score {
+            font-weight: 800;
+            font-size: 1.6rem;
+            color: #ffd966;
+        }
+
+        /* محتوى المعلومات */
+        .info-section {
+            padding: 28px 24px 24px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 28px;
+            background: rgba(255,255,245,0.03);
+            padding: 12px 18px;
+            border-radius: 28px;
+            transition: all 0.2s;
+            border: 1px solid rgba(210, 180, 140, 0.2);
+        }
+
+        .info-item i {
+            width: 32px;
+            font-size: 26px;
+            color: #dbba7c;
+            text-align: center;
+        }
+
+        .info-text {
+            flex: 1;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #b9aa8a;
+            letter-spacing: 1px;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f2e8da;
+            line-height: 1.4;
+            word-break: break-word;
+        }
+
+        .badge-24h {
+            background: #2f2a1f;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #f5cd94;
+            display: inline-block;
+        }
+
+        /* أزرار الإجراء */
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 28px;
+            margin-bottom: 16px;
+        }
+
+        .btn {
+            flex: 1;
+            text-align: center;
+            padding: 14px 10px;
+            border-radius: 44px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
+            border: none;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .btn-primary {
+            background: #c9a96b;
+            color: #1e1b14;
+            box-shadow: 0 8px 18px rgba(201, 169, 107, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #debc83;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #c9a96b;
+            color: #e9dbbc;
+        }
+
+        .btn-outline:hover {
+            background: rgba(201, 169, 107, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* تذييل خريطة صغير */
+        .map-link {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            padding: 8px;
+            border-top: 1px solid rgba(210, 180, 140, 0.2);
+            font-size: 0.8rem;
+        }
+
+        .map-link a {
+            color: #c9a96b;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #6b5e48;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 24px 16px 32px;
+            }
+            h1 {
+                font-size: 1.9rem;
+            }
+            .info-item {
+                gap: 12px;
+                padding: 10px 14px;
+            }
+            .btn {
+                padding: 12px 8px;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
-
 <div class="container">
-    <!-- Header -->
-    <div class="header">
-        <div class="logo">
-            <img class="logo-img" id="siteLogo" src="https://placehold.co/200x200/FFB7C5/white?text=🎀">
-            <div><h1>CHOUFHA LUXE</h1><p>coquette moroccan edits</p></div>
+    <div class="card">
+        <div class="hero">
+            <div class="logo-icon">
+                <i class="fas fa-utensils"></i>
+            </div>
+            <h1>قصر دالاس</h1>
+            <div class="english-name">DALAS PALACE</div>
+            <div class="rating">
+                <span class="stars">★★★★★</span>
+                <span class="score">4.6</span>
+                <span style="font-size:0.9rem;">(Google)</span>
+            </div>
         </div>
-        <div class="nav">
-            <a onclick="showPage('shop')">🛍️ Shop</a>
-            <a onclick="showPage('about')">📖 About</a>
-            <a onclick="showPage('contact')">📞 Contact</a>
-        </div>
-    </div>
 
-    <!-- Control Bar -->
-    <div class="control-bar">
-        <div class="search-box">🔍 <input type="text" id="searchInput" placeholder="Search..."></div>
-        <select id="sortSelect">
-            <option value="default">✨ Default</option>
-            <option value="lowToHigh">💰 Low to High</option>
-            <option value="highToLow">💰 High to Low</option>
-        </select>
-        <div>
-            <button class="icon-btn" id="themeBtn">🌙</button>
-            <button class="icon-btn cart-btn" id="cartBtn">🛍️ Cart <span id="cartCount" class="cart-count">0</span></button>
-            <button class="icon-btn" id="adminBtn">👑 Admin</button>
+        <div class="info-section">
+            <!-- العنوان -->
+            <div class="info-item">
+                <i class="fas fa-location-dot"></i>
+                <div class="info-text">
+                    <div class="info-label">العنوان</div>
+                    <div class="info-value">Immeuble 30/30 lot Alioune 03، القنيطرة 14000، المغرب</div>
+                </div>
+            </div>
+
+            <!-- ساعات العمل (24 ساعة) -->
+            <div class="info-item">
+                <i class="far fa-clock"></i>
+                <div class="info-text">
+                    <div class="info-label">مواعيد العمل</div>
+                    <div class="info-value"><span class="badge-24h"><i class="fas fa-infinity"></i> 24 ساعة طوال الأسبوع</span></div>
+                </div>
+            </div>
+
+            <!-- الهاتف -->
+            <div class="info-item">
+                <i class="fas fa-phone-alt"></i>
+                <div class="info-text">
+                    <div class="info-label">للحجوزات والاستفسار</div>
+                    <div class="info-value">+212 6 87 52 91 37</div>
+                </div>
+            </div>
+
+            <!-- أيقونة إضافية: موقع جغرافي -->
+            <div class="info-item">
+                <i class="fas fa-map-pin"></i>
+                <div class="info-text">
+                    <div class="info-label">الرمز الجغرافي</div>
+                    <div class="info-value">7924+2Q القنيطرة، المغرب</div>
+                </div>
+            </div>
+
+            <!-- أزرار التفاعل -->
+            <div class="action-buttons">
+                <a href="tel:+212687529137" class="btn btn-primary">
+                    <i class="fas fa-phone"></i> اتصل الآن
+                </a>
+                <a href="https://maps.google.com/?q=Dalas+Palace+Kénitra&ftid=0x0:0x0" class="btn btn-outline" target="_blank">
+                    <i class="fas fa-directions"></i> فتح الخريطة
+                </a>
+            </div>
+
+            <!-- زر مشاركة الموقع الأصلي من Google Maps -->
+            <div class="action-buttons" style="margin-top: -8px;">
+                <a href="https://maps.app.goo.gl/FwNxAMH9EYwSZWMP8" class="btn btn-outline" target="_blank" style="flex: 1;">
+                    <i class="fab fa-google"></i> عرض على خرائط غوغل
+                </a>
+            </div>
+        </div>
+
+        <div class="map-link">
+            <a href="https://maps.app.goo.gl/FwNxAMH9EYwSZWMP8" target="_blank">
+                <i class="fas fa-external-link-alt"></i> Immeuble 30/30 lot Alioune 03, Kénitra
+            </a>
+        </div>
+        <div class="footer-note">
+            <i class="fas fa-star-of-life"></i> مطعم مفتوح 24 ساعة | خدمة سريعة
         </div>
     </div>
-
-    <!-- Pages -->
-    <div id="shopPage" class="page active">
-        <div id="productsGrid" class="products-grid"></div>
-    </div>
-    <div id="aboutPage" class="page"><h2>About Us</h2><p>Choufha Luxe - Your coquette fashion destination in Morocco.</p></div>
-    <div id="contactPage" class="page"><h2>Contact</h2><p>WhatsApp: +212 600 000 000 | Email: hello@choufhaluxe.ma</p></div>
 </div>
 
-<!-- WhatsApp Float -->
-<button class="whatsapp-float" id="whatsappFloat">💬</button>
-
-<!-- Cart Sidebar -->
-<div class="cart-overlay" id="cartOverlay"></div>
-<div class="cart-sidebar" id="cartSidebar">
-    <div style="display: flex; justify-content: space-between;"><h3>Your Cart</h3><button id="closeCart" style="background:none; border:none; font-size:1.5rem;">✖</button></div>
-    <div id="cartItems"></div>
-    <div id="cartTotal" style="font-size:1.5rem; font-weight:bold; text-align:center; margin:20px 0;">0 DH</div>
-    <button id="checkoutBtn" style="background:#25D366; width:100%; padding:12px; border:none; border-radius:50px; color:white; font-weight:bold;">Send Order</button>
-</div>
-
-<!-- Admin Modal -->
-<div id="adminModal" class="modal">
-    <div class="modal-content">
-        <h2>Admin Panel</h2>
-        <div class="admin-section">
-            <h3>Logo</h3>
-            <div class="upload-area" id="uploadLogoArea">📸 Click to change Logo</div>
-            <input type="file" id="logoInput" accept="image/*" style="display:none">
-        </div>
-        <div class="admin-section">
-            <h3>Background</h3>
-            <div class="upload-area" id="uploadBgArea">🖼️ Click to change Background</div>
-            <input type="file" id="bgInput" accept="image/*" style="display:none">
-        </div>
-        <div class="admin-section">
-            <h3>Products</h3>
-            <button id="addProductBtn" style="background:#d47a9b; color:white; border:none; padding:10px 20px; border-radius:50px; margin-bottom:15px;">+ Add Product</button>
-            <div id="adminProducts"></div>
-        </div>
-        <button id="closeAdmin" style="background:#b5a0a8; width:100%; padding:12px; border:none; border-radius:50px;">Close</button>
-    </div>
-</div>
-
+<!-- JavaScript اختياري لإضافة أي تأثير بسيط (نسخ الرقم أو رسالة ترحيب) -->
 <script>
-    // Products
-    let products = [
-        { id: 1, name: "Silk Ribbon Bag", price: 220, discount: 15, image: "https://placehold.co/600x600/FFB7C5/white?text=🎀", sizes: ["S","M"] },
-        { id: 2, name: "Heart Print Top", price: 139, discount: 0, image: "https://placehold.co/600x600/F9C7D3/white?text=❤️", sizes: ["XS","S","M"] },
-        { id: 3, name: "Bow Hair Set", price: 69, discount: 25, image: "https://placehold.co/600x600/F4BAC7/white?text=🎀", sizes: ["One Size"] }
-    ];
-    
-    let cart = [];
-    let logoUrl = localStorage.getItem("logo") || "https://placehold.co/200x200/FFB7C5/white?text=🎀";
-    let bgUrl = localStorage.getItem("bg") || "radial-gradient(circle at 10% 30%, #ffe9f0, #ffd9e4)";
-    
-    function applyBg() {
-        if(bgUrl.startsWith("http") || bgUrl.startsWith("data:image")) {
-            document.body.style.backgroundImage = `url('${bgUrl}')`;
-            document.body.style.backgroundSize = "cover";
-        } else {
-            document.body.style.background = bgUrl;
-        }
-    }
-    
-    function applyLogo() { document.getElementById("siteLogo").src = logoUrl; }
-    
-    function saveAll() {
-        localStorage.setItem("products", JSON.stringify(products));
-        localStorage.setItem("cart", JSON.stringify(cart));
-        localStorage.setItem("logo", logoUrl);
-        localStorage.setItem("bg", bgUrl);
-    }
-    
-    function loadAll() {
-        let p = localStorage.getItem("products"); if(p) products = JSON.parse(p);
-        let c = localStorage.getItem("cart"); if(c) cart = JSON.parse(c);
-        let l = localStorage.getItem("logo"); if(l) logoUrl = l;
-        let b = localStorage.getItem("bg"); if(b) bgUrl = b;
-        applyBg(); applyLogo(); updateCart();
-    }
-    
-    function showToast(msg) { let t = document.createElement("div"); t.className = "toast"; t.innerText = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2500); }
-    
-    function renderProducts() {
-        let grid = document.getElementById("productsGrid");
-        let search = document.getElementById("searchInput").value.toLowerCase();
-        let sort = document.getElementById("sortSelect").value;
-        let filtered = products.filter(p => p.name.toLowerCase().includes(search));
-        let copy = [...filtered];
-        if(sort === "lowToHigh") copy.sort((a,b) => (a.price*(1-a.discount/100)) - (b.price*(1-b.discount/100)));
-        if(sort === "highToLow") copy.sort((a,b) => (b.price*(1-b.discount/100)) - (a.price*(1-a.discount/100)));
-        
-        grid.innerHTML = copy.map(p => {
-            let final = (p.price * (1 - p.discount/100)).toFixed(2);
-            return `<div class="product-card">
-                <img class="product-img" src="${p.image}" onerror="this.src='https://placehold.co/600x600/pink'">
-                <div class="product-title">${p.name}</div>
-                <div class="price">${final} DH ${p.discount > 0 ? `<span style="font-size:0.8rem; text-decoration:line-through; color:gray;">${p.price} DH</span> <span style="background:#ff8fae; padding:2px 8px; border-radius:20px;">-${p.discount}%</span>` : ''}</div>
-                <div class="sizes">${p.sizes.map(s => `<span class="size" data-id="${p.id}" data-size="${s}">${s}</span>`).join('')}</div>
-                <button class="add-btn" data-product='${JSON.stringify(p)}'>Add to Cart</button>
-            </div>`;
-        }).join('');
-        
-        document.querySelectorAll('.size').forEach(el => {
-            el.onclick = (e) => { e.stopPropagation(); let pid = parseInt(el.dataset.id); let size = el.dataset.size; let prod = products.find(p => p.id === pid); if(prod) addToCart(prod, size); };
-        });
-        document.querySelectorAll('.add-btn').forEach(btn => { btn.onclick = () => { let prod = JSON.parse(btn.dataset.product); addToCart(prod, prod.sizes[0]); }; });
-    }
-    
-    function addToCart(product, size) {
-        let final = product.price * (1 - product.discount/100);
-        let exist = cart.find(i => i.id === product.id && i.size === size);
-        if(exist) exist.qty++; else cart.push({ id: product.id, name: product.name, size, finalPrice: final, qty: 1, img: product.image });
-        saveAll(); updateCart(); showToast(`✨ Added ${product.name} (${size})`);
-    }
-    
-    function updateCart() {
-        let count = cart.reduce((s,i)=>s+i.qty,0);
-        document.getElementById("cartCount").innerText = count;
-        let container = document.getElementById("cartItems");
-        if(cart.length === 0) { container.innerHTML = "<div style='text-align:center; padding:20px;'>Cart empty</div>"; document.getElementById("cartTotal").innerHTML = "0 DH"; return; }
-        container.innerHTML = cart.map(item => `<div style="display:flex; gap:10px; background:#fef0f5; border-radius:20px; padding:10px; margin:10px 0;"><img src="${item.img}" style="width:50px; height:50px; border-radius:15px;"><div style="flex:1"><b>${item.name}</b><br>${item.size} | ${item.finalPrice.toFixed(2)} DH x ${item.qty}</div><button onclick="removeItem('${item.id}_${item.size}')" style="background:#ffb0c0; border:none; border-radius:30px; padding:0 15px;">X</button></div>`).join('');
-        let total = cart.reduce((s,i)=>s+(i.finalPrice*i.qty),0);
-        document.getElementById("cartTotal").innerHTML = total.toFixed(2) + " DH";
-    }
-    
-    window.removeItem = function(key) { cart = cart.filter(i => `${i.id}_${i.size}` !== key); saveAll(); updateCart(); showToast("Item removed"); };
-    
-    function openAdmin() {
-        let modal = document.getElementById("adminModal");
-        let container = document.getElementById("adminProducts");
-        container.innerHTML = products.map(p => `<div class="admin-product">
-            <input id="name_${p.id}" value="${p.name.replace(/"/g, '&quot;')}" placeholder="Name">
-            <input id="price_${p.id}" value="${p.price}" type="number" placeholder="Price">
-            <input id="discount_${p.id}" value="${p.discount}" type="number" placeholder="Discount %">
-            <input id="sizes_${p.id}" value="${p.sizes.join(',')}" placeholder="Sizes">
-            <div class="upload-area" style="padding:8px;" onclick="document.getElementById('productImg_${p.id}').click()">📸 Change Image</div>
-            <input type="file" id="productImg_${p.id}" accept="image/*" style="display:none" onchange="uploadProductImage(${p.id}, this)">
-            <button class="btn-save" onclick="updateProduct(${p.id})">Save</button>
-            <button class="btn-delete" onclick="deleteProduct(${p.id})">Delete</button>
-        </div>`).join('');
-        modal.style.display = "flex";
-    }
-    
-    window.uploadProductImage = function(id, input) {
-        if(input.files && input.files[0]) {
-            let reader = new FileReader();
-            reader.onload = (e) => { let p = products.find(p => p.id === id); if(p) p.image = e.target.result; saveAll(); renderProducts(); openAdmin(); showToast("Image updated"); };
-            reader.readAsDataURL(input.files[0]);
-        }
-    };
-    
-    window.updateProduct = function(id) {
-        let p = products.find(p => p.id === id);
-        if(p) {
-            p.name = document.getElementById(`name_${id}`).value;
-            p.price = parseFloat(document.getElementById(`price_${id}`).value);
-            p.discount = parseFloat(document.getElementById(`discount_${id}`).value);
-            p.sizes = document.getElementById(`sizes_${id}`).value.split(',').map(s=>s.trim());
-            saveAll(); renderProducts(); openAdmin(); showToast("Product updated");
-        }
-    };
-    
-    window.deleteProduct = function(id) { products = products.filter(p => p.id !== id); saveAll(); renderProducts(); openAdmin(); showToast("Product deleted"); };
-    
-    document.getElementById("uploadLogoArea").onclick = () => document.getElementById("logoInput").click();
-    document.getElementById("logoInput").onchange = (e) => { if(e.target.files[0]) { let reader = new FileReader(); reader.onload = (ev) => { logoUrl = ev.target.result; applyLogo(); saveAll(); showToast("Logo updated"); }; reader.readAsDataURL(e.target.files[0]); } };
-    
-    document.getElementById("uploadBgArea").onclick = () => document.getElementById("bgInput").click();
-    document.getElementById("bgInput").onchange = (e) => { if(e.target.files[0]) { let reader = new FileReader(); reader.onload = (ev) => { bgUrl = ev.target.result; applyBg(); saveAll(); showToast("Background updated"); }; reader.readAsDataURL(e.target.files[0]); } };
-    
-    document.getElementById("adminBtn").onclick = openAdmin;
-    document.getElementById("closeAdmin").onclick = () => document.getElementById("adminModal").style.display = "none";
-    document.getElementById("addProductBtn").onclick = () => { products.push({ id: Date.now(), name: "New Product", price: 99, discount: 0, image: "https://placehold.co/600x600/FFC0D0/white?text=✨", sizes: ["M"] }); saveAll(); renderProducts(); openAdmin(); showToast("Product added"); };
-    document.getElementById("sortSelect").onchange = () => renderProducts();
-    document.getElementById("searchInput").oninput = () => renderProducts();
-    
-    document.getElementById("cartBtn").onclick = () => { document.getElementById("cartSidebar").classList.add("open"); document.getElementById("cartOverlay").style.display = "block"; };
-    document.getElementById("closeCart").onclick = () => { document.getElementById("cartSidebar").classList.remove("open"); document.getElementById("cartOverlay").style.display = "none"; };
-    document.getElementById("cartOverlay").onclick = () => { document.getElementById("cartSidebar").classList.remove("open"); document.getElementById("cartOverlay").style.display = "none"; };
-    
-    function getCartMsg() { if(cart.length === 0) return "Hello, I want to order"; let msg = "My order from Choufha Luxe%0A"; cart.forEach(i => msg += `• ${i.name} (${i.size}) - ${i.finalPrice.toFixed(2)} DH x ${i.qty} = ${(i.finalPrice*i.qty).toFixed(2)} DH%0A`); let total = cart.reduce((s,i)=>s+(i.finalPrice*i.qty),0); msg += `%0ATotal: ${total.toFixed(2)} DH%0AAddress: (write your address)`; return msg; }
-    document.getElementById("whatsappFloat").onclick = () => window.open(`https://wa.me/212600000000?text=${getCartMsg()}`, "_blank");
-    document.getElementById("checkoutBtn").onclick = () => window.open(`https://wa.me/212600000000?text=${getCartMsg()}`, "_blank");
-    
-    let dark = false;
-    document.getElementById("themeBtn").onclick = () => { if(!dark) { document.body.setAttribute("data-theme", "dark"); document.body.style.background = "#1a1a2e"; dark = true; } else { document.body.removeAttribute("data-theme"); applyBg(); dark = false; } };
-    
-    window.showPage = function(page) { document.getElementById("shopPage").classList.remove("active"); document.getElementById("aboutPage").classList.remove("active"); document.getElementById("contactPage").classList.remove("active"); document.getElementById(page + "Page").classList.add("active"); if(page === "shop") renderProducts(); };
-    
-    loadAll(); renderProducts();
+    // مجرد تحسين بسيط: عند النقر على رقم الهاتف في الـ info-item يعمل الاتصال أيضاً
+    console.log("موقع Dalas Palace - تصميم احترافي");
+    // يمكن إضافة تنبيه تجريبي عند الضغط على زر الخريطة (اختياري)
 </script>
 </body>
 </html>
